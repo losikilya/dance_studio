@@ -9,7 +9,7 @@ const TEACHERS = [
     id: 'doma',
     name: 'Dominika Lubawy',
     title: 'Waacking',
-    cover: "src/assets/Doma.jpg",
+    cover: "/assets/Doma.jpg",
     videoId: 'CyUHRIfff_0',
     classes: [
       { name: 'Waacking', level: 'begginers', times: 'СР — 20:00, СБ — 15:00' },
@@ -23,7 +23,7 @@ const TEACHERS = [
     id: 'nikola',
     name: 'Nikola Makowska',
     title: 'Jazz',
-    cover: 'src/assets/nikola.jpg',
+    cover: '/assets/nikola.jpg',
     videoId: 'c3RPBn4_KJo',
     classes: [{ name: 'Jazz', level: 'begginers', times: 'ПН/ЧТ — 18:00' }],
     ctas: {

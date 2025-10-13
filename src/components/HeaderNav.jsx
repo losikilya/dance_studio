@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { Button, Drawer, Menu, Switch } from 'antd'
 import { useState } from 'react'
 import { MenuOutlined } from '@ant-design/icons'
-import logoUrl from '../assets/logo2.jpg' // или .png — скорректируй путь/имя
+import logoUrl from '/assets/logo2.jpg' // или .png — скорректируй путь/имя
 
 const items = [
   { key: 'home', label: <Link to="/">Home</Link> },

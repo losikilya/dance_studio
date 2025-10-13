@@ -6,9 +6,9 @@ import './documents.css'
 
 // Примеры: положи свои PDF в src/assets/docs и импортируй
 // Vite даст URL строку:
-import rulesPdf from '../assets/docs/doc1.pdf'
-import pricesPdf from '../assets/docs/doc2.pdf'
-import rentalPdf from '../assets/docs/doc3.pdf'
+import rulesPdf from '/assets/docs/doc1.pdf'
+import pricesPdf from '/assets/docs/doc2.pdf'
+import rentalPdf from '/assets/docs/doc3.pdf'
 
 const { Title, Text } = Typography
 

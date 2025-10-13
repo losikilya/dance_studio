@@ -24,7 +24,7 @@ export default function Home(){
             </div>
           </div>
 
-          <img className="img-cover" src="src\assets\main.jpg" alt="Dance" />
+          <img className="img-cover" src="\assets\main.jpg" alt="Dance" />
         </div>
       </section>
 

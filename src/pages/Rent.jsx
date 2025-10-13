@@ -11,9 +11,9 @@ const { Title, Paragraph, Text } = Typography
 
 // --- mock images (replace with your assets)
 const HERO_IMAGES = [
-  'src/assets/hall1.jpg',
-  'src/assets/hall2.jpg',
-  'src/assets/hall3.jpg',
+  '/assets/hall1.jpg',
+  '/assets/hall2.jpg',
+  '/assets/hall3.jpg',
 ]
 
 // amenities block
@@ -37,7 +37,7 @@ const HALLS = [
     capacity: 15,
     price: 120, // PLN/hour
     images: [
-      'src/assets/hall1.jpg',
+      '/assets/hall1.jpg',
     ],
     features: ['Mirrors wall', 'Wood floor', 'Bluetooth audio', 'AC'],
   },
@@ -48,7 +48,7 @@ const HALLS = [
     capacity: 25,
     price: 160,
     images: [
-      'src/assets/hall2.jpg',
+      '/assets/hall2.jpg',
     ],
     features: ['Mirrors wall', 'Wood floor', 'Bluetooth audio', 'AC'],
   },
@@ -59,7 +59,7 @@ const HALLS = [
     capacity: 35,
     price: 190,
     images: [
-      'src/assets/hall3.jpg',
+      '/assets/hall3.jpg',
     ],
     features: ['Mirrors wall', 'Sprung floor', 'Stage lights', 'AC'],
   },
