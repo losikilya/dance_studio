@@ -1,0 +1,29 @@
+.docs-wrap{
+  background: var(--bg);
+  color: var(--txt);
+  padding: clamp(12px, 2vw, 24px) 0 clamp(40px, 6vw, 72px);
+}
+.docs-title{
+  text-align:center; font-weight:800; color:#333;
+  margin-bottom: clamp(12px,3vw,24px) !important;
+}
+.card{
+  background:#fff; border:1px solid var(--border); border-radius: var(--radius);
+  padding: 12px; box-shadow:0 8px 24px rgba(0,0,0,.06);
+}
+
+/* мини-иконка PDF слева */
+.pdf-avatar{
+  width: 44px; height: 44px; border-radius: 10px;
+  display: grid; place-items: center;
+  background: rgba(209,59,59,.08); color: #D13B3B;
+  font-size: 20px;
+}
+
+/* заголовок/описание */
+.doc-title{ font-weight: 700; color:#333; }
+.doc-desc{ display:flex; flex-direction: column; gap: 4px; }
+.doc-updated{ font-size: 12px; color: var(--txt-2); }
+
+/* теги чуть мягче */
+.ant-tag{ background:#F3F3F3; border-color:#E6E6E6; color:#333; border-radius:6px }

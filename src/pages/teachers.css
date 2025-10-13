@@ -1,0 +1,103 @@
+/* src/pages/teachers.css */
+/* используем переменные из styles.css, которые мы вводили ранее */
+.teachers-wrap{
+  background: var(--bg);              /* #F3F3F3 */
+  color: var(--txt);                  /* #686868 */
+  padding: clamp(12px, 2vw, 24px) 0 clamp(40px, 6vw, 72px);
+}
+
+.teachers-title{
+  text-align: center;
+  font-weight: 800;
+  letter-spacing: .4px;
+  margin-bottom: clamp(12px, 3vw, 28px) !important;
+  color: #333;
+}
+
+.teacher-row{
+  display: flex;
+}
+@media (min-width: 992px){
+  .teacher-row.reverse-desktop{
+    flex-direction: row-reverse;      /* чередуем блоки на десктопе */
+  }
+}
+
+.teacher-cover{
+  position: relative;
+  background: #111;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);    /* #D7D7D7 */
+  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+}
+.teacher-cover img{
+  width: 100%;
+  display: block;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  filter: saturate(.92);
+}
+
+/* бренд-оверлей «DANCE | POINT» */
+.brand-overlay{
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  color: #fff;
+  font-weight: 800;
+  font-family: Montserrat, Inter, system-ui, sans-serif;
+  font-size: clamp(26px, 4vw, 48px);
+  letter-spacing: 1px;
+  padding: 22px;
+  text-shadow: 0 2px 8px rgba(0,0,0,.35);
+  pointer-events: none;
+}
+.brand-overlay span:first-child{ justify-self: start; }
+.brand-overlay span:last-child{ justify-self: end; }
+
+/* подпись на фото */
+.teacher-caption{
+  position: absolute;
+  left: 16px;
+  bottom: 12px;
+  color: #E6E6E6;                     /* из палитры */
+  font-size: 12px;
+  text-shadow: 0 2px 6px rgba(0,0,0,.45);
+}
+
+/* расписание */
+.schedule-title{
+  font-weight: 800 !important;
+  margin-bottom: 12px !important;
+  color: #333;
+}
+.schedule-list{ color: var(--txt); }
+.schedule-item{ text-align: left; }
+.schedule-class{
+  font-weight: 800;
+  text-decoration: underline;
+  color: #333;
+}
+.schedule-level{
+  margin-top: 4px;
+  font-weight: 600;
+  color: var(--txt);
+}
+.schedule-time{
+  margin-top: 2px;
+  color: var(--txt-2);                /* #8A8A8A */
+}
+
+.shedule-description-start{ text-align: start;}
+.shedule-description-end{ text-align: end;}
+
+/* адаптив */
+@media (max-width: 576px){
+  .teacher-cover img{ aspect-ratio: 16 / 12; }
+  .schedule-item, .schedule-title{ text-align: center; }
+}
+
+/* кнопки — используем тему AntD (primary=#964B4B), без чёрного */

@@ -1,0 +1,90 @@
+.prices-wrap{
+  background: var(--bg);
+  color: var(--txt);
+  padding: clamp(12px, 2vw, 24px) 0 clamp(40px, 6vw, 72px);
+}
+
+.prices-title{
+  text-align: center;
+  font-weight: 800;
+  color: #333;
+  margin-bottom: clamp(12px, 3vw, 28px) !important;
+}
+
+.switchers{
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.card{
+  background: var(--colorBgContainer, #fff);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.06);
+}
+
+.price-card .price-head{
+  display: flex; align-items: center; gap: 8px;
+}
+.price-card .ant-card-head-title{ width: 100%; } /* allow flex title */
+
+.price-value{
+  font-size: clamp(22px, 3vw, 28px);
+  font-weight: 800;
+  color: #333;
+  margin: 4px 0 8px;
+}
+.price-accent{
+  font-size: 12px;
+  color: var(--txt-2);
+  margin-bottom: 8px;
+}
+.price-perks{
+  list-style: none;
+  padding: 0; margin: 0;
+  display: grid; gap: 8px;
+}
+.price-perks li{
+  display: flex; align-items: center; gap: 8px;
+}
+
+.price-card.is-best{
+  border-color: rgba(150,75,75,.4);
+  box-shadow: 0 10px 28px rgba(150,75,75,.12);
+}
+.price-card.is-best .ant-card-head{
+  background: rgba(150,75,75,.05);
+}
+
+/* Sections */
+.discounts, .faq{ margin-top: 16px; }
+
+/* CTA */
+.cta-wrap{
+  margin-top: 24px;
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+}
+.cta-big{
+  height: 56px;
+  padding: 0 28px;
+  font-size: 18px;
+  border-radius: 999px;
+  min-width: min(520px, 90%);
+}
+.cta-note{
+  color: var(--txt-2);
+  font-size: 14px;
+}
+
+/* Responsive refinements */
+@media (max-width: 576px){
+  .price-card .ant-card-actions > li{
+    margin: 0; /* tighter actions on mobile */
+  }
+}

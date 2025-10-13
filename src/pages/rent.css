@@ -1,0 +1,53 @@
+/* src/pages/rent.css */
+.rent-wrap{
+  background: var(--bg);
+  color: var(--txt);
+  padding: clamp(12px, 2vw, 24px) 0 clamp(40px, 6vw, 72px);
+}
+.rent-title{
+  text-align:center; font-weight:800; color:#333;
+  margin-bottom: clamp(12px,3vw,24px) !important;
+}
+.section{ margin-top: 16px; }
+.card{
+  background: var(--colorBgContainer, #fff);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.06);
+}
+
+/* Amenities */
+.amenity-card{
+  text-align:center; height:100%;
+  display:grid; place-items:center; gap:8px; padding-block:22px;
+}
+.amenity-icon{
+  font-size: 34px; color:#333;
+}
+.amenity-label{
+  font-weight:600; color:#333;
+}
+
+/* Halls */
+.hall-card .hall-media{ border-radius:10px; overflow:hidden }
+.hall-meta{
+  display:flex; gap:12px; flex-wrap:wrap; color:#333;
+}
+.hall-price{
+  font-weight:800; color:#333; margin-top:4px;
+  font-size: clamp(18px, 2.4vw, 22px);
+}
+.hall-features .ant-tag{
+  background:#F3F3F3; border-color:#E6E6E6; color:#333;
+  border-radius: 6px; margin-top: 6px;
+}
+
+/* CTA */
+.cta-wrap{
+  margin-top: 24px; display:grid; justify-items:center; gap:8px;
+}
+.cta-big{
+  height:56px; padding:0 28px; font-size:18px; border-radius:999px;
+  min-width: min(520px, 90%);
+}

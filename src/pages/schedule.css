@@ -1,0 +1,106 @@
+/* layout */
+.schedule-wrap{
+  background: var(--bg);
+  color: var(--txt);
+  padding: clamp(12px, 2vw, 24px) 0 clamp(40px, 6vw, 72px);
+}
+.page-title{
+  text-align:center; font-weight:800; color:#333;
+  margin-bottom: clamp(12px,3vw,20px) !important;
+}
+
+/* GRID: sidebar + calendar (одна высота у обоих) */
+.schedule-grid{
+  display: grid;
+  grid-template-columns: 320px minmax(0,1fr);
+  gap: 16px;
+  height: calc(100dvh - 120px);  /* высокий контейнер */
+  min-height: 820px;
+}
+.schedule-grid.huge{
+  height: calc(100dvh - 100px);
+  min-height: 860px;
+}
+@media (max-width: 992px){
+  .schedule-grid{ grid-template-columns: 1fr; height: auto; min-height: 0; }
+}
+
+/* panels */
+.card{
+  background:#fff; border:1px solid var(--border); border-radius: var(--radius);
+  box-shadow:0 8px 24px rgba(0,0,0,.06);
+}
+.sidebar{
+  display:flex; flex-direction:column;
+  padding: 12px;
+  overflow:auto;         /* скролл только у сайдбара при нехватке места */
+  min-height: 0;
+}
+
+/* Календарь — флекс-колонка: Tabs сверху, тело тянется на остаток */
+.calendar-viewport{
+  display:flex; flex-direction:column;
+  padding: 8px;          /* было 12 — уменьшили, чтобы влезло */
+  overflow:hidden;
+  min-height: 0;         /* важно внутри grid */
+}
+
+/* Tabs над календарём */
+.calendar-tabs{ margin: -2px -2px 6px; }
+.calendar-tabs .ant-tabs-nav::before{ display:none; }
+
+/* Тело календаря тянется на остаток высоты карточки */
+.calendar-body{
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* ===== FullCalendar: высота = 100% родителя, без «выпираний» ===== */
+.fc, .fc .fc-view-harness, .fc .fc-view-harness-active{ height:100% !important; }
+.fc .fc-scrollgrid{ height:100%; } /* таблица растягивается, но не больше контейнера */
+.fc .fc-scrollgrid-liquid{ height:100%; }
+.fc .fc-scroller-liquid-absolute{ position: static; }
+.fc .fc-scroller{ overflow: hidden !important; } /* без внутреннего скролла */
+
+/* Часовой слот — компактнее, чтобы точно поместилось */
+.fc .fc-timegrid-slot{ height:56px; } /* при необходимости опусти до 52px */
+
+/* Подсветка текущего дня и «сейчас» */
+.fc .fc-day-today{
+  background: linear-gradient(180deg, rgba(209,59,59,0.12), rgba(209,59,59,0.04));
+}
+.fc .fc-timegrid-col.fc-day-today .fc-timegrid-col-frame{
+  box-shadow: inset 2px 0 0 rgba(209,59,59,0.55);
+}
+.fc .fc-now-indicator-line{ border-color:#ff2a2a }
+.fc .fc-now-indicator-arrow{ border-color:#ff2a2a }
+
+/* Яркие события */
+.dp-event{
+  border:0 !important;
+  color:#fff !important;
+  border-radius:12px !important;
+  padding:0 !important;
+  position:relative;
+  box-shadow:0 10px 24px rgba(0,0,0,.18);
+  background: var(--eventColor, #0E7C86) !important;
+}
+.dp-event.vivid:before{
+  content:''; position:absolute; left:0; top:0; bottom:0; width:8px;
+  background: rgba(255,255,255,.85);
+  mix-blend-mode: overlay;
+  border-top-left-radius:12px; border-bottom-left-radius:12px;
+}
+.fc-event .event-content{ padding:2px 8px; }
+.fc-event .event-title{ line-height:1; color:#fff; }
+
+/* sidebar pieces */
+.sidebar-head{ display:flex; align-items:center; justify-content:space-between; }
+.filter-divider{ margin:10px 0; }
+.filter-block{ margin-bottom:8px; }
+.filter-title-row{ display:flex; justify-content:space-between; align-items:center; }
+.filter-title{ font-weight:700; color:#333; }
+.style-chip{
+  display:inline-block; padding:2px 8px; border-radius:999px; color:#fff;
+  background: var(--chip);
+}

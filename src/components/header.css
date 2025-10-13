@@ -1,0 +1,11 @@
+/* в src/styles.css или рядом */
+.brand { display:inline-flex; align-items:center; gap:8px;  }
+.brand__img {
+  height: 36px;          /* подгони под свой файл; 32–40px обычно ок */
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+@media (max-width: 576px){
+  .brand__img { height: 28px; }
+}
