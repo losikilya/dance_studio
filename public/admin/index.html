@@ -5,14 +5,27 @@
     <meta name="robots" content="noindex" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>DANCE POINT — Admin</title>
-    <!-- Netlify Identity widget (нужен для Git Gateway) -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <!-- Decap CMS -->
-    <script src="https://unpkg.com/decap-cms@^3.1.9/dist/decap-cms.js"></script>
     <style>
       :root { --brand:#964B4B; }
       body { font-family: Inter, system-ui, Arial; }
     </style>
   </head>
-  <body></body>
+  <body>
+    <!-- Подключаем скрипты ПОСЛЕ body или с defer, чтобы document.body уже существовал -->
+    <script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script defer src="https://unpkg.com/decap-cms@^3.1.9/dist/decap-cms.js"></script>
+
+    <!-- (не обязательно, но удобно) авто-рефреш после логина -->
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        if (window.netlifyIdentity) {
+          window.netlifyIdentity.on('init', (user) => {
+            if (!user) {
+              window.netlifyIdentity.on('login', () => window.location.reload());
+            }
+          });
+        }
+      });
+    </script>
+  </body>
 </html>
