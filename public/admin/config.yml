@@ -2,30 +2,14 @@ backend:
   name: git-gateway
   branch: main
 
-site_url: https://shiny-tartufo-3eee17.netlify.app
-display_url: https://shiny-tartufo-3eee17.netlify.app
-logo_url: /logo.svg
+site_url: "https://shiny-tartufo-3eee17.netlify.app"
+display_url: "https://shiny-tartufo-3eee17.netlify.app"
 
-media_folder: "public/uploads"   # куда складывать файлы в репозиторий
-public_folder: "/uploads"        # публичный URL (через CDN Netlify)
+media_folder: "public/uploads"   # файлы попадут в репозиторий
+public_folder: "/uploads"        # URL через CDN Netlify
 
 collections:
-  # 1) Простая "библиотека изображений" (без полей контента) —
-  #    клиент может просто загружать картинки в /uploads
-  - name: "media"
-    label: "Image Library"
-    label_singular: "Image"
-    delete: true
-    editor:
-      preview: false
-    files:
-      - name: "images"
-        label: "Upload images"
-        file: "public/uploads/README.md"
-        fields:
-          - {label: "Drag & Drop images into /uploads via Media Library", name: "note", widget: "text", default: "Use the Media Library (top right) to upload images. Copy URLs like /uploads/yourfile.jpg and paste into the website settings."}
-
-  # 2) Настройки сайта (опционально) — ссылки на инстаграм/ватсап и т.п.
+  # Site Settings (пример)
   - name: "settings"
     label: "Site Settings"
     files:
@@ -33,37 +17,32 @@ collections:
         label: "Social Links"
         file: "src/content/social.json"
         fields:
-          - {label: "Instagram", name: "instagram", widget: "string"}
-          - {label: "WhatsApp",  name: "whatsapp",  widget: "string"}
-          - {label: "Facebook",  name: "facebook",  widget: "string"}
+          - { label: "Instagram", name: "instagram", widget: "string", required: false }
+          - { label: "WhatsApp",  name: "whatsapp",  widget: "string", required: false }
+          - { label: "Facebook",  name: "facebook",  widget: "string", required: false }
 
-  # 3) Статическая галерея (опционально) — например, для Rent page
+  # Galleries (пример)
   - name: "gallery"
     label: "Galleries"
     folder: "src/content/galleries"
     create: true
     slug: "{{slug}}"
     fields:
-      - {label: "Title", name: "title", widget: "string"}
+      - { label: "Title", name: "title", widget: "string" }
       - label: "Images"
         name: "images"
         widget: "list"
-        field: {label: "Image", name: "src", widget: "image"}  # грузит в /uploads
+        field: { label: "Image", name: "src", widget: "image" }  # загрузит в /uploads
 
-  # 4) Документы (PDF) — чтобы клиент мог сам добавлять правила/прайсы
+  # Documents (PDF)
   - name: "documents"
     label: "Documents"
     folder: "src/content/documents"
     create: true
     slug: "{{slug}}"
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "File (PDF)", name: "file", widget: "file", media_library: {allow_multiple: false}}
-      - {label: "Tags", name: "tags", widget: "list", required: false }
-      - {label: "Description", name: "description", widget: "text", required: false}
-      - {label: "Updated At", name: "updatedAt", widget: "datetime", format: "YYYY-MM-DD", time_format: false}
-
-media_library:
-  name: uploadcare   # можно оставить стандартную; uploadcare — удобный UI (но можно убрать)
-  config:
-    publicKey: "demopublickey"  # если не нужен Uploadcare, удалите media_library блок
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "File (PDF)", name: "file", widget: "file", media_library: { allow_multiple: false } }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Updated At", name: "updatedAt", widget: "datetime", format: "YYYY-MM-DD", time_format: false }
