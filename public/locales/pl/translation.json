@@ -1,3 +1,33 @@
 {
-    "trial": "Lekcja próbna"
+  "trial": "Lekcja próbna",
+  "schedule_btn": "Grafik",
+  "menu": "Menu",
+  "signup": "Zapisać się",
+  "video": "Obejrzyj Wideo",
+  "nav": {
+    "home": "Strona główna",
+    "classes": "Style",
+    "schedule": "Grafik",
+    "teachers": "Instruktorzy",
+    "prices": "Cennik",
+    "rent": "Wynajem",
+    "documents": "Dokumenty",
+    "contacts": "Kontakt"
+  },
+  "home": {
+    "title": "Dance Point Luboń",
+    "text_1": "Szkoła tańca, miejsce w którym dzieci, młodzież i dorośli mogą doskonalić swoje umiejętności taneczne oraz aktywnie spędzić wolny czas.",
+    "text_2": "Dance Point Luboń to nie tylko szkoła tańca — to społeczność, energia i przestrzeń do rozwoju. <strong>Dołącz do nas</strong> i poczuj, jak taniec może zmienić Twoje życie."
+  },
+  "classes": {
+    "title": "Style"
+  },
+  "schedule": {
+    "title": "Grafik",
+    "note": "Grafik może różnić się od obecnego. Prosimy o kontakt z administratorem."
+  },
+  "teachers": {
+    "title": "INSTRUKTORZY",
+    "subtitle": "GRAFIK"
+  }
 }

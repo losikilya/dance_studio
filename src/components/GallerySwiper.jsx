@@ -4,11 +4,11 @@ import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 import { useRef } from 'react'
 import './gallerySwiper.css'
 
-export default function GallerySwiper({ images = [], height = 520, autoplay = false }) {
+export default function GallerySwiper({ images = [], height, autoplay = false }) {
   const ref = useRef(null)
 
   return (
-    <div className="gallery-swiper" style={{ '--h': `${height}px` }}>
+    <div className="gallery-swiper" style={ height ? { '--h': `${height}px` } : {}}>
       <button className="nav prev" aria-label="Previous" onClick={() => ref.current?.prev()}>
         <LeftOutlined />
       </button>

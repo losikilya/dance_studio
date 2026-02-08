@@ -57,10 +57,10 @@
 
 /* CTA */
 .cta-wrap{
-  margin-top: 20px; display: grid; justify-items: center; gap: 8px;
+  margin-top: 60px; display: grid; justify-items: center; gap: 20px;
 }
 .cta-big{
   height: 56px; padding: 0 28px; font-size: 18px; border-radius: 999px;
   min-width: min(520px, 90%);
 }
-.cta-note{ color: var(--txt-2); font-size: 14px; }
+.cta-note{ color: var(--txt-2); font-size: 14px; padding: 0 12px; text-align: center; }

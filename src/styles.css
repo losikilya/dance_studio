@@ -25,7 +25,7 @@ h1,h2,h3,.h{
 .container{
   max-width:1200px;
   margin:0 auto;
-  padding-inline:16px;
+  padding:0 16px;
 }
 .section{
   padding: clamp(28px, 6vw, 72px) 0;
@@ -43,10 +43,11 @@ h1,h2,h3,.h{
 /* аккуратные карточки */
 .card{
   background:#fff;
-  border:1px solid var(--border);
+  /* border:1px solid var(--border); */
+  border: none;
   border-radius: var(--radius);
   padding:20px;
-  box-shadow: 0 4px 16px rgba(0,0,0,.06);
+  box-shadow: 0 4px 16px rgba(0,0,0,.09);
 }
 
 /* адаптивные изображения */

@@ -1,3 +1,33 @@
 {
-    "trial": "Trial lesson"
+  "trial": "Trial lesson",
+  "schedule_btn": "Schedule",
+  "menu": "Menu",
+  "signup": "Sign up",
+  "video": "Watch Video",
+  "nav": {
+    "home": "Home",
+    "classes": "Styles",
+    "schedule": "Schedule",
+    "teachers": "Teachers",
+    "prices": "Prices",
+    "rent": "Rent",
+    "documents": "Documents",
+    "contacts": "Contacts"
+  },
+  "home": {
+    "title": "Dance Point Luboń",
+    "text_1": "A dance school where children, teenagers, and adults can develop their dance skills and actively spend their free time.",
+    "text_2": "Dance Point Luboń is not just a dance school - it's a community, energy, and a space for growth. <strong>Join us</strong> and feel how dance can change your life."
+  },
+  "classes": {
+    "title": "Styles"
+  },
+  "schedule": {
+    "title": "Schedule",
+    "note": "The schedule may differ from the current one. Please check with the administrator."
+  },
+  "teachers": {
+    "title": "TEACHERS",
+    "subtitle": "SCHEDULE"
+  }
 }

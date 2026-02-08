@@ -21,6 +21,7 @@ import { ConfigProvider, App as AntApp } from "antd";
 import "dayjs/locale/pl";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import ScheduleLight from "./pages/ScheduleLight.jsx";
 
 dayjs.locale("pl");
 
@@ -64,7 +65,7 @@ export default function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/classes" element={<Classes />} />
-                <Route path="/schedule" element={<Schedule />} />
+                <Route path="/schedule" element={<ScheduleLight />} />
                 <Route path="/teachers" element={<Teachers />} />
                 <Route path="/prices" element={<Prices />} />
                 <Route path="/rent" element={<Rent />} />

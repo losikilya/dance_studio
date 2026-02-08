@@ -5,7 +5,7 @@
   /* 16:9 */
   padding-top: 56.25%;
   background: #000;
-  border-radius: 10px;
+  border-radius: var(--radius) 0 0 0;
   overflow: hidden;
 }
 .video-aspect iframe{

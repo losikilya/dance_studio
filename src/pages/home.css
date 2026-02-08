@@ -1,7 +1,7 @@
-.container {
+.video-container {
   position: relative; /* Container to position content on top of the video */
   width: 100%;
-  height: 100vh; /* Full viewport height */
+  height: 80vh; /* Full viewport height */
   overflow: hidden;
 }
 

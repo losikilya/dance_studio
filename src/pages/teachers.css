@@ -17,7 +17,7 @@
 .teacher-row{
   display: flex;
 }
-@media (min-width: 992px){
+@media (min-width: 768px){
   .teacher-row.reverse-desktop{
     flex-direction: row-reverse;      /* чередуем блоки на десктопе */
   }
@@ -61,11 +61,13 @@
 /* подпись на фото */
 .teacher-caption{
   position: absolute;
-  left: 16px;
   bottom: 12px;
   color: #E6E6E6;                     /* из палитры */
   font-size: 12px;
   text-shadow: 0 2px 6px rgba(0,0,0,.45);
+  background: rgb(0, 0, 0, .4);
+  padding-left: 20px;
+  width: 100%;
 }
 
 /* расписание */
@@ -95,9 +97,11 @@
 .shedule-description-end{ text-align: end;}
 
 /* адаптив */
-@media (max-width: 576px){
-  .teacher-cover img{ aspect-ratio: 16 / 12; }
+@media (max-width: 768px){
+  .teacher-cover { border: unset; border-radius: unset; }
   .schedule-item, .schedule-title{ text-align: center; }
+  .shedule-description-start{ text-align: center;}
+  .shedule-description-end{ text-align: center;}
 }
 
 /* кнопки — используем тему AntD (primary=#964B4B), без чёрного */

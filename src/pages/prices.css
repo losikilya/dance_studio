@@ -64,12 +64,12 @@
 .discounts, .faq{ margin-top: 16px; }
 
 /* CTA */
-.cta-wrap{
+/* .cta-wrap{
   margin-top: 24px;
   display: grid;
   justify-items: center;
   gap: 8px;
-}
+} */
 .cta-big{
   height: 56px;
   padding: 0 28px;
@@ -77,10 +77,10 @@
   border-radius: 999px;
   min-width: min(520px, 90%);
 }
-.cta-note{
+/* .cta-note{
   color: var(--txt-2);
   font-size: 14px;
-}
+} */
 
 /* Responsive refinements */
 @media (max-width: 576px){
