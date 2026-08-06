@@ -25,6 +25,7 @@ export default function Home() {
             gap: 24,
             gridTemplateColumns: "1.2fr .8fr",
             maxWidth: "none",
+            padding: 0,
           }}
         >
           <video autoPlay loop muted playsInline id="background-video">

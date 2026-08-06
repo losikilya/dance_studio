@@ -27,6 +27,10 @@
   box-shadow: 0 8px 24px rgba(0,0,0,.06);
 }
 
+.price-head {
+  white-space: break-spaces;
+}
+
 .price-card .price-head{
   display: flex; align-items: center; gap: 8px;
 }
@@ -53,11 +57,18 @@
 }
 
 .price-card.is-best{
-  border-color: rgba(150,75,75,.4);
-  box-shadow: 0 10px 28px rgba(150,75,75,.12);
+  border-color: #964b4b;
+  box-shadow: 0 10px 28px #964b4b;
+  animation: pulse 2s infinite;
 }
 .price-card.is-best .ant-card-head{
-  background: rgba(150,75,75,.05);
+  background: rgba(150,75,75);
+  color: #fff;
+}
+
+@keyframes pulse {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }
 
 /* Sections */
@@ -85,6 +96,6 @@
 /* Responsive refinements */
 @media (max-width: 576px){
   .price-card .ant-card-actions > li{
-    margin: 0; /* tighter actions on mobile */
+    margin: 6px; /* tighter actions on mobile */
   }
 }

@@ -87,7 +87,7 @@ export default function Rent() {
         {/* 2) Amenities */}
         <section className="section">
           <Title level={3} style={{ textAlign: 'center', marginBottom: 16 }}>Why rent at DANCE POINT</Title>
-          <Row gutter={[16, 16]} className="amenities">
+          <Row className="amenities">
             {AMENITIES.map((a) => (
               <Col xs={12} sm={8} md={6} key={a.label}>
                 <Card className="amenity-card" bordered>

@@ -148,8 +148,9 @@ export default function Teachers() {
                   <img src={teacher.cover} alt={teacher.name} loading="lazy" />
                   {/* бренд-оверлей */}
                   <div className="brand-overlay">
-                    <span>DANCE</span>
-                    <span>POINT</span>
+                    {/* <span>DANCE</span>
+                    <span>POINT</span> */}
+                    {<span>{teacher.name.split(' ')[0].toUpperCase()}</span>}
                   </div>
                   <div className="teacher-caption">
                     {teacher.name}<br/>{teacher.title}

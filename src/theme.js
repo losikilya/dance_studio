@@ -29,6 +29,9 @@ export const themeTokens = {
       defaultHoverBg: '#EBEBEB',
       defaultActiveBg: '#D7D7D7',
       borderRadius: 999, // пилюля для CTA
+       boxShadow: 'none',
+          boxShadowSecondary: 'none', // для остальных типов кнопок
+          boxShadowTertiary: 'none',
     },
     Card: {
       padding: 20,
