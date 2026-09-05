@@ -2,47 +2,51 @@ backend:
   name: git-gateway
   branch: main
 
-site_url: "https://shiny-tartufo-3eee17.netlify.app"
-display_url: "https://shiny-tartufo-3eee17.netlify.app"
+site_url: https://shiny-tartufo-3eee17.netlify.app
+display_url: https://shiny-tartufo-3eee17.netlify.app
 
-media_folder: "public/uploads"   # файлы попадут в репозиторий
-public_folder: "/uploads"        # URL через CDN Netlify
+publish_mode: simple
+
+media_folder: public/uploads
+public_folder: /uploads
+
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: "-"
 
 collections:
-  # Site Settings (пример)
-  - name: "settings"
-    label: "Site Settings"
+  - name: settings
+    label: Site Settings
     files:
-      - name: "social"
-        label: "Social Links"
-        file: "src/content/social.json"
+      - name: social
+        label: Social Links
+        file: src/content/social.json
         fields:
-          - { label: "Instagram", name: "instagram", widget: "string", required: false }
-          - { label: "WhatsApp",  name: "whatsapp",  widget: "string", required: false }
-          - { label: "Facebook",  name: "facebook",  widget: "string", required: false }
+          - { label: Instagram, name: instagram, widget: string, required: false }
+          - { label: WhatsApp, name: whatsapp, widget: string, required: false }
+          - { label: Facebook, name: facebook, widget: string, required: false }
 
-  # Galleries (пример)
-  - name: "gallery"
-    label: "Galleries"
-    folder: "src/content/galleries"
+  - name: gallery
+    label: Galleries
+    folder: src/content/galleries
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - label: "Images"
-        name: "images"
-        widget: "list"
-        field: { label: "Image", name: "src", widget: "image" }  # загрузит в /uploads
+      - { label: Title, name: title, widget: string }
+      - label: Images
+        name: images
+        widget: list
+        field: { label: Image, name: src, widget: image }
 
-  # Documents (PDF)
-  - name: "documents"
-    label: "Documents"
-    folder: "src/content/documents"
+  - name: documents
+    label: Documents
+    folder: src/content/documents
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "File (PDF)", name: "file", widget: "file", media_library: { allow_multiple: false } }
-      - { label: "Tags", name: "tags", widget: "list", required: false }
-      - { label: "Description", name: "description", widget: "text", required: false }
-      - { label: "Updated At", name: "updatedAt", widget: "datetime", format: "YYYY-MM-DD", time_format: false }
+      - { label: Title, name: title, widget: string }
+      - { label: File (PDF), name: file, widget: file, allow_multiple: false }
+      - { label: Tags, name: tags, widget: list, required: false }
+      - { label: Description, name: description, widget: text, required: false }
+      - { label: Updated At, name: updatedAt, widget: datetime, format: YYYY-MM-DD, time_format: false }

@@ -1,5 +1,5 @@
 import { useMemo, useState, useEffect } from "react";
-import { Typography, List, Button, Divider, Collapse, Tag } from "antd";
+import { Typography, List, Button, Collapse, Tag } from "antd";
 import "./classes.css";
 import { useTranslation } from "react-i18next";
 
@@ -206,15 +206,15 @@ export default function Classes() {
 
   return (
     <div className="directions-wrap">
-      <div className="container classes">
+      <div className="classes-container">
         <Title level={2} className="directions-title">
           {t('classes.title')}
         </Title>
 
         <div className="directions-grid">
           {/* Плеер */}
-          <section id="playerTop" className="player-card card">
-            <div className={`video-aspect ytWrap ${selected?.isVertical ? "vertical" : "horizontal"}`}>
+          <section id="playerTop" className="classes-player-card classes-card">
+            <div className={`classes-video-aspect ytWrap ${selected?.isVertical ? "vertical" : "horizontal"}`}>
               {playerSrc && (
                 <iframe
                   title={selected?.title || "Video"}
@@ -235,8 +235,7 @@ export default function Classes() {
           </Title>}
 
           {/* Плейлист: справа на десктопе, ниже — на мобиле */}
-          <aside className="playlist card">
-            {/* <Title level={4} style={{ margin: 12 }}>All styles</Title> */}
+          <aside className="playlist classes-card">
 
             {isMobile ? (
               <Collapse accordion ghost>
@@ -296,7 +295,7 @@ export default function Classes() {
         </div>
 
         {/* Описание выбранного видео */}
-        <section className="desc card">
+        <section className="desc classes-card">
           {!isMobile && <Title
             level={3}
             style={{
@@ -327,11 +326,11 @@ export default function Classes() {
         </section>
 
         {/* Большая CTA внизу */}
-        <div className="cta-wrap">
+        <div className="classes-cta-wrap">
           <Button
             type="primary"
             size="large"
-            className="cta-big"
+            className="classes-cta-big"
             href={`/contacts?class=${encodeURIComponent(selected?.catKey || "")}&video=${encodeURIComponent(selected?.id || "")}`}
           >
             {t('signup')}

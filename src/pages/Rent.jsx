@@ -76,16 +76,16 @@ export default function Rent() {
 
   return (
     <div className="rent-wrap">
-      <div className="container">
+      <div className="rental-container">
         <Title level={2} className="rent-title">Studio Rental</Title>
 
         {/* 1) Gallery */}
-        <section className="section card">
+        <section className="rental-section rental-gallery-card rental-card">
           <GallerySwiper images={HERO_IMAGES} height={520} autoplay />
         </section>
 
         {/* 2) Amenities */}
-        <section className="section">
+        <section className="rental-section">
           <Title level={3} style={{ textAlign: 'center', marginBottom: 16 }}>Why rent at DANCE POINT</Title>
           <Row className="amenities">
             {AMENITIES.map((a) => (
@@ -100,7 +100,7 @@ export default function Rent() {
         </section>
 
         {/* 3) Halls & prices */}
-        <section className="section">
+        <section className="rental-section">
           <Title level={3} style={{ textAlign: 'center', marginBottom: 8 }}>Our Halls</Title>
           <Row gutter={[16, 16]}>
             {HALLS.map((h) => (
@@ -137,8 +137,8 @@ export default function Rent() {
         </section>
 
         {/* Big CTA */}
-        <div className="cta-wrap">
-          <Button type="primary" size="large" className="cta-big" href="/contacts?intent=rent">
+        <div className="rental-cta-wrap">
+          <Button type="primary" size="large" className="rental-cta-big" href="/contacts?intent=rent">
             Book a studio now
           </Button>
         </div>

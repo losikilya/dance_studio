@@ -18,7 +18,7 @@ export default function VideoModal({ open, videoId, onClose }) {
       destroyOnClose
       bodyStyle={{ padding: 0 }}
     >
-      <div className="video-aspect">
+      <div className="video-modal-aspect">
         {src && (
           <iframe
             title="Teachers video"

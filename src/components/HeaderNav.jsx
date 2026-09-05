@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Button, Drawer, Menu, Switch } from "antd";
 import { useState } from "react";
 import { MenuOutlined } from "@ant-design/icons";
-import logoUrl from "/assets/logo2.jpg"; // или .png — скорректируй путь/имя
+import logoUrl from "/assets/logo2.jpg";
 import { useTranslation } from "react-i18next";
 
 export function HeaderNav({ onLocaleChange }) {
@@ -31,7 +31,7 @@ export function HeaderNav({ onLocaleChange }) {
       style={{ background: "#fff", borderBottom: "1px solid var(--border)" }}
     >
       <div
-        className="container"
+        className="header-container"
         style={{
           display: "flex",
           alignItems: "center",
@@ -43,10 +43,9 @@ export function HeaderNav({ onLocaleChange }) {
         <Link
           to="/"
           aria-label="DANCE POINT"
-          className="brand"
           style={{ height: "inherit" }}
         >
-          <img src={logoUrl} alt="DANCE POINT" className="brand__img" />
+          <img src={logoUrl} alt="DANCE POINT" />
         </Link>
 
         {/* Меню десктоп */}

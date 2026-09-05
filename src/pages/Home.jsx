@@ -1,5 +1,5 @@
 // src/pages/Home.jsx
-import { Button, Card, Typography } from "antd";
+import { Button, Typography } from "antd";
 import { Link } from "react-router-dom";
 import backgroundVideo from "/assets/home.mp4";
 import { Trans, useTranslation } from "react-i18next";
@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <section
-        className="section"
+        className="home-section"
         style={{
           background: "linear-gradient(180deg,#FFFFFF, var(--bg))",
           padding: 0,
@@ -19,7 +19,7 @@ export default function Home() {
         }}
       >
         <div
-          className="container video-container"
+          className="home-container video-container"
           style={{
             display: "grid",
             gap: 24,
@@ -30,16 +30,11 @@ export default function Home() {
         >
           <video autoPlay loop muted playsInline id="background-video">
             <source src={backgroundVideo} type="video/mp4" />
-            {/* Fallback for browsers that do not support the video tag */}
-            {/* Your browser does not support the video tag. */}
           </video>
           <div className="content">
             <Typography.Title level={1} style={{ marginTop: 0, color: "#fff" }}>
               {t("home.title")}
             </Typography.Title>
-            {/* <Typography.Paragraph style={{ fontSize: 18, color: "#fff", fontWeight: 100 }}>
-              {t("home.text_1")}
-            </Typography.Paragraph> */}
             <Typography.Paragraph style={{ fontSize: 18, color: "#fff", fontWeight: 100 }}>
               <Trans i18nKey="home.text_2" />
             </Typography.Paragraph>
@@ -52,8 +47,6 @@ export default function Home() {
               </Button>
             </div>
           </div>
-
-          {/* <img className="img-cover" src="/uploads/main.jpg" alt="Dance" /> */}
         </div>
       </section>
     </>

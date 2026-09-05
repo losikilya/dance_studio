@@ -55,13 +55,13 @@ export default function Contacts() {
 
   return (
     <div className="contacts-wrap">
-      <div className="container">
+      <div className="contacts-container">
         <Title level={2} className="contacts-title">Contacts</Title>
 
         <Row gutter={[16, 16]} align="stretch">
           {/* LEFT: Info */}
           <Col xs={24} md={10}>
-            <Card className="card info-card" bordered>
+            <Card className="contacts-card info-card" bordered>
               <Title level={4} style={{ marginTop: 0 }}>{STUDIO.name}</Title>
 
               <Space direction="vertical" size={12} style={{ width: '100%' }}>
@@ -112,7 +112,7 @@ export default function Contacts() {
 
           {/* RIGHT: Form */}
           <Col xs={24} md={14}>
-            <Card className="card form-card" bordered>
+            <Card className="contacts-card form-card" bordered>
               <Title level={4} style={{ marginTop: 0 }}>Write to us</Title>
               <Paragraph type="secondary" style={{ marginTop: -6 }}>
                 Have a question about classes, rental or events? Send us a message — we’ll get back ASAP.
@@ -161,7 +161,7 @@ export default function Contacts() {
         {/* MAP */}
         <Row gutter={[16, 16]} style={{ marginTop: 16 }}>
           <Col xs={24} md={10}>
-            <Card className="card" bordered>
+            <Card className="contacts-card" bordered>
               <Title level={4} style={{ marginTop: 0 }}>How to find us</Title>
               <Paragraph>
                 We’re located in the very center of Poznań, Old Town area. Use the entrance at <Text strong>ul. Podgórna 15</Text> and go to the 2nd floor.
@@ -173,23 +173,23 @@ export default function Contacts() {
             </Card>
           </Col>
           <Col xs={24} md={14}>
-            <Card className="card map-card" bordered>
+            <Card className="contacts-card map-card" bordered>
               <MapEmbed query={STUDIO.mapsQuery} />
             </Card>
           </Col>
         </Row>
 
         {/* BIG CTA */}
-        <div className="cta-wrap">
+        <div className="contacts-cta-wrap">
           <Button
             type="primary"
             size="large"
-            className="cta-big"
+            className="contacts-cta-big"
             href="/contacts?intent=booking"
           >
             Book a trial class
           </Button>
-          <Text className="cta-note">Prefer WhatsApp? <AntLink href={STUDIO.whatsapp} target="_blank">Message us</AntLink>.</Text>
+          <Text className="contacts-cta-note">Prefer WhatsApp? <AntLink href={STUDIO.whatsapp} target="_blank">Message us</AntLink>.</Text>
         </div>
       </div>
     </div>

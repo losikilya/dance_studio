@@ -25,40 +25,65 @@ h1,h2,h3,.h{
   color:#333;
   letter-spacing:.2px;
 }
-.container{
+.header-container,
+.home-container,
+.classes-container,
+.schedule-container,
+.teachers-container,
+.prices-container,
+.rental-container,
+.documents-container,
+.contacts-container{
   max-width:1200px;
   margin:0 auto;
   padding:0 16px;
 }
-.section{
+.home-section,
+.schedule-section,
+.rental-section{
   padding: clamp(28px, 6vw, 72px) 0;
 }
-
-/* утилита для мобильной сетки */
-.grid-3{
-  display:grid;
-  gap:16px;
-  grid-template-columns: repeat(3,1fr);
-}
-@media (max-width: 992px){ .grid-3{ grid-template-columns: repeat(2,1fr)} }
-@media (max-width: 576px){ .grid-3{ grid-template-columns: 1fr} }
-
-/* аккуратные карточки */
-.card{
+.classes-card,
+.schedule-card,
+.prices-card,
+.rental-card,
+.documents-card,
+.contacts-card{
   background:#fff;
-  /* border:1px solid var(--border); */
   border: none;
   border-radius: var(--radius);
   padding:20px;
   box-shadow: 0 4px 16px rgba(0,0,0,.09);
 }
 
-/* адаптивные изображения */
-.img-cover{
-  width:100%;
-  height: clamp(220px, 40vw, 520px);
-  object-fit: cover;
-  border-radius: var(--radius);
+.classes-cta-wrap,
+.schedule-cta-wrap,
+.prices-cta-wrap,
+.rental-cta-wrap,
+.contacts-cta-wrap{
+  margin-top:60px;
+  display:grid;
+  justify-items:center;
+  gap:20px;
+}
+.classes-cta-big,
+.schedule-cta-big,
+.prices-cta-big,
+.rental-cta-big,
+.contacts-cta-big{
+  height:56px;
+  padding:0 28px;
+  font-size:18px;
+  border-radius:999px;
+  min-width:min(520px, 90%);
+}
+.schedule-cta-note,
+.prices-cta-note,
+.contacts-cta-note{
+  color:var(--txt-2);
+  font-size:14px;
+  padding:0 12px;
+  text-align:center;
 }
 
 
@@ -78,7 +103,20 @@ h1,h2,h3,.h{
   .only-mobile{ display: block; }
 }
 
-/* styles.css */
+@media (max-width: 768px){
+  .header-container,
+  .home-container,
+  .classes-container,
+  .schedule-container,
+  .teachers-container,
+  .prices-container,
+  .rental-container,
+  .documents-container,
+  .contacts-container{
+    padding:0 !important;
+  }
+}
+
 @media (max-width: 1100px){
   .ant-menu-horizontal > .ant-menu-item,
   .ant-menu-horizontal > .ant-menu-submenu {

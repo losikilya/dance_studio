@@ -8,14 +8,8 @@
   text-align:center; font-weight:800; color:#333;
   margin-bottom: clamp(12px,3vw,24px) !important;
 }
-.section{ margin-top: 16px; }
-.card{
-  background: var(--colorBgContainer, #fff);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px;
-  box-shadow: 0 8px 24px rgba(0,0,0,.06);
-}
+.rental-section{ margin-top: 16px; }
+.rental-gallery-card.rental-card{ padding: 0; }
 
 /* Amenities */
 .amenity-card{
@@ -41,13 +35,4 @@
 .hall-features .ant-tag{
   background:#F3F3F3; border-color:#E6E6E6; color:#333;
   border-radius: 6px; margin-top: 6px;
-}
-
-/* CTA */
-.cta-wrap{
-  margin-top: 24px; display:grid; justify-items:center; gap:8px;
-}
-.cta-big{
-  height:56px; padding:0 28px; font-size:18px; border-radius:999px;
-  min-width: min(520px, 90%);
 }

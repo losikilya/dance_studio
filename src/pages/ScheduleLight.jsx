@@ -14,16 +14,16 @@ export default function ScheduleLight() {
   
   return (
     <div className="schedule-wrap">
-      <div className="container">
+      <div className="schedule-container">
                 <Typography.Title level={2} className="page-title">{t('schedule.title')}</Typography.Title>
-        <section className="section card">
+        <section className="schedule-section schedule-gallery-card schedule-card">
                   <GallerySwiper images={HERO_IMAGES}/>
         </section>
-        <div className="cta-wrap">
-          <Button type="primary" size="large" className="cta-big" href="/contacts?intent=booking">
+        <div className="schedule-cta-wrap">
+          <Button type="primary" size="large" className="schedule-cta-big" href="/contacts?intent=booking">
             {t('signup')}
           </Button>
-          <Typography.Text className="cta-note">{t('schedule.note')}</Typography.Text>
+          <Typography.Text className="schedule-cta-note">{t('schedule.note')}</Typography.Text>
         </div>
       </div>
     </div>

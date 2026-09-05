@@ -3,7 +3,6 @@ import { Layout } from "antd";
 import { HeaderNav } from "./components/HeaderNav.jsx";
 import Home from "./pages/Home.jsx";
 import Classes from "./pages/Classes.jsx";
-import Schedule from "./pages/Schedule.jsx";
 import Teachers from "./pages/Teachers.jsx";
 import Prices from "./pages/Prices.jsx";
 import Rent from "./pages/Rent.jsx";
@@ -33,9 +32,7 @@ export default function App() {
 
 
   const changeLocale = (e) => {
-    console.log(locale)
     const isPlLocale = e;
-    i18n.changeLanguage
     if (isPlLocale) {
       setLocal(plPL);
       i18n.changeLanguage('pl')
@@ -56,8 +53,6 @@ export default function App() {
             </Header>
             <Content
               style={{
-                // padding: "24px 16px",
-                // maxWidth: 1200,
                 margin: "0 auto",
                 width: "100%",
               }}

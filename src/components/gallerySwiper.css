@@ -20,7 +20,6 @@
 .gallery-swiper .prev{ left:12px }
 .gallery-swiper .next{ right:12px }
 @media (max-width: 576px){
-  /* .gallery-swiper{ --h: 300px } */
   .gallery-swiper .nav{ width:36px; height:36px }
 }
 @media (max-width: 768px){

@@ -82,7 +82,7 @@ export default function Prices() {
 
   return (
     <div className="prices-wrap">
-      <div className="container">
+      <div className="prices-container">
         <Title level={2} className="prices-title">Prices & Passes</Title>
 
         <div className="switchers">
@@ -124,7 +124,7 @@ export default function Prices() {
         <Divider />
 
         {/* Discounts */}
-        <section className="discounts card">
+        <section className="discounts prices-card">
           <Title level={4} style={{ marginBottom: 8 }}>Discounts</Title>
           <List
             dataSource={DISCOUNTS}
@@ -141,7 +141,7 @@ export default function Prices() {
         </section>
 
         {/* Terms / FAQ */}
-        <section className="faq card">
+        <section className="faq prices-card">
           <Title level={4} style={{ marginBottom: 8 }}>Terms & FAQ</Title>
           <Collapse accordion>
             <Panel header="How long is a monthly pass valid?" key="1">
@@ -160,11 +160,11 @@ export default function Prices() {
         </section>
 
         {/* Big CTA */}
-        <div className="cta-wrap">
-          <Button type="primary" size="large" className="cta-big" href="/contacts?intent=booking">
+        <div className="prices-cta-wrap">
+          <Button type="primary" size="large" className="prices-cta-big" href="/contacts?intent=booking">
             Book a class now
           </Button>
-          <Text className="cta-note">Not sure which pass to choose? Book a trial and we’ll help you pick.</Text>
+          <Text className="prices-cta-note">Not sure which pass to choose? Book a trial and we’ll help you pick.</Text>
         </div>
       </div>
     </div>

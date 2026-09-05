@@ -15,30 +15,16 @@
   display: flex;
   position: relative;
 }
-/* @media (max-width: 992px){
-  .directions-grid{ grid-template-columns: 1fr; }
-} */
-
-/* Карточки/контейнеры */
-.card{
-  background: var(--colorBgContainer, #fff);
-  /* border: 1px solid var(--border); */
-  border: none;
-  border-radius: var(--radius);
-  padding: 16px;
-  box-shadow: 0 8px 24px rgba(0,0,0,.06);
-}
-
 /* Видео */
-.video-aspect{
+.classes-video-aspect{
   position: relative;
   width: 100%;
   padding-top: 56.25%;
   background:#000;
-  border-radius: var(--radius) 0 0 var(--radius);
+  border-radius: var(--radius) 0 0 0;
   overflow: hidden;
 }
-.video-aspect iframe{
+.classes-video-aspect iframe{
   position: absolute;
   inset: 0;
   width: 100%; height: 100%;
@@ -46,7 +32,6 @@
 }
 
 /* Плейлист */
-/* .playlist .playlist-section + .playlist-section{ margin-top: 12px; } */
 .playlist .playlist-section { margin-top: 12px; }
 .playlist-head{
   font-weight: 800;
@@ -58,7 +43,6 @@
   font-size: 14px;
 }
 .playlist-item{
-  /* border-radius: 8px; */
   cursor: pointer;
   transition: background .15s ease, color .15s ease;
   padding-block: 10px !important;
@@ -68,10 +52,8 @@
 .playlist-item.is-active{
   background: rgba(150,75,75); /* оттенок primary */
   color: #fff;
-  /* outline: 1px solid rgba(150,75,75,.25); */
 }
 .playlist-title{ color:inherit; font-weight:600; }
-.playlist-title.is-active{ color:#fff; }
 .playlist-meta{ color: var(--txt-2); }
 .playlist-item.ant-list-item {
     padding: 6px;
@@ -86,7 +68,7 @@
   color: inherit !important;
 }
 
-.playlist.card {
+.playlist.classes-card {
   padding: 0;
   border-radius: 0 var(--radius) 0 0;
   clip-path: inset(-20px -20px 0px -20px);
@@ -99,25 +81,25 @@
   min-width: 0;
   overflow-y: auto;
 }
-.playlist.card::-webkit-scrollbar {
+.playlist.classes-card::-webkit-scrollbar {
   width: 10px;        /* вертикальный */
   height: 10px;       /* горизонтальный */
 }
-.playlist.card::-webkit-scrollbar-track {
+.playlist.classes-card::-webkit-scrollbar-track {
   background: transparent; /* или цвет трека */
 }
-.playlist.card::-webkit-scrollbar-thumb {
+.playlist.classes-card::-webkit-scrollbar-thumb {
   background: #9aa0a6;
   border-radius: 999px;
   border: 3px solid transparent; /* делает “паддинги” */
   background-clip: content-box;
 }
-.playlist.card::-webkit-scrollbar-thumb:hover {
+.playlist.classes-card::-webkit-scrollbar-thumb:hover {
   background: #6b7280;
   background-clip: content-box;
 }
 
-.player-card.card {
+.classes-player-card.classes-card {
   padding: 0;
   border-radius: var(--radius) 0 0 0;
   clip-path: inset(-20px -20px 0px -20px);
@@ -136,20 +118,14 @@
     padding: 0;
   }
 
-  .player-card.card, .video-aspect {
+  .classes-player-card.classes-card, .classes-video-aspect {
     margin: 0;
     border-radius: 0 !important;
   }
-  .playlist.card {
+  .playlist.classes-card {
     position: relative;
     width: 100%;
   }
-  .container.classes {
-    padding: 0;
-  }
-  /* .desc.card h3{
-    font-size: 16px;
-  } */
   .directions-grid {
     display: block;
   }
@@ -178,7 +154,7 @@
   background:#F3F3F3; border-color:#E6E6E6; color:#333;
   border-radius: 6px;
 }
-.desc.card {
+.desc.classes-card {
   border-radius: 0 0 var(--radius) var(--radius);
   padding: 0;
 }
@@ -191,16 +167,4 @@
               color: #fff;
               padding: 12px;
               font-size: 16px;
-}
-/* CTA */
-.cta-wrap{
-  margin-top: 20px;
-  display:flex; justify-content:center;
-}
-.cta-big{
-  height: 56px;
-  padding: 0 28px;
-  font-size: 18px;
-  border-radius: 999px;
-  min-width: min(520px, 90%);
 }

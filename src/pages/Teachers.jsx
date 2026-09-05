@@ -130,7 +130,7 @@ export default function Teachers() {
   const closeVideo = () => setVideo({ open: false, id: null })
   return (
     <div className="teachers-wrap">
-      <div className="container">
+      <div className="teachers-container">
         <Typography.Title level={2} className="teachers-title">{t('teachers.title')}</Typography.Title>
 
         <Space direction="vertical" size={20} style={{ width: '100%' }}>
@@ -146,10 +146,7 @@ export default function Teachers() {
               <Col xs={24} md={12} className="teacher-media">
                 <div className="teacher-cover">
                   <img src={teacher.cover} alt={teacher.name} loading="lazy" />
-                  {/* бренд-оверлей */}
                   <div className="brand-overlay">
-                    {/* <span>DANCE</span>
-                    <span>POINT</span> */}
                     {<span>{teacher.name.split(' ')[0].toUpperCase()}</span>}
                   </div>
                   <div className="teacher-caption">

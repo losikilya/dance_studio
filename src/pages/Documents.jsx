@@ -56,10 +56,10 @@ export default function Documents() {
 
   return (
     <div className="docs-wrap">
-      <div className="container">
+      <div className="documents-container">
         <Title level={2} className="docs-title">Documents</Title>
 
-        <Card className="card">
+        <Card className="documents-card">
           <List
             itemLayout="horizontal"
             dataSource={DOCS}
