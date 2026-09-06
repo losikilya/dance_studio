@@ -80,7 +80,7 @@
 }
 
 .price-card.is-best{
-  border-color: var(--brand);
+  border-color: var(--brand) !important;
   box-shadow: 0 10px 28px rgba(150, 75, 75, .35);
   animation: best-offer-pulse 2s infinite;
 }

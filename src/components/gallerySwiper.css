@@ -15,11 +15,18 @@
 .gallery-swiper--fixed .slide{
   height: var(--gallery-height);
 }
-.gallery-swiper--adaptive .slick-list{
-  transition: height .25s ease;
+.gallery-swiper--adaptive{
+  aspect-ratio: var(--gallery-aspect-ratio, 16 / 9);
+  transition: aspect-ratio .25s ease;
 }
+.gallery-swiper--adaptive .ant-carousel,
+.gallery-swiper--adaptive .slick-slider,
+.gallery-swiper--adaptive .slick-list,
+.gallery-swiper--adaptive .slick-track,
+.gallery-swiper--adaptive .slick-slide,
+.gallery-swiper--adaptive .slick-slide > div,
 .gallery-swiper--adaptive .slide{
-  line-height: 0;
+  height: 100%;
 }
 .gallery-swiper img{
   width:100%; display:block;
@@ -28,7 +35,7 @@
   height:100%; object-fit:contain;
 }
 .gallery-swiper--adaptive img{
-  height:auto; object-fit:contain;
+  height:100%; object-fit:contain;
 }
 .gallery-swiper .nav{
   position:absolute; top:50%; transform:translateY(-50%);

@@ -11,11 +11,10 @@ import {
 import { Button, Card, Col, Row, Typography } from 'antd'
 import { useTranslation } from 'react-i18next'
 import GallerySwiper from '../components/GallerySwiper'
+import rentalImages from 'virtual:rental-images'
 import './rent.css'
 
 const { Title, Paragraph } = Typography
-
-const HERO_IMAGES = ['/assets/hall1.jpg', '/assets/hall2.jpg', '/assets/hall3.jpg']
 
 const AMENITIES = [
   { icon: <EnvironmentOutlined />, key: 'cityCenter' },
@@ -48,7 +47,7 @@ export default function Rent() {
         <Title level={1} className="rent-title">{t('rent.title')}</Title>
 
         <section className="rental-section rental-gallery-card rental-card">
-          <GallerySwiper images={HERO_IMAGES} height={520} autoplay altPrefix={t('rent.galleryAlt')} />
+          <GallerySwiper images={rentalImages} height={520} autoplay altPrefix={t('rent.galleryAlt')} />
         </section>
 
         <section className="rental-section">

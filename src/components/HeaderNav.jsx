@@ -12,6 +12,11 @@ export function HeaderNav({ language, onLocaleChange }) {
   const [open, setOpen] = useState(false);
     const { t } = useTranslation();
 
+  const navigateToContacts = () => {
+    setOpen(false);
+    navigate('/contacts');
+  };
+
   const items = [
   { key: "home", label: <Link to="/">{t('nav.home')}</Link> },
   { key: "/directions", label: <Link to="/directions">{t('nav.classes')}</Link> },
@@ -70,7 +75,7 @@ export function HeaderNav({ language, onLocaleChange }) {
         />
 
         <div className="only-desktop">
-          <Button type="primary" onClick={() => navigate('/contacts')}>
+          <Button type="primary" onClick={navigateToContacts}>
             {t('trial')}
           </Button>
         </div>
@@ -109,7 +114,7 @@ export function HeaderNav({ language, onLocaleChange }) {
           items={items}
           onClick={() => setOpen(false)}
         />
-        <Button type="primary" block style={{ marginTop: 16 }} onClick={() => navigate('/contacts')}>
+        <Button type="primary" block style={{ marginTop: 16 }} onClick={navigateToContacts}>
           {t('trial')}
         </Button>
       </Drawer>
