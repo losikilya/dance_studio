@@ -1,155 +1,114 @@
-import { CheckOutlined, StarFilled } from '@ant-design/icons'
-import { Button, Card, Col, Collapse, Divider, List, Row, Segmented, Tag, Typography } from 'antd'
-import { useMemo, useState } from 'react'
+import { StarFilled } from '@ant-design/icons'
+import { Button, Card, Col, Row, Tag, Typography } from 'antd'
 import { useTranslation } from 'react-i18next'
 import './prices.css'
 
 const { Title, Paragraph, Text } = Typography
-const { Panel } = Collapse
 
-const PRICING = {
-  adult: {
-    monthly: [
-      { id: 'unlimited', nameKey: 'unlimited', price: 39000, best: true, perks: ['allOpen', 'openPractice', 'eventsPresale'] },
-      { id: '12x', nameKey: 'twelve', price: 32000, perks: ['anyGroups', 'freeze'] },
-      { id: '8x', nameKey: 'eight', price: 26000, perks: ['anyGroups'] },
-      { id: '4x', nameKey: 'four', price: 16000, perks: ['anyGroups'] },
-    ],
-    dropin: [
-      { id: 'dropin', nameKey: 'single', price: 4000, perks: ['oneClass'] },
-      { id: 'trial', nameKey: 'trial', price: 2000, accentKey: 'newToStudio', perks: [] },
+const PRICE_SECTIONS = [
+  {
+    id: 'open',
+    titleKey: 'openClasses',
+    descriptionKey: 'openStyles',
+    plans: [
+      { id: 'open-single', nameKey: 'openSingle', price: 70 },
+      { id: 'open-four', nameKey: 'openFour', price: 210 },
+      { id: 'open-eight', nameKey: 'openEight', price: 320 },
+      { id: 'open-full-pass', nameKey: 'openFullPass', price: 380, best: true },
     ],
   },
-  kids: {
-    monthly: [
-      { id: 'kids-8x', nameKey: 'kidsEight', price: 22000, perks: ['kidsOnly'] },
-      { id: 'kids-4x', nameKey: 'kidsFour', price: 13000, perks: ['kidsOnly'] },
-    ],
-    dropin: [
-      { id: 'kids-dropin', nameKey: 'kidsSingle', price: 3000, perks: [] },
+  {
+    id: 'kids',
+    titleKey: 'kids',
+    plans: [
+      { id: 'mini-kids', nameKey: 'miniKids', detailKey: 'weekly40', price: 160 },
+      { id: 'kids', nameKey: 'kids', detailKey: 'weekly60', price: 180 },
+      { id: 'jazz-minis', nameKey: 'jazzMinis', detailKey: 'weekly60', price: 180 },
+      { id: 'street-dance', nameKey: 'streetDance', detailKey: 'weekly60', price: 180 },
+      { id: 'kids-acrobatics', nameKey: 'kidsAcrobatics', detailKey: 'twiceWeekly', price: 280 },
     ],
   },
-}
-
-const DISCOUNTS = [
-  { id: 'student', value: '-10%' },
-  { id: 'family', value: '-10%' },
+  {
+    id: 'closed',
+    titleKey: 'closedGroups',
+    descriptionKey: 'closedDuration',
+    plans: [
+      { id: 'supa-fly', nameKey: 'supaFly', extraKey: 'withAcrobatics', detailKey: 'threeTimesWeekly', price: 340, fullPassPrice: 400 },
+      { id: 'jazzowki', nameKey: 'jazzowki', extraKey: 'withBalletAndAcrobatics', detailKey: 'fourTimesWeekly', price: 420 },
+      { id: 'waack-on-point', nameKey: 'waackOnPoint', detailKey: 'twiceWeekly', price: 280, fullPassPrice: 320 },
+      { id: 'k-point', nameKey: 'kPoint', detailKey: 'regularAndOpen', price: 240 },
+    ],
+  },
 ]
 
-const FAQ = ['validity', 'classes', 'transfer']
-
-function PriceCard({ plan, language, onBuy, t }) {
-  const formattedPrice = new Intl.NumberFormat(language === 'pl' ? 'pl-PL' : 'en-GB', {
-    style: 'currency',
-    currency: 'PLN',
-    maximumFractionDigits: 0,
-  }).format(plan.price)
-
+function PriceCard({ plan, formatPrice, t }) {
   return (
     <Card
       className={`price-card ${plan.best ? 'is-best' : ''}`}
       bordered
       title={(
-        <div className="price-head">
-          {plan.best && <Tag color="gold" icon={<StarFilled />}>{t('prices.popular')}</Tag>}
+        <div className="price-card-title">
+          {plan.best && (
+            <Tag color="gold" icon={<StarFilled />}>
+              {t('prices.bestOffer')}
+            </Tag>
+          )}
           <span>{t(`prices.plans.${plan.nameKey}`)}</span>
         </div>
       )}
-      actions={[
-        <Button key="buy" type="primary" size="large" onClick={() => onBuy(plan)}>
-          {t('prices.buyPass')}
-        </Button>,
-      ]}
     >
-      <div className="price-value">{formattedPrice}</div>
-      {plan.accentKey && <div className="price-accent">{t(`prices.${plan.accentKey}`)}</div>}
-      <ul className="price-perks">
-        {plan.perks.map((perk) => (
-          <li key={perk}><CheckOutlined /> {t(`prices.perks.${perk}`)}</li>
-        ))}
-      </ul>
+      <div className="price-card-content">
+        <div className="price-details">
+          {plan.extraKey && <div>{t(`prices.details.${plan.extraKey}`)}</div>}
+          {plan.detailKey && <div>{t(`prices.details.${plan.detailKey}`)}</div>}
+        </div>
+        <div className="price-value">{formatPrice(plan.price)}</div>
+        {plan.fullPassPrice && (
+          <div className="price-full-pass">
+            <span>{t('prices.fullPass')}</span>
+            <strong>{formatPrice(plan.fullPassPrice)}</strong>
+          </div>
+        )}
+      </div>
     </Card>
   )
 }
 
 export default function Prices() {
-  const [segment, setSegment] = useState('adult')
-  const [type, setType] = useState('monthly')
   const { t, i18n } = useTranslation()
   const language = i18n.resolvedLanguage?.startsWith('en') ? 'en' : 'pl'
-  const plans = useMemo(() => PRICING[segment][type], [segment, type])
-
-  const handleBuy = (plan) => {
-    const params = new URLSearchParams({ plan: plan.id })
-    window.location.href = `/contacts?${params.toString()}`
-  }
+  const formatPrice = (price) => new Intl.NumberFormat(language === 'pl' ? 'pl-PL' : 'en-GB', {
+    style: 'currency',
+    currency: 'PLN',
+    maximumFractionDigits: 0,
+  }).format(price)
 
   return (
     <div className="prices-wrap">
       <div className="prices-container">
         <Title level={1} className="prices-title">{t('prices.title')}</Title>
 
-        <div className="switchers">
-          <Segmented
-            size="large"
-            value={segment}
-            onChange={setSegment}
-            options={[
-              { value: 'adult', label: t('prices.adult') },
-              { value: 'kids', label: t('prices.kids') },
-            ]}
-          />
-          <Segmented
-            size="large"
-            value={type}
-            onChange={setType}
-            options={[
-              { value: 'monthly', label: t('prices.monthly') },
-              { value: 'dropin', label: t('prices.dropIn') },
-            ]}
-          />
-        </div>
-
-        <Row gutter={[16, 16]}>
-          {plans.map((plan) => (
-            <Col xs={24} sm={12} lg={6} key={plan.id}>
-              <PriceCard plan={plan} language={language} onBuy={handleBuy} t={t} />
-            </Col>
-          ))}
-        </Row>
-
-        <Divider />
-
-        <section className="discounts prices-card">
-          <Title level={2} style={{ marginBottom: 8, fontSize: 20, lineHeight: 1.4 }}>
-            {t('prices.discountsTitle')}
-          </Title>
-          <List
-            dataSource={DISCOUNTS}
-            renderItem={(discount) => (
-              <List.Item>
-                <List.Item.Meta
-                  title={<strong>{t(`prices.discounts.${discount.id}`)}</strong>}
-                  description={t(`prices.discounts.${discount.id}Note`)}
-                />
-                <Tag color="green">{discount.value}</Tag>
-              </List.Item>
+        {PRICE_SECTIONS.map((section) => (
+          <section className="pricing-section" key={section.id}>
+            <Title level={2} className="pricing-section-title">
+              {t(`prices.sections.${section.titleKey}`)}
+            </Title>
+            {section.descriptionKey && (
+              <Paragraph className="pricing-section-description">
+                {t(`prices.sections.${section.descriptionKey}`)}
+              </Paragraph>
             )}
-          />
-        </section>
+            <Row gutter={[16, 16]}>
+              {section.plans.map((plan) => (
+                <Col xs={24} sm={12} lg={6} key={plan.id}>
+                  <PriceCard plan={plan} formatPrice={formatPrice} t={t} />
+                </Col>
+              ))}
+            </Row>
+          </section>
+        ))}
 
-        <section className="faq prices-card">
-          <Title level={2} style={{ marginBottom: 8, fontSize: 20, lineHeight: 1.4 }}>
-            {t('prices.faqTitle')}
-          </Title>
-          <Collapse accordion>
-            {FAQ.map((item) => (
-              <Panel header={t(`prices.faq.${item}Question`)} key={item}>
-                <Paragraph>{t(`prices.faq.${item}Answer`)}</Paragraph>
-              </Panel>
-            ))}
-          </Collapse>
-        </section>
+        <Paragraph className="price-validity-note">{t('prices.validityNote')}</Paragraph>
 
         <div className="prices-cta-wrap">
           <Button type="primary" size="large" className="prices-cta-big" href="/contacts?intent=booking">

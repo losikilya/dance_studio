@@ -3,6 +3,7 @@ export const STUDIO = {
   phone: {
     display: '+48 796 148 125',
     href: 'tel:+48796148125',
+    whatsappHref: 'https://wa.me/48796148125',
   },
   address: {
     street: 'Sobieskiego 55A',
@@ -22,5 +23,16 @@ export const STUDIO = {
     { dayKey: 'thursday', opens: '16:00', closes: '22:00' },
     { dayKey: 'friday', opens: '16:00', closes: '22:00' },
   ],
-  socialLinks: [],
+  socialLinks: [
+    {
+      id: 'instagram',
+      label: 'Instagram',
+      url: 'https://www.instagram.com/dance_point_lubon/',
+    },
+    {
+      id: 'whatsapp',
+      label: 'WhatsApp',
+      url: 'https://wa.me/48796148125',
+    },
+  ],
 }

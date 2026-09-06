@@ -1,38 +1,124 @@
-/* src/pages/rent.css */
 .rent-wrap{
   background: var(--bg);
   color: var(--txt);
   padding: clamp(12px, 2vw, 24px) 0 clamp(40px, 6vw, 72px);
 }
+
 .rent-title{
-  text-align:center; font-weight:800; color:#333;
+  text-align:center;
+  font-weight:800;
+  color:#333;
   margin-bottom: clamp(12px,3vw,24px) !important;
 }
-.rental-section{ margin-top: 16px; }
-.rental-gallery-card.rental-card{ padding: 0; }
 
-/* Amenities */
+.rental-section{
+  margin-top: 16px;
+}
+
+.rental-gallery-card.rental-card{
+  padding: 0;
+}
+
+.rental-section-title{
+  margin-bottom: 16px !important;
+  text-align: center;
+  font-size: 24px !important;
+  line-height: 1.3333 !important;
+}
+
 .amenity-card{
-  text-align:center; height:100%;
-  display:grid; place-items:center; gap:8px; padding-block:22px;
-}
-.amenity-icon{
-  font-size: 34px; color:#333;
-}
-.amenity-label{
-  font-weight:600; color:#333;
+  text-align:center;
+  height:100%;
+  display:grid;
+  place-items:center;
+  gap:8px;
+  padding-block:22px;
 }
 
-/* Halls */
-.hall-card .hall-media{ border-radius:10px; overflow:hidden }
-.hall-meta{
-  display:flex; gap:12px; flex-wrap:wrap; color:#333;
+.amenity-icon{
+  font-size: 34px;
+  color:#333;
 }
-.hall-price{
-  font-weight:800; color:#333; margin-top:4px;
-  font-size: clamp(18px, 2.4vw, 22px);
+
+.amenity-label{
+  font-weight:600;
+  color:#333;
 }
-.hall-features .ant-tag{
-  background:#F3F3F3; border-color:#E6E6E6; color:#333;
-  border-radius: 6px; margin-top: 6px;
+
+.rental-pricing-section{
+  margin-top: clamp(32px, 5vw, 52px);
+}
+
+.rental-price-card .ant-card-body{
+  padding: 0;
+}
+
+.rental-price-table-wrap{
+  overflow-x: auto;
+}
+
+.rental-price-table{
+  width: 100%;
+  border-collapse: collapse;
+  color: #333;
+}
+
+.rental-price-table th,
+.rental-price-table td{
+  padding: clamp(14px, 2.5vw, 24px);
+  border: 1px solid var(--border);
+  text-align: center;
+}
+
+.rental-price-table thead th{
+  background: var(--info);
+  color: #fff;
+  font-size: clamp(15px, 2vw, 19px);
+}
+
+.rental-price-table tbody th{
+  width: 40%;
+  text-align: left;
+}
+
+.rental-price-table td{
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 800;
+}
+
+.recording-price-card{
+  margin-top: 16px;
+  text-align: center;
+}
+
+.recording-price-card h3{
+  margin: 0 0 8px !important;
+  font-size: 20px !important;
+}
+
+.recording-price{
+  color: #333;
+  font-size: clamp(24px, 3vw, 30px);
+  font-weight: 800;
+}
+
+.rental-individual-note{
+  margin: 16px 0 0 !important;
+  padding: 18px 20px;
+  border-left: 4px solid var(--info);
+  border-radius: var(--radius);
+  background: #fff;
+  color: #333;
+  font-weight: 600;
+}
+
+@media (max-width: 576px){
+  .rental-price-table th,
+  .rental-price-table td{
+    padding: 12px 8px;
+  }
+
+  .rental-price-table tbody th{
+    width: 36%;
+  }
 }

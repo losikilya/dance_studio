@@ -8,7 +8,7 @@ import {
   ThunderboltOutlined,
   WifiOutlined,
 } from '@ant-design/icons'
-import { Button, Card, Col, Divider, Row, Space, Tag, Typography } from 'antd'
+import { Button, Card, Col, Row, Typography } from 'antd'
 import { useTranslation } from 'react-i18next'
 import GallerySwiper from '../components/GallerySwiper'
 import './rent.css'
@@ -28,42 +28,14 @@ const AMENITIES = [
   { icon: <CarOutlined />, key: 'parking' },
 ]
 
-const HALLS = [
-  {
-    id: 'small',
-    area: 78,
-    capacity: 15,
-    price: 120,
-    images: ['/assets/hall1.jpg'],
-    features: ['mirrors', 'woodFloor', 'bluetooth', 'ac'],
-  },
-  {
-    id: 'medium',
-    area: 133,
-    capacity: 25,
-    price: 160,
-    images: ['/assets/hall2.jpg'],
-    features: ['mirrors', 'woodFloor', 'bluetooth', 'ac'],
-  },
-  {
-    id: 'large',
-    area: 157,
-    capacity: 35,
-    price: 190,
-    images: ['/assets/hall3.jpg'],
-    features: ['mirrors', 'sprungFloor', 'stageLights', 'ac'],
-  },
+const RENTAL_PRICES = [
+  { id: 'individualLesson', memberPrice: 30, standardPrice: 40 },
+  { id: 'groupLesson', memberPrice: 80, standardPrice: 100 },
 ]
 
 export default function Rent() {
   const { t, i18n } = useTranslation()
   const language = i18n.resolvedLanguage?.startsWith('en') ? 'en' : 'pl'
-
-  const bookStudio = (hallId) => {
-    const query = new URLSearchParams({ intent: 'rent', hall: hallId })
-    window.location.href = `/contacts?${query.toString()}`
-  }
-
   const formatPrice = (price) => new Intl.NumberFormat(language === 'pl' ? 'pl-PL' : 'en-GB', {
     style: 'currency',
     currency: 'PLN',
@@ -80,7 +52,7 @@ export default function Rent() {
         </section>
 
         <section className="rental-section">
-          <Title level={2} style={{ textAlign: 'center', marginBottom: 16, fontSize: 24, lineHeight: 1.3333 }}>
+          <Title level={2} className="rental-section-title">
             {t('rent.whyTitle')}
           </Title>
           <Row className="amenities">
@@ -95,43 +67,41 @@ export default function Rent() {
           </Row>
         </section>
 
-        <section className="rental-section">
-          <Title level={2} style={{ textAlign: 'center', marginBottom: 8, fontSize: 24, lineHeight: 1.3333 }}>
-            {t('rent.hallsTitle')}
+        <section className="rental-section rental-pricing-section">
+          <Title level={2} className="rental-section-title">
+            {t('rent.pricingTitle')}
           </Title>
-          <Row gutter={[16, 16]}>
-            {HALLS.map((hall) => {
-              const hallName = t(`rent.halls.${hall.id}`)
-              return (
-                <Col xs={24} md={8} key={hall.id}>
-                  <Card className="hall-card" bordered>
-                    <div className="hall-media">
-                      <GallerySwiper images={hall.images} height={260} altPrefix={`${hallName} — DANCE POINT`} />
-                    </div>
-                    <Space direction="vertical" size={6} style={{ width: '100%', marginTop: 12 }}>
-                      <Title level={3} style={{ margin: 0, fontSize: 20, lineHeight: 1.4 }}>{hallName}</Title>
-                      <div className="hall-meta">
-                        <span><strong>{t('rent.area')}:</strong> {hall.area} m²</span>
-                        <span><strong>{t('rent.capacity')}:</strong> {t('rent.upToPeople', { count: hall.capacity })}</span>
-                      </div>
-                      <div className="hall-price">{formatPrice(hall.price)} / {t('rent.perHour')}</div>
-                      <div className="hall-features">
-                        {hall.features.map((feature) => <Tag key={feature}>{t(`rent.features.${feature}`)}</Tag>)}
-                      </div>
-                      <Button type="primary" size="large" block onClick={() => bookStudio(hall.id)}>
-                        {t('rent.bookHall')}
-                      </Button>
-                    </Space>
-                  </Card>
-                </Col>
-              )
-            })}
-          </Row>
 
-          <Divider />
+          <Card className="rental-price-card" bordered>
+            <div className="rental-price-table-wrap">
+              <table className="rental-price-table">
+                <thead>
+                  <tr>
+                    <th scope="col">{t('rent.service')}</th>
+                    <th scope="col">{t('rent.members')}</th>
+                    <th scope="col">{t('rent.others')}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {RENTAL_PRICES.map((price) => (
+                    <tr key={price.id}>
+                      <th scope="row">{t(`rent.services.${price.id}`)}</th>
+                      <td>{formatPrice(price.memberPrice)}</td>
+                      <td>{formatPrice(price.standardPrice)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Card>
 
-          <Paragraph type="secondary" style={{ textAlign: 'center' }}>
-            {t('rent.description')}
+          <Card className="recording-price-card" bordered>
+            <Title level={3}>{t('rent.services.recordingRental')}</Title>
+            <div className="recording-price">{formatPrice(130)}</div>
+          </Card>
+
+          <Paragraph className="rental-individual-note">
+            {t('rent.individualTerms')}
           </Paragraph>
         </section>
 

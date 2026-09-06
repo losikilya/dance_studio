@@ -1,9 +1,43 @@
+export const TEACHING_DIRECTIONS = [
+  { key: 'waacking', label: { pl: 'Waacking', en: 'Waacking' } },
+  { key: 'choreography', label: { pl: 'Choreografia', en: 'Choreography' } },
+  { key: 'jazz', label: { pl: 'Jazz', en: 'Jazz' } },
+  { key: 'high-heels', label: { pl: 'High Heels', en: 'High Heels' } },
+  { key: 'hip-hop', label: { pl: 'Hip-Hop', en: 'Hip-Hop' } },
+  { key: 'kids', label: { pl: 'Zajęcia dla dzieci', en: 'Kids dance' } },
+  { key: 'k-pop', label: { pl: 'K-Pop', en: 'K-Pop' } },
+  { key: 'ballet', label: { pl: 'Balet', en: 'Ballet' } },
+  { key: 'acrobatics', label: { pl: 'Akrobatyka', en: 'Acrobatics' } },
+  { key: 'street-dance', label: { pl: 'Street Dance', en: 'Street Dance' } },
+]
+
+export const DANCE_CLASSES = {
+  waacking: { pl: 'Waacking', en: 'Waacking' },
+  'waack-on-point': { pl: 'Waack On Point', en: 'Waack On Point' },
+  choreography: { pl: 'Choreografia', en: 'Choreography' },
+  'supa-fly': { pl: 'Supa Fly', en: 'Supa Fly' },
+  jazz: { pl: 'Jazz', en: 'Jazz' },
+  jazzowki: { pl: 'Jazzówki', en: 'Jazzówki' },
+  'jazz-minis': { pl: 'Jazz Minis', en: 'Jazz Minis' },
+  'high-heels': { pl: 'High Heels', en: 'High Heels' },
+  'hip-hop': { pl: 'Hip-Hop', en: 'Hip-Hop' },
+  'mini-kids': { pl: 'Mini Kids', en: 'Mini Kids' },
+  kidsy: { pl: 'Kidsy', en: 'Kidsy' },
+  'k-pop': { pl: 'K-Pop', en: 'K-Pop' },
+  'k-point': { pl: 'K-Point', en: 'K-Point' },
+  ballet: { pl: 'Balet', en: 'Ballet' },
+  acrobatics: { pl: 'Akrobatyka', en: 'Acrobatics' },
+  'street-dance': { pl: 'Street Dance', en: 'Street Dance' },
+}
+
 export const TEACHERS = [
   {
     id: 'zosia-ostoja-zagorska',
     name: 'Zosia Ostoja-Zagórska',
     image: '/assets/zosia.jpg',
     videoUrl: 'https://youtube.com/shorts/VsPyLYny654?si=Yy-e7kJoq3tqQZbF',
+    socialUrl: 'https://www.instagram.com/zosia_oz/',
+    teaching: { directionKey: 'choreography', classKeys: ['supa-fly', 'choreography'] },
     bio: {
       pl: `Zosia rozpoczęła swoją taneczną przygodę w wieku 10 lat. Przez kolejne lata intensywnie rozwijała swoje umiejętności, startując w zawodach zarówno solo, jak i w formacjach. W wieku 15 lat trafiła do Point Dance Studio, rozpoczynając od openów – i to właśnie tutaj zaczęła świadomie budować swoją taneczną tożsamość.
 
@@ -22,6 +56,8 @@ In 2024, Zosia spent a month in Los Angeles, training every day with leading fig
     name: 'Nikola Makowska-Kuciak',
     image: '/assets/nikola.jpg',
     videoUrl: 'https://youtu.be/ejusLcbAVnI',
+    socialUrl: 'https://www.instagram.com/_n.makowska_kuciak/',
+    teaching: { directionKey: 'jazz', classKeys: ['jazz', 'jazzowki', 'jazz-minis'] },
     bio: {
       pl: `Razem z Dominiką Lubawy założycielka studia tańca „Dance Point” w Luboniu.
 
@@ -44,6 +80,8 @@ She continually works on bringing her artistic ideas to life, including her orig
     name: 'Aleksandra Kaszubowska',
     image: '/assets/ola.jpg',
     videoUrl: 'https://youtube.com/shorts/CG0aJup7Ubk?si=sLbiXZKi5MT_dIAT',
+    socialUrl: 'https://www.instagram.com/kaszub_owska/',
+    teaching: { directionKey: 'high-heels', classKeys: ['high-heels'] },
     bio: {
       pl: `Tancerka i absolwentka kierunku Taniec w Kulturze Fizycznej na Akademii Wychowania Fizycznego w Poznaniu. High Heels poznała i zaczęła tańczyć 5 lat temu, uczy tego stylu od 3 lat. Szpilki to dla Oli idealne połączenie techniki tańca z różnorodnymi gatunkami muzycznymi. Nie brakuje nauki kroków podstawowych i ich doskonalenia, choreografii, pracy z podłogą oraz budowania samoświadomości. A to wszystko przy akompaniamencie r&b, popu czy hip hopu. Dlatego na zajęciach każdy znajdzie coś dla siebie: zarówno osoby, które nigdy nie miały z tańcem do czynienia oraz te, które tańczą i chcą rozwijać się w stylu High Heels.`,
       en: `A dancer and graduate of the Dance in Physical Culture programme at the University School of Physical Education in Poznań. Ola discovered High Heels and began dancing the style five years ago, and she has been teaching it for three years. For her, dancing in heels is the ideal combination of dance technique and a wide range of musical genres. Her classes include learning and refining fundamental steps, choreography, floorwork and building self-awareness, all accompanied by r&b, pop or hip-hop. This gives everyone something to enjoy, both people who have never danced before and experienced dancers who want to develop their High Heels skills.`,
@@ -54,6 +92,8 @@ She continually works on bringing her artistic ideas to life, including her orig
     name: 'Zuzanna Kuźmicka',
     image: '/assets/zuza.jpg',
     videoUrl: 'https://youtube.com/shorts/0CoK85rbbIk?feature=share',
+    socialUrl: 'https://www.instagram.com/poprostu.waack.zuza/',
+    teaching: { directionKey: 'kids', classKeys: ['mini-kids', 'kidsy'] },
     bio: {
       pl: `Tancerka z 18 letnim doświadczeniem. Nauczycielka tańca od 6 lat w różnych miastach w Polsce. Już za moment pani psycholog w spec. wspierania rozwoju dzieci i młodzieży. Była członkini formacji street dance PoProstu Squad, aktualnie tańcząca w ekipie Waack on Point Zuzia to wulkan pozytywnej energii i wiedzy. Uwielbia łączyć technikę tańca z kreatywnym ruchem. Regularnie uczestniczy w zawodach i warsztatach tanecznych w stylu Waacking. Organizatorka eventu Waack for Connect i nasza wspaniała recepcjonistka.`,
       en: `A dancer with 18 years of experience and a dance teacher for six years in cities across Poland. She will soon qualify as a psychologist specialising in supporting the development of children and young people. A former member of the PoProstu Squad street dance formation and currently a member of Waack on Point, Zuzia brings an abundance of positive energy and knowledge. She loves combining dance technique with creative movement and regularly takes part in waacking competitions and workshops. She organises the Waack for Connect event and is also our wonderful receptionist.`,
@@ -64,6 +104,8 @@ She continually works on bringing her artistic ideas to life, including her orig
     name: 'Nikola Perczak',
     image: '/assets/nikola_p.jpg',
     videoUrl: 'https://youtube.com/shorts/4Wywqv5V2bg?feature=share',
+    socialUrl: 'https://www.instagram.com/perczak_/',
+    teaching: { directionKey: 'k-pop', classKeys: ['k-pop', 'k-point'] },
     bio: {
       pl: `Jej taneczna przygoda rozpoczęła się w 2014 roku. Swoje pierwsze taneczne kroki stawiała w stylach takich jak New Age, Dancehall i Hip Hop.
 
@@ -91,6 +133,7 @@ In her classes, she takes care to create a positive atmosphere and energy. She c
     image: '/assets/Doma.jpg',
     videoUrl: 'https://www.youtube.com/watch?v=i6W1-KUK8rU',
     socialUrl: 'https://www.instagram.com/waack.doma/',
+    teaching: { directionKey: 'waacking', classKeys: ['waacking', 'waack-on-point'] },
     bio: {
       pl: `Razem z Nikolą Makowską założycielka studia tańca “Dance Point” w Luboniu.
 
@@ -123,8 +166,10 @@ In 2024, she was a lecturer at the Beijing Contemporary Music Academy in China.`
   {
     id: 'jedrek',
     name: 'Jędrek',
-    // TODO: Replace placeholder with actual teacher photo.
-    image: '/assets/logo.jpg',
+    image: '/assets/jedrek.jpeg',
+    videoUrl: 'https://www.youtube.com/watch?v=ng2t8IE4nrE',
+    socialUrl: 'https://www.instagram.com/jedras_in/',
+    teaching: { directionKey: 'hip-hop', classKeys: ['supa-fly', 'hip-hop'] },
     bio: {
       pl: `Jestem tancerzem od 5 roku życia. Style, na których bazuję to Hip Hop i Bboying. Zaczerpnąłem także sporo wiedzy z Poppingu, co daje mi naprawdę dużo nowych możliwości w tańcu, który teraz rozwijam. Pomimo młodego wieku, byłem na wielu zawodach, zajęciach, obozach czy panelach dyskusyjnych. Przez to, że wcześnie zaczynałem mogłem dostrzec, jak kultura hip hopowa w Polsce się zmienia, ilu nowych tancerzy przybywa i sam sprawdzać się, konkurując z nimi na zawodach. Na początku nie było kategorii wiekowych, więc szedłem na głębokie wody, startując z dorosłymi. Myślę, że dało mi to naprawdę dużo siły, odwagi i przede wszystkim chęci i motywacji. Jeżeli miałbym opisać swój styl w trzech słowach byłyby to: kreatywny, spontaniczny i bez barier.`,
       en: `I have been a dancer since the age of five. The styles I build on are hip-hop and b-boying. I have also gained a great deal of knowledge from popping, which gives me many new possibilities in the dance I am now developing. Despite my young age, I have taken part in many competitions, classes, camps and panel discussions. Because I started early, I was able to observe how hip-hop culture in Poland was changing, see how many new dancers were emerging and test myself by competing against them. At first there were no age categories, so I was thrown in at the deep end and competed with adults. I believe this gave me a great deal of strength, courage and, above all, drive and motivation. If I had to describe my style in three words, they would be creative, spontaneous and without barriers.`,
@@ -133,9 +178,10 @@ In 2024, she was a lecturer at the Beijing Contemporary Music Academy in China.`
   {
     id: 'wiktoria',
     name: 'Wiktoria',
-    // TODO: Replace placeholder with actual teacher photo.
-    image: '/assets/logo.jpg',
+    image: '/assets/wiktoria.jpg',
     videoUrl: 'https://youtube.com/shorts/ih2gfDNrpxU?feature=share',
+    socialUrl: 'https://www.instagram.com/w_tomaszewskaa/',
+    teaching: { directionKey: 'acrobatics', classKeys: ['acrobatics'] },
     bio: {
       pl: `Wiktoria rozpoczęła swoją przygodę z akrobatyką i tańcem ponad 10 lat temu. Przez lata intensywnie doskonaliła się i próbowała wielu stylów tanecznych równocześnie rozwijając się akrobatycznie i ucząc się kolejnych tricków i kombinacji.
 
@@ -152,8 +198,9 @@ In her classes, she will teach you many acrobatic elements that can be used in d
   {
     id: 'victoria',
     name: 'Victoria',
-    // TODO: Replace placeholder with actual teacher photo.
-    image: '/assets/logo.jpg',
+    image: '/assets/victoria.jpeg',
+    socialUrl: 'https://www.instagram.com/vickysilvero1/',
+    teaching: { directionKey: 'ballet', classKeys: ['ballet'] },
     bio: {
       pl: `Victoria Silvero to argentyńska nauczycielka i tancerka tańca klasycznego oraz współczesnego, mieszkająca i pracująca w Poznaniu. Ukończyła Wyższy Instytut Sztuki María Angélica Pellegrino (ISPEA) w Argentynie. W czasie studiów była członkinią zespołu baletowego instytutu, występując w klasycznym repertuarze, m.in. w Giselle, Jeziorze łabędzim, Śpiącej królewnie i Symfonii C-dur, a także w autorskich choreografiach.
 
@@ -170,9 +217,9 @@ In her ballet teaching, she draws inspiration from the classical repertoire and 
   {
     id: 'maja-ozminska',
     name: 'Maja Oźmińska',
-    // TODO: Replace placeholder with actual teacher photo.
-    image: '/assets/logo.jpg',
+    image: '/assets/maja.jpeg',
     videoUrl: 'https://youtube.com/shorts/8FxBsPFGLf4?feature=share',
+    teaching: { directionKey: 'street-dance', classKeys: ['street-dance'] },
     bio: {
       pl: `Głównym stylem którym zajmuje się Maja jest waacking ale wyraża siebie również poprzez house, hip hop, soul dance i elementy tańca współczesnego.
 Z tańcem związana od 2009 roku. Zaczynała tańcząc w formacjach hip hop'owych oraz w teatrze tańca. Członkini Waack on Point crew.
@@ -209,7 +256,3 @@ Achievements as a coach:
     },
   },
 ]
-
-export function getTeacherById(id) {
-  return TEACHERS.find((teacher) => teacher.id === id)
-}

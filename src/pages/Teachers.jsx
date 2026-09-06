@@ -1,9 +1,9 @@
 import { InstagramOutlined } from '@ant-design/icons'
-import { Button, Col, Divider, Row, Space, Typography } from 'antd'
+import { Button, Col, Divider, Row, Space, Tag, Typography } from 'antd'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import VideoModal from '../components/VideoModal'
-import { TEACHERS } from '../content/teachers'
+import { DANCE_CLASSES, TEACHERS } from '../content/teachers'
 import './teachers.css'
 
 export default function Teachers() {
@@ -48,6 +48,14 @@ export default function Teachers() {
                 <Typography.Title level={2} className="teacher-name">
                   {teacher.name}
                 </Typography.Title>
+                <div className="teacher-classes">
+                  <Typography.Text strong>{t('teachers.classesTaught')}:</Typography.Text>
+                  <Space wrap size={[6, 6]}>
+                    {teacher.teaching.classKeys.map((classKey) => (
+                      <Tag key={classKey}>{DANCE_CLASSES[classKey][language]}</Tag>
+                    ))}
+                  </Space>
+                </div>
                 <Typography.Paragraph className="teacher-bio">
                   {teacher.bio[language]}
                 </Typography.Paragraph>

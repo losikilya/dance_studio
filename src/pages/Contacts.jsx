@@ -1,7 +1,9 @@
 import {
   ClockCircleOutlined,
   EnvironmentOutlined,
+  InstagramOutlined,
   PhoneOutlined,
+  WhatsAppOutlined,
 } from '@ant-design/icons'
 import { Button, Card, Col, Row, Space, Typography } from 'antd'
 import { useTranslation } from 'react-i18next'
@@ -79,15 +81,16 @@ export default function Contacts() {
                 {STUDIO.socialLinks.length > 0 && (
                   <div className="socials">
                     {STUDIO.socialLinks.map((social) => (
-                      <a
+                      <Button
                         key={social.label}
                         href={social.url}
                         target="_blank"
                         rel="noreferrer noopener"
                         className="social-btn"
+                        icon={social.id === 'instagram' ? <InstagramOutlined /> : <WhatsAppOutlined />}
                       >
                         {social.label}
-                      </a>
+                      </Button>
                     ))}
                   </div>
                 )}
@@ -101,9 +104,11 @@ export default function Contacts() {
                 {t('contacts.writeToUs')}
               </Title>
               <Paragraph type="secondary">{t('contacts.contactPrompt')}</Paragraph>
-              <Button type="primary" size="large" href={STUDIO.phone.href}>
-                {t('contacts.callUs')}
-              </Button>
+              <Space wrap className="contact-actions">
+                <Button type="primary" size="large" icon={<PhoneOutlined />} href={STUDIO.phone.href}>
+                  {t('contacts.callUs')}
+                </Button>
+              </Space>
             </Card>
           </Col>
         </Row>
@@ -140,7 +145,10 @@ export default function Contacts() {
             type="primary"
             size="large"
             className="contacts-cta-big"
-            href={STUDIO.phone.href}
+            icon={<WhatsAppOutlined />}
+            href={STUDIO.phone.whatsappHref}
+            target="_blank"
+            rel="noreferrer noopener"
           >
             {t('contacts.bookTrial')}
           </Button>

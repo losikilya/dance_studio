@@ -3,12 +3,32 @@
   position: relative;
   border-radius: 10px;
   overflow: hidden;
-  background: #000;
-  height: var(--h);
+  background: #fff;
 }
-.gallery-swiper .slide{ height: var(--h); }
+.gallery-swiper--fixed,
+.gallery-swiper--fixed .ant-carousel,
+.gallery-swiper--fixed .slick-slider,
+.gallery-swiper--fixed .slick-list,
+.gallery-swiper--fixed .slick-track,
+.gallery-swiper--fixed .slick-slide,
+.gallery-swiper--fixed .slick-slide > div,
+.gallery-swiper--fixed .slide{
+  height: var(--gallery-height);
+}
+.gallery-swiper--adaptive .slick-list{
+  transition: height .25s ease;
+}
+.gallery-swiper--adaptive .slide{
+  line-height: 0;
+}
 .gallery-swiper img{
-  width:100%; height:100%; object-fit:cover; display:block;
+  width:100%; display:block;
+}
+.gallery-swiper--fixed img{
+  height:100%; object-fit:contain;
+}
+.gallery-swiper--adaptive img{
+  height:auto; object-fit:contain;
 }
 .gallery-swiper .nav{
   position:absolute; top:50%; transform:translateY(-50%);

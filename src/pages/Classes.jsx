@@ -1,8 +1,7 @@
 import { Button, Collapse, List, Tag, Typography } from 'antd'
 import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { DIRECTIONS } from '../content/directions'
-import { getTeacherById } from '../content/teachers'
+import { DANCE_CLASSES, TEACHERS, TEACHING_DIRECTIONS } from '../content/teachers'
 import { getYouTubeVideoId } from '../utils/youtube'
 import './classes.css'
 
@@ -10,34 +9,31 @@ const { Title, Paragraph } = Typography
 const { Panel } = Collapse
 
 export default function Classes() {
-  const [selection, setSelection] = useState({
-    categoryKey: DIRECTIONS[0].key,
-    videoId: DIRECTIONS[0].videos[0].id,
-  })
+  const [selection, setSelection] = useState(null)
   const [isMobile, setIsMobile] = useState(false)
   const { t, i18n } = useTranslation()
   const language = i18n.resolvedLanguage?.startsWith('en') ? 'en' : 'pl'
 
-  const data = useMemo(() => DIRECTIONS.map((category) => ({
+  const data = useMemo(() => TEACHING_DIRECTIONS.map((category) => ({
     ...category,
     title: category.label[language],
-    videos: category.videos.map((video) => {
-      const teacher = video.teacherId ? getTeacherById(video.teacherId) : null
-
-      return {
-        ...video,
-        title: typeof video.title === 'string' ? video.title : video.title[language],
-        teacher: teacher?.name ?? video.teacherName,
-        videoUrl: teacher?.videoUrl ?? video.videoUrl,
-        description: teacher?.bio[language] ?? video.description?.[language] ?? '',
-        level: t('common.beginner'),
-      }
-    }),
-  })), [language, t])
+    videos: TEACHERS
+      .filter((teacher) => teacher.teaching.directionKey === category.key)
+      .map((teacher) => ({
+        id: teacher.id,
+        title: teacher.teaching.classKeys
+          .map((classKey) => DANCE_CLASSES[classKey][language])
+          .join(' • '),
+        teacher: teacher.name,
+        videoUrl: teacher.videoUrl,
+        description: teacher.bio[language],
+        isVertical: teacher.videoUrl?.includes('/shorts/') ?? false,
+      })),
+  })).filter((category) => category.videos.length > 0), [language])
 
   const selected = useMemo(() => {
-    const category = data.find(({ key }) => key === selection.categoryKey) ?? data[0]
-    const video = category.videos.find(({ id }) => id === selection.videoId) ?? category.videos[0]
+    const category = data.find(({ key }) => key === selection?.categoryKey) ?? data[0]
+    const video = category.videos.find(({ id }) => id === selection?.videoId) ?? category.videos[0]
     return { ...video, catKey: category.key, catTitle: category.title }
   }, [data, selection])
 
@@ -144,7 +140,6 @@ export default function Classes() {
           )}
           <div className="desc-meta">
             <Tag>{selected.teacher}</Tag>
-            <Tag>{t('directions.level')}: {selected.level}</Tag>
           </div>
           <Paragraph style={{ whiteSpace: 'pre-wrap', padding: '0 12px 20px' }}>
             {selected.description}

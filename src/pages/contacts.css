@@ -30,8 +30,7 @@
   display: flex; gap: 10px; margin-top: 8px;
 }
 .social-btn{
-  width: 40px; height: 40px; border-radius: 8px;
-  display: grid; place-items: center;
+  border-radius: 8px;
   background: #F3F3F3; border: 1px solid #E6E6E6;
   color: #333; transition: transform .1s ease, filter .15s ease;
 }
@@ -39,6 +38,17 @@
 
 /* form */
 .form-card .ant-form-item{ margin-bottom: 12px; }
+.contact-actions{
+  display: flex;
+}
+
+@media (max-width: 576px){
+  .contact-actions,
+  .contact-actions .ant-space-item,
+  .contact-actions .ant-btn{
+    width: 100%;
+  }
+}
 
 /* map */
 .map-embed{

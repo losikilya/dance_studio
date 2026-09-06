@@ -41,6 +41,7 @@
   },
   "teachers": {
     "title": "Instruktorzy",
+    "classesTaught": "Prowadzone zajęcia",
     "watchVideo": "Obejrzyj wideo",
     "instagram": "Instagram",
     "photoAlt": "{{name}} — instruktor DANCE POINT",
@@ -58,57 +59,49 @@
     "imageAlt": "Grafik zajęć DANCE POINT"
   },
   "prices": {
-    "title": "Cennik i karnety",
-    "adult": "Dorośli",
-    "kids": "Dzieci",
-    "monthly": "Karnety",
-    "dropIn": "Wejścia jednorazowe",
-    "popular": "Popularny",
-    "buyPass": "Wybierz karnet",
+    "title": "Cennik",
+    "sections": {
+      "openClasses": "Zajęcia otwarte (75 min)",
+      "openStyles": "Hip-Hop • Choreo • Jazz • Heels • Waacking • K-Pop • Akrobatyka • Balet",
+      "kids": "Dzieci",
+      "closedGroups": "Grupy zamknięte",
+      "closedDuration": "Zajęcia 75 min"
+    },
     "plans": {
-      "unlimited": "Bez limitu (30 dni)",
-      "twelve": "12 zajęć / 30 dni",
-      "eight": "8 zajęć / 30 dni",
-      "four": "4 zajęcia / 30 dni",
-      "single": "Pojedyncze wejście",
-      "trial": "Lekcja próbna",
-      "kidsEight": "8 zajęć dla dzieci / 30 dni",
-      "kidsFour": "4 zajęcia dla dzieci / 30 dni",
-      "kidsSingle": "Pojedyncze wejście dla dziecka"
+      "openSingle": "1 wejście",
+      "openFour": "Karnet 4 wejścia",
+      "openEight": "Karnet 8 wejść",
+      "openFullPass": "Full Pass Open — nielimitowane zajęcia Open",
+      "miniKids": "Mini Kids (4–5 lat)",
+      "kids": "Kidsy (6–8 lat)",
+      "jazzMinis": "Jazz Minis (6–8 lat)",
+      "streetDance": "Street Dance (9–12 lat)",
+      "kidsAcrobatics": "Dzieci + Akrobatyka",
+      "supaFly": "Supa Fly (12–16 lat)",
+      "jazzowki": "Jazzówki (9–12 lat)",
+      "waackOnPoint": "Waack On Point",
+      "kPoint": "K-Point"
     },
-    "perks": {
-      "allOpen": "Wszystkie zajęcia open",
-      "openPractice": "Bezpłatny open practice",
-      "eventsPresale": "Pierwszeństwo zapisów na wydarzenia",
-      "anyGroups": "Dowolne grupy",
-      "freeze": "Jedno zawieszenie na 3 dni",
-      "oneClass": "Ważne na jedne zajęcia",
-      "kidsOnly": "Tylko grupy dziecięce"
+    "details": {
+      "weekly40": "1 x w tygodniu (40 min)",
+      "weekly60": "1 x w tygodniu (60 min)",
+      "twiceWeekly": "2 x w tygodniu",
+      "threeTimesWeekly": "3 x w tygodniu",
+      "fourTimesWeekly": "4 x w tygodniu",
+      "withAcrobatics": "+ Akrobatyka",
+      "withBalletAndAcrobatics": "+ Balet i Akrobatyka",
+      "regularAndOpen": "1 zajęcia stałe + 4 Open"
     },
-    "newToStudio": "Dla nowych osób",
-    "discountsTitle": "Zniżki",
-    "discounts": {
-      "student": "Zniżka studencka",
-      "studentNote": "Przy zakupie okaż ważną legitymację studencką.",
-      "family": "Rodzina / rodzeństwo",
-      "familyNote": "Przy wspólnym zakupie co najmniej dwóch karnetów."
-    },
-    "faqTitle": "Zasady i najczęstsze pytania",
-    "faq": {
-      "validityQuestion": "Jak długo ważny jest karnet miesięczny?",
-      "validityAnswer": "30 dni kalendarzowych od pierwszej wizyty. Karnet Bez limitu oraz 12 zajęć można zawiesić jeden raz na maksymalnie 3 dni.",
-      "classesQuestion": "Czy karnety obowiązują na wszystkie zajęcia?",
-      "classesAnswer": "Tak, chyba że zajęcia są oznaczone jako warsztaty specjalne. Karnety dziecięce obowiązują wyłącznie na grupy dla dzieci.",
-      "transferQuestion": "Czy mogę przekazać karnet innej osobie?",
-      "transferAnswer": "Karnety są imienne i nie można ich przekazywać."
-    },
+    "fullPass": "Full Pass",
+    "bestOffer": "Najlepsza oferta",
+    "validityNote": "Każdy karnet jest ważny od początku do końca danego miesiąca.",
     "cta": "Umów zajęcia",
-    "ctaNote": "Nie wiesz, który karnet wybrać? Umów lekcję próbną, a pomożemy Ci zdecydować."
+    "ctaNote": "Skontaktuj się z nami, aby wybrać odpowiednie zajęcia lub karnet."
   },
   "rent": {
     "title": "Wynajem studia",
     "whyTitle": "Dlaczego warto wynająć DANCE POINT",
-    "hallsTitle": "Nasze sale",
+    "pricingTitle": "Cennik wynajmów",
     "galleryAlt": "Sale taneczne DANCE POINT",
     "amenities": {
       "cityCenter": "Dogodna lokalizacja",
@@ -120,25 +113,15 @@
       "bar": "Bar i przekąski",
       "parking": "Parking w pobliżu"
     },
-    "halls": {
-      "small": "Mała sala",
-      "medium": "Średnia sala",
-      "large": "Duża sala"
+    "service": "Rodzaj wynajmu",
+    "members": "Dla członków studia",
+    "others": "Dla pozostałych osób",
+    "services": {
+      "individualLesson": "Lekcja indywidualna",
+      "groupLesson": "Lekcja grupowa",
+      "recordingRental": "Wynajem pod nagrania"
     },
-    "features": {
-      "mirrors": "Ściana luster",
-      "woodFloor": "Drewniana podłoga",
-      "bluetooth": "Nagłośnienie Bluetooth",
-      "ac": "Klimatyzacja",
-      "sprungFloor": "Podłoga amortyzowana",
-      "stageLights": "Oświetlenie sceniczne"
-    },
-    "area": "Powierzchnia",
-    "capacity": "Liczba osób",
-    "upToPeople": "do {{count}} osób",
-    "perHour": "godz.",
-    "bookHall": "Zarezerwuj salę",
-    "description": "Sale są dostępne na lekcje prywatne, treningi, próby i wydarzenia. Godziny nocne oraz wydarzenia specjalne mogą mieć inne stawki. Skontaktuj się z nami, aby otrzymać indywidualną wycenę.",
+    "individualTerms": "W innych przypadkach, przy większej liczbie godzin lub wynajmie cyklicznym warunki ustalamy indywidualnie.",
     "cta": "Wynajmij studio"
   },
   "contacts": {
@@ -148,25 +131,23 @@
     "country": "Polska",
     "openingHours": "Godziny otwarcia",
     "writeToUs": "Skontaktuj się z nami",
-    "contactPrompt": "Masz pytanie o zajęcia, lekcję próbną lub wynajem sali? Zadzwoń do nas — chętnie pomożemy.",
+    "contactPrompt": "Masz pytanie o zajęcia, lekcję próbną lub wynajem sali? Zadzwoń lub napisz do nas na WhatsApp — chętnie pomożemy.",
     "callUs": "Zadzwoń: +48 796 148 125",
+    "writeOnWhatsApp": "Napisz na WhatsApp",
     "howToFindUs": "Jak do nas trafić",
     "locationDescription": "DANCE POINT LUBOŃ znajduje się przy ul. Sobieskiego 55A, 62-030 Luboń.",
     "openInMaps": "Otwórz w Google Maps",
     "mapTitle": "DANCE POINT LUBOŃ na mapie Google",
-    "bookTrial": "Zadzwoń i umów lekcję próbną",
-    "bookingNote": "Zapisy i pytania przyjmujemy telefonicznie w godzinach otwarcia."
+    "bookTrial": "Napisz i umów lekcję próbną",
+    "bookingNote": "Zapisy i pytania przyjmujemy telefonicznie oraz przez WhatsApp w godzinach otwarcia."
   },
   "documents": {
     "title": "Dokumenty",
     "rulesTitle": "Regulamin studia i bezpieczeństwo",
     "rulesDescription": "Ogólne zasady studia, bezpieczeństwa i zachowania.",
-    "pricesTitle": "Cennik i karnety (2025)",
-    "pricesDescription": "Cennik karnetów i wejść jednorazowych.",
     "rentalTitle": "Warunki wynajmu sali",
     "rentalDescription": "Warunki wynajmu prywatnego i organizacji wydarzeń.",
     "policyTag": "Regulamin",
-    "pricingTag": "Cennik",
     "rentalTag": "Wynajem",
     "viewerTitle": "Dokument PDF"
   }

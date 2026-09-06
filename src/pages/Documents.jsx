@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next'
 import PdfViewerModal from '../components/PdfViewerModal'
 import './documents.css'
 
-import pricesPdf from '/assets/docs/doc2.pdf'
 import rentalPdf from '/assets/docs/doc3.pdf'
 import rulesPdf from '/assets/docs/doc1.pdf'
 
@@ -13,7 +12,6 @@ const { Title, Text } = Typography
 
 const DOCUMENTS = [
   { id: 'rules', file: rulesPdf, language: 'EN', titleKey: 'rulesTitle', descriptionKey: 'rulesDescription', tagKey: 'policyTag', updatedAt: '2025-09-01' },
-  { id: 'prices', file: pricesPdf, language: 'EN', titleKey: 'pricesTitle', descriptionKey: 'pricesDescription', tagKey: 'pricingTag', updatedAt: '2025-10-01' },
   { id: 'rental', file: rentalPdf, language: 'EN', titleKey: 'rentalTitle', descriptionKey: 'rentalDescription', tagKey: 'rentalTag', updatedAt: '2025-08-20' },
 ]
 

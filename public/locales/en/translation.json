@@ -41,6 +41,7 @@
   },
   "teachers": {
     "title": "Teachers",
+    "classesTaught": "Classes taught",
     "watchVideo": "Watch video",
     "instagram": "Instagram",
     "photoAlt": "{{name}} — DANCE POINT teacher",
@@ -58,57 +59,49 @@
     "imageAlt": "DANCE POINT class schedule"
   },
   "prices": {
-    "title": "Prices and passes",
-    "adult": "Adults",
-    "kids": "Kids",
-    "monthly": "Passes",
-    "dropIn": "Drop-in",
-    "popular": "Popular",
-    "buyPass": "Choose pass",
+    "title": "Price list",
+    "sections": {
+      "openClasses": "Open classes (75 min)",
+      "openStyles": "Hip-Hop • Choreo • Jazz • Heels • Waacking • K-Pop • Acrobatics • Ballet",
+      "kids": "Children",
+      "closedGroups": "Closed groups",
+      "closedDuration": "75-minute classes"
+    },
     "plans": {
-      "unlimited": "Unlimited (30 days)",
-      "twelve": "12 classes / 30 days",
-      "eight": "8 classes / 30 days",
-      "four": "4 classes / 30 days",
-      "single": "Single class",
-      "trial": "Trial class",
-      "kidsEight": "Kids: 8 classes / 30 days",
-      "kidsFour": "Kids: 4 classes / 30 days",
-      "kidsSingle": "Kids single class"
+      "openSingle": "1 class",
+      "openFour": "4-class pass",
+      "openEight": "8-class pass",
+      "openFullPass": "Full Pass Open — unlimited Open classes",
+      "miniKids": "Mini Kids (ages 4–5)",
+      "kids": "Kidsy (ages 6–8)",
+      "jazzMinis": "Jazz Minis (ages 6–8)",
+      "streetDance": "Street Dance (ages 9–12)",
+      "kidsAcrobatics": "Children + Acrobatics",
+      "supaFly": "Supa Fly (ages 12–16)",
+      "jazzowki": "Jazzówki (ages 9–12)",
+      "waackOnPoint": "Waack On Point",
+      "kPoint": "K-Point"
     },
-    "perks": {
-      "allOpen": "All open classes",
-      "openPractice": "Free open practice",
-      "eventsPresale": "Priority event registration",
-      "anyGroups": "Any groups",
-      "freeze": "One three-day freeze",
-      "oneClass": "Valid for one class",
-      "kidsOnly": "Kids groups only"
+    "details": {
+      "weekly40": "Once a week (40 min)",
+      "weekly60": "Once a week (60 min)",
+      "twiceWeekly": "Twice a week",
+      "threeTimesWeekly": "3 times a week",
+      "fourTimesWeekly": "4 times a week",
+      "withAcrobatics": "+ Acrobatics",
+      "withBalletAndAcrobatics": "+ Ballet and Acrobatics",
+      "regularAndOpen": "1 regular class + 4 Open classes"
     },
-    "newToStudio": "New to the studio",
-    "discountsTitle": "Discounts",
-    "discounts": {
-      "student": "Student discount",
-      "studentNote": "Show a valid student ID when purchasing.",
-      "family": "Family / siblings",
-      "familyNote": "When purchasing at least two passes together."
-    },
-    "faqTitle": "Terms and frequently asked questions",
-    "faq": {
-      "validityQuestion": "How long is a monthly pass valid?",
-      "validityAnswer": "30 calendar days from the first visit. Unlimited and 12-class passes can be frozen once for up to three days.",
-      "classesQuestion": "Do passes work across all classes?",
-      "classesAnswer": "Yes, unless a class is marked as a special workshop. Kids passes are valid for kids groups only.",
-      "transferQuestion": "Can I transfer a pass?",
-      "transferAnswer": "Passes are personal and non-transferable."
-    },
+    "fullPass": "Full Pass",
+    "bestOffer": "Best offer",
+    "validityNote": "Each pass is valid from the beginning to the end of the given month.",
     "cta": "Book a class",
-    "ctaNote": "Not sure which pass to choose? Book a trial lesson and we will help you decide."
+    "ctaNote": "Contact us to choose the right classes or pass."
   },
   "rent": {
     "title": "Studio rental",
     "whyTitle": "Why rent at DANCE POINT",
-    "hallsTitle": "Our halls",
+    "pricingTitle": "Rental price list",
     "galleryAlt": "DANCE POINT dance halls",
     "amenities": {
       "cityCenter": "Convenient location",
@@ -120,25 +113,15 @@
       "bar": "Bar and snacks",
       "parking": "Parking nearby"
     },
-    "halls": {
-      "small": "Small hall",
-      "medium": "Medium hall",
-      "large": "Large hall"
+    "service": "Rental type",
+    "members": "Studio members",
+    "others": "Other clients",
+    "services": {
+      "individualLesson": "Individual lesson",
+      "groupLesson": "Group lesson",
+      "recordingRental": "Rental for recordings"
     },
-    "features": {
-      "mirrors": "Mirror wall",
-      "woodFloor": "Wood floor",
-      "bluetooth": "Bluetooth audio",
-      "ac": "Air conditioning",
-      "sprungFloor": "Sprung floor",
-      "stageLights": "Stage lights"
-    },
-    "area": "Area",
-    "capacity": "Capacity",
-    "upToPeople": "up to {{count}} people",
-    "perHour": "hour",
-    "bookHall": "Book this hall",
-    "description": "The halls are available for private lessons, training, rehearsals and events. Night hours and special events may have different rates. Contact us for a custom quote.",
+    "individualTerms": "For other cases, more hours or recurring rentals, terms are arranged individually.",
     "cta": "Rent a studio"
   },
   "contacts": {
@@ -148,25 +131,23 @@
     "country": "Poland",
     "openingHours": "Opening hours",
     "writeToUs": "Contact us",
-    "contactPrompt": "Have a question about classes, a trial lesson or studio rental? Call us and we will be happy to help.",
+    "contactPrompt": "Have a question about classes, a trial lesson or studio rental? Call or message us on WhatsApp and we will be happy to help.",
     "callUs": "Call +48 796 148 125",
+    "writeOnWhatsApp": "Message us on WhatsApp",
     "howToFindUs": "How to find us",
     "locationDescription": "DANCE POINT LUBOŃ is located at Sobieskiego 55A, 62-030 Luboń.",
     "openInMaps": "Open in Google Maps",
     "mapTitle": "DANCE POINT LUBOŃ on Google Maps",
-    "bookTrial": "Call to book a trial lesson",
-    "bookingNote": "We accept bookings and enquiries by phone during opening hours."
+    "bookTrial": "Message us to book a trial lesson",
+    "bookingNote": "We accept bookings and enquiries by phone or WhatsApp during opening hours."
   },
   "documents": {
     "title": "Documents",
     "rulesTitle": "Studio rules and safety",
     "rulesDescription": "General studio rules, safety and conduct policy.",
-    "pricesTitle": "Prices and passes (2025)",
-    "pricesDescription": "Price list for passes and drop-in classes.",
     "rentalTitle": "Hall rental terms",
     "rentalDescription": "Terms for private rental and events.",
     "policyTag": "Policy",
-    "pricingTag": "Pricing",
     "rentalTag": "Rental",
     "viewerTitle": "PDF document"
   }
