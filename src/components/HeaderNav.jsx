@@ -1,5 +1,5 @@
 // src/components/HeaderNav.jsx
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button, Drawer, Menu, Switch } from "antd";
 import { useState } from "react";
 import { MenuOutlined } from "@ant-design/icons";
@@ -8,12 +8,13 @@ import { useTranslation } from "react-i18next";
 
 export function HeaderNav({ onLocaleChange }) {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
     const { t } = useTranslation();
 
   const items = [
   { key: "home", label: <Link to="/">{t('nav.home')}</Link> },
-  { key: "/classes", label: <Link to="/classes">{t('nav.classes')}</Link> },
+  { key: "/directions", label: <Link to="/directions">{t('nav.classes')}</Link> },
   { key: "/schedule", label: <Link to="/schedule">{t('nav.schedule')}</Link> },
   { key: "/teachers", label: <Link to="/teachers">{t('nav.teachers')}</Link> },
   { key: "/prices", label: <Link to="/prices">{t("nav.prices")}</Link> },
@@ -45,7 +46,7 @@ export function HeaderNav({ onLocaleChange }) {
           aria-label="DANCE POINT"
           style={{ height: "inherit" }}
         >
-          <img src={logoUrl} alt="DANCE POINT" />
+          <img src={logoUrl} alt="DANCE POINT – szkoła tańca w Luboniu" />
         </Link>
 
         {/* Меню десктоп */}
@@ -68,8 +69,8 @@ export function HeaderNav({ onLocaleChange }) {
         />
 
         <div className="only-desktop">
-          <Button type="primary">
-            <Link to="/contacts">{t('trial')}</Link>
+          <Button type="primary" onClick={() => navigate('/contacts')}>
+            {t('trial')}
           </Button>
         </div>
 
@@ -106,8 +107,8 @@ export function HeaderNav({ onLocaleChange }) {
           items={items}
           onClick={() => setOpen(false)}
         />
-        <Button type="primary" block style={{ marginTop: 16 }}>
-          <Link to="/contacts">{t('trial')}</Link>
+        <Button type="primary" block style={{ marginTop: 16 }} onClick={() => navigate('/contacts')}>
+          {t('trial')}
         </Button>
       </Drawer>
     </header>

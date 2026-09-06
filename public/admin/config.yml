@@ -2,8 +2,8 @@ backend:
   name: git-gateway
   branch: main
 
-site_url: https://shiny-tartufo-3eee17.netlify.app
-display_url: https://shiny-tartufo-3eee17.netlify.app
+site_url: "https://www.dancepointlubon.pl"
+display_url: "https://www.dancepointlubon.pl"
 
 publish_mode: simple
 

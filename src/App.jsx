@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Navigate, Routes, Route } from "react-router-dom";
 import { Layout } from "antd";
 import { HeaderNav } from "./components/HeaderNav.jsx";
 import Home from "./pages/Home.jsx";
@@ -21,6 +21,7 @@ import "dayjs/locale/pl";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import ScheduleLight from "./pages/ScheduleLight.jsx";
+import SiteSeo from "./seo/SiteSeo.jsx";
 
 dayjs.locale("pl");
 
@@ -47,6 +48,7 @@ export default function App() {
     <ConfigProvider theme={themeTokens} locale={locale}>
       <AntApp>
         <BrowserRouter>
+          <SiteSeo />
           <Layout style={{ minHeight: "100dvh" }}>
             <Header style={{ background: "transparent", padding: 0 }}>
               <HeaderNav onLocaleChange={changeLocale} />
@@ -59,7 +61,8 @@ export default function App() {
             >
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/classes" element={<Classes />} />
+                <Route path="/directions" element={<Classes />} />
+                <Route path="/classes" element={<Navigate to="/directions" replace />} />
                 <Route path="/schedule" element={<ScheduleLight />} />
                 <Route path="/teachers" element={<Teachers />} />
                 <Route path="/prices" element={<Prices />} />
@@ -69,7 +72,7 @@ export default function App() {
               </Routes>
             </Content>
             <Footer style={{ textAlign: "center" }}>
-              © {new Date().getFullYear()} Dance Point — Lubon
+              © {new Date().getFullYear()} Dance Point — Luboń
             </Footer>
           </Layout>
         </BrowserRouter>

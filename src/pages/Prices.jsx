@@ -83,7 +83,7 @@ export default function Prices() {
   return (
     <div className="prices-wrap">
       <div className="prices-container">
-        <Title level={2} className="prices-title">Prices & Passes</Title>
+        <Title level={1} className="prices-title">Prices & Passes</Title>
 
         <div className="switchers">
           <Segmented
@@ -125,7 +125,7 @@ export default function Prices() {
 
         {/* Discounts */}
         <section className="discounts prices-card">
-          <Title level={4} style={{ marginBottom: 8 }}>Discounts</Title>
+          <Title level={2} style={{ marginBottom: 8, fontSize: 20, lineHeight: 1.4 }}>Discounts</Title>
           <List
             dataSource={DISCOUNTS}
             renderItem={(d) => (
@@ -142,7 +142,7 @@ export default function Prices() {
 
         {/* Terms / FAQ */}
         <section className="faq prices-card">
-          <Title level={4} style={{ marginBottom: 8 }}>Terms & FAQ</Title>
+          <Title level={2} style={{ marginBottom: 8, fontSize: 20, lineHeight: 1.4 }}>Terms & FAQ</Title>
           <Collapse accordion>
             <Panel header="How long is a monthly pass valid?" key="1">
               <Paragraph>30 calendar days from the first visit. You can freeze your pass once for up to 3 days (Unlimited / 12x).</Paragraph>

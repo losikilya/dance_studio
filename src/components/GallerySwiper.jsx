@@ -4,7 +4,7 @@ import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 import { useRef } from 'react'
 import './gallerySwiper.css'
 
-export default function GallerySwiper({ images = [], height, autoplay = false }) {
+export default function GallerySwiper({ images = [], height, autoplay = false, altPrefix = 'DANCE POINT' }) {
   const ref = useRef(null)
 
   return (
@@ -15,7 +15,7 @@ export default function GallerySwiper({ images = [], height, autoplay = false })
       <Carousel ref={ref} dots autoplay={autoplay} draggable swipeToSlide>
         {images.map((src, i) => (
           <div className="slide" key={i}>
-            <img src={src} alt={`gallery ${i + 1}`} loading="lazy" />
+            <img src={src} alt={`${altPrefix} – zdjęcie ${i + 1}`} loading="lazy" />
           </div>
         ))}
       </Carousel>

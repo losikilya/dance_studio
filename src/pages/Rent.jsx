@@ -77,16 +77,16 @@ export default function Rent() {
   return (
     <div className="rent-wrap">
       <div className="rental-container">
-        <Title level={2} className="rent-title">Studio Rental</Title>
+        <Title level={1} className="rent-title">Studio Rental</Title>
 
         {/* 1) Gallery */}
         <section className="rental-section rental-gallery-card rental-card">
-          <GallerySwiper images={HERO_IMAGES} height={520} autoplay />
+          <GallerySwiper images={HERO_IMAGES} height={520} autoplay altPrefix="Sale taneczne DANCE POINT" />
         </section>
 
         {/* 2) Amenities */}
         <section className="rental-section">
-          <Title level={3} style={{ textAlign: 'center', marginBottom: 16 }}>Why rent at DANCE POINT</Title>
+          <Title level={2} style={{ textAlign: 'center', marginBottom: 16, fontSize: 24, lineHeight: 1.3333 }}>Why rent at DANCE POINT</Title>
           <Row className="amenities">
             {AMENITIES.map((a) => (
               <Col xs={12} sm={8} md={6} key={a.label}>
@@ -101,16 +101,16 @@ export default function Rent() {
 
         {/* 3) Halls & prices */}
         <section className="rental-section">
-          <Title level={3} style={{ textAlign: 'center', marginBottom: 8 }}>Our Halls</Title>
+          <Title level={2} style={{ textAlign: 'center', marginBottom: 8, fontSize: 24, lineHeight: 1.3333 }}>Our Halls</Title>
           <Row gutter={[16, 16]}>
             {HALLS.map((h) => (
               <Col xs={24} md={8} key={h.id}>
                 <Card className="hall-card" bordered>
                   <div className="hall-media">
-                    <GallerySwiper images={h.images} height={260} />
+                    <GallerySwiper images={h.images} height={260} altPrefix={`${h.name} w DANCE POINT`} />
                   </div>
                   <Space direction="vertical" size={6} style={{ width: '100%', marginTop: 12 }}>
-                    <Title level={4} style={{ margin: 0 }}>{h.name}</Title>
+                    <Title level={3} style={{ margin: 0, fontSize: 20, lineHeight: 1.4 }}>{h.name}</Title>
                     <div className="hall-meta">
                       <span><strong>Area:</strong> {h.area} m²</span>
                       <span><strong>Capacity:</strong> up to {h.capacity} people</span>

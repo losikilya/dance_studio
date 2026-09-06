@@ -131,7 +131,7 @@ export default function Teachers() {
   return (
     <div className="teachers-wrap">
       <div className="teachers-container">
-        <Typography.Title level={2} className="teachers-title">{t('teachers.title')}</Typography.Title>
+        <Typography.Title level={1} className="teachers-title">{t('teachers.title')}</Typography.Title>
 
         <Space direction="vertical" size={20} style={{ width: '100%' }}>
           {TEACHERS.map((teacher, idx) => (
@@ -145,7 +145,11 @@ export default function Teachers() {
               {/* media */}
               <Col xs={24} md={12} className="teacher-media">
                 <div className="teacher-cover">
-                  <img src={teacher.cover} alt={teacher.name} loading="lazy" />
+                  <img
+                    src={teacher.cover}
+                    alt={`${teacher.name} – instruktor stylu ${teacher.title} w DANCE POINT`}
+                    loading="lazy"
+                  />
                   <div className="brand-overlay">
                     {<span>{teacher.name.split(' ')[0].toUpperCase()}</span>}
                   </div>
@@ -157,14 +161,14 @@ export default function Teachers() {
 
               {/* расписание */}
               <Col xs={24} md={12} className={`shedule-description-${idx % 2 === 0 ? 'start' : 'end'}`}>
-                <Typography.Title level={3} className="schedule-title">
+                <Typography.Title level={2} className="schedule-title">
                   {t('teachers.subtitle')}
                 </Typography.Title>
 
                 <Space direction="vertical" size={20} className="schedule-list">
                   {teacher.classes.map((c) => (
                     <div key={c.name} className="schedule-item">
-                      <a className="schedule-class">{c.name}</a>
+                      <span className="schedule-class">{c.name}</span>
                       <div className="schedule-level">{c.level}</div>
                       <div className="schedule-time">{c.times}</div>
                     </div>

@@ -1,12 +1,13 @@
 // src/pages/Home.jsx
 import { Button, Typography } from "antd";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import backgroundVideo from "/assets/home.mp4";
 import { Trans, useTranslation } from "react-i18next";
 import "./home.css";
 
 export default function Home() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -39,11 +40,11 @@ export default function Home() {
               <Trans i18nKey="home.text_2" />
             </Typography.Paragraph>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-              <Button type="primary" size="large">
-                <Link to="/contacts">{t("trial")}</Link>
+              <Button type="primary" size="large" onClick={() => navigate('/contacts')}>
+                {t("trial")}
               </Button>
-              <Button size="large">
-                <Link to="/schedule">{t("schedule_btn")}</Link>
+              <Button size="large" onClick={() => navigate('/schedule')}>
+                {t("schedule_btn")}
               </Button>
             </div>
           </div>

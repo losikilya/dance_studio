@@ -15,9 +15,9 @@ export default function ScheduleLight() {
   return (
     <div className="schedule-wrap">
       <div className="schedule-container">
-                <Typography.Title level={2} className="page-title">{t('schedule.title')}</Typography.Title>
+                <Typography.Title level={1} className="page-title">{t('schedule.title')}</Typography.Title>
         <section className="schedule-section schedule-gallery-card schedule-card">
-                  <GallerySwiper images={HERO_IMAGES}/>
+                  <GallerySwiper images={HERO_IMAGES} altPrefix="Grafik zajęć DANCE POINT" />
         </section>
         <div className="schedule-cta-wrap">
           <Button type="primary" size="large" className="schedule-cta-big" href="/contacts?intent=booking">

@@ -57,7 +57,7 @@ export default function Documents() {
   return (
     <div className="docs-wrap">
       <div className="documents-container">
-        <Title level={2} className="docs-title">Documents</Title>
+        <Title level={1} className="docs-title">Documents</Title>
 
         <Card className="documents-card">
           <List

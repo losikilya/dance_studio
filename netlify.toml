@@ -6,7 +6,14 @@
   NODE_VERSION = "20"
   TZ = "Europe/Warsaw"
 
-# SPA fallback: все маршруты на index.html
+# Redirect the legacy route to its canonical public URL.
+[[redirects]]
+  from = "/classes"
+  to = "/directions"
+  status = 301
+  force = true
+
+# SPA fallback: all application routes are served by index.html.
 [[redirects]]
   from = "/*"
   to = "/index.html"

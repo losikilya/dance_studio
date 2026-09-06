@@ -74,6 +74,8 @@
   font-weight: 800 !important;
   margin: 0 0 12px 0 !important;
   color: #333;
+  font-size: 24px !important;
+  line-height: 1.3333 !important;
 }
 .schedule-list{ color: var(--txt); }
 .schedule-item{ text-align: left; }

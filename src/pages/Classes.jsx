@@ -207,7 +207,7 @@ export default function Classes() {
   return (
     <div className="directions-wrap">
       <div className="classes-container">
-        <Title level={2} className="directions-title">
+        <Title level={1} className="directions-title">
           {t('classes.title')}
         </Title>
 
@@ -226,8 +226,9 @@ export default function Classes() {
             </div>
           </section>
           {isMobile && <Title
-            level={3}
+            level={2}
             className="mobile-title"
+            style={{ fontSize: 24, lineHeight: 1.3333 }}
           >
             {selected?.catTitle} <span className="dot">•</span>{" "}
             {selected?.title} <span className="dot">•</span>{" "}
@@ -297,10 +298,12 @@ export default function Classes() {
         {/* Описание выбранного видео */}
         <section className="desc classes-card">
           {!isMobile && <Title
-            level={3}
+            level={2}
             style={{
               margin: 0,
               marginBottom: 8,
+              fontSize: 24,
+              lineHeight: 1.3333,
               background: "rgba(150,75,75)",
               color: "#fff",
               padding: 12,

@@ -25,6 +25,16 @@ h1,h2,h3,.h{
   color:#333;
   letter-spacing:.2px;
 }
+.directions-title,
+.teachers-title,
+.page-title,
+.prices-title,
+.rent-title,
+.contacts-title,
+.docs-title{
+  font-size: 30px !important;
+  line-height: 1.2667 !important;
+}
 .header-container,
 .home-container,
 .classes-container,

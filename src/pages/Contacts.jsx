@@ -56,13 +56,13 @@ export default function Contacts() {
   return (
     <div className="contacts-wrap">
       <div className="contacts-container">
-        <Title level={2} className="contacts-title">Contacts</Title>
+        <Title level={1} className="contacts-title">Contacts</Title>
 
         <Row gutter={[16, 16]} align="stretch">
           {/* LEFT: Info */}
           <Col xs={24} md={10}>
             <Card className="contacts-card info-card" bordered>
-              <Title level={4} style={{ marginTop: 0 }}>{STUDIO.name}</Title>
+              <Title level={2} style={{ marginTop: 0, fontSize: 20, lineHeight: 1.4 }}>{STUDIO.name}</Title>
 
               <Space direction="vertical" size={12} style={{ width: '100%' }}>
                 <div className="info-row">
@@ -96,13 +96,13 @@ export default function Contacts() {
                 </div>
 
                 <div className="socials">
-                  <a aria-label="Instagram" href={STUDIO.instagram} target="_blank" rel="noreferrer" className="social-btn">
+                  <a aria-label="Instagram" href={STUDIO.instagram} target="_blank" rel="noreferrer noopener" className="social-btn">
                     <InstagramOutlined />
                   </a>
-                  <a aria-label="WhatsApp" href={STUDIO.whatsapp} target="_blank" rel="noreferrer" className="social-btn">
+                  <a aria-label="WhatsApp" href={STUDIO.whatsapp} target="_blank" rel="noreferrer noopener" className="social-btn">
                     <WhatsAppOutlined />
                   </a>
-                  <a aria-label="Facebook" href={STUDIO.facebook} target="_blank" rel="noreferrer" className="social-btn">
+                  <a aria-label="Facebook" href={STUDIO.facebook} target="_blank" rel="noreferrer noopener" className="social-btn">
                     <FacebookFilled />
                   </a>
                 </div>
@@ -113,7 +113,7 @@ export default function Contacts() {
           {/* RIGHT: Form */}
           <Col xs={24} md={14}>
             <Card className="contacts-card form-card" bordered>
-              <Title level={4} style={{ marginTop: 0 }}>Write to us</Title>
+              <Title level={2} style={{ marginTop: 0, fontSize: 20, lineHeight: 1.4 }}>Write to us</Title>
               <Paragraph type="secondary" style={{ marginTop: -6 }}>
                 Have a question about classes, rental or events? Send us a message — we’ll get back ASAP.
               </Paragraph>
@@ -162,7 +162,7 @@ export default function Contacts() {
         <Row gutter={[16, 16]} style={{ marginTop: 16 }}>
           <Col xs={24} md={10}>
             <Card className="contacts-card" bordered>
-              <Title level={4} style={{ marginTop: 0 }}>How to find us</Title>
+              <Title level={2} style={{ marginTop: 0, fontSize: 20, lineHeight: 1.4 }}>How to find us</Title>
               <Paragraph>
                 We’re located in the very center of Poznań, Old Town area. Use the entrance at <Text strong>ul. Podgórna 15</Text> and go to the 2nd floor.
               </Paragraph>
@@ -189,7 +189,7 @@ export default function Contacts() {
           >
             Book a trial class
           </Button>
-          <Text className="contacts-cta-note">Prefer WhatsApp? <AntLink href={STUDIO.whatsapp} target="_blank">Message us</AntLink>.</Text>
+          <Text className="contacts-cta-note">Prefer WhatsApp? <AntLink href={STUDIO.whatsapp} target="_blank" rel="noreferrer noopener">Message us</AntLink>.</Text>
         </div>
       </div>
     </div>
