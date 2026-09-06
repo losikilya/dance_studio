@@ -1,40 +1,22 @@
-import { Typography, Row, Col, Card, Form, Input, Button, Space, Tag } from 'antd'
 import {
-  EnvironmentOutlined,
-  MailOutlined,
-  PhoneOutlined,
   ClockCircleOutlined,
-  InstagramOutlined,
-  FacebookFilled,
-  WhatsAppOutlined,
+  EnvironmentOutlined,
+  PhoneOutlined,
 } from '@ant-design/icons'
+import { Button, Card, Col, Row, Space, Typography } from 'antd'
+import { useTranslation } from 'react-i18next'
+import { STUDIO } from '../content/studio'
 import './contacts.css'
 
-const { Title, Paragraph, Text, Link: AntLink } = Typography
+const { Title, Paragraph, Text } = Typography
 
-// — Заполни эти данные своими
-const STUDIO = {
-  name: 'DANCE POINT',
-  phones: ['+48 697 250 988', '+48 511 279 323'],
-  email: 'hello@dancepoint.pl',
-  instagram: 'https://instagram.com/yourstudio',
-  facebook: 'https://facebook.com/yourstudio',
-  whatsapp: 'https://wa.me/48697250988', // в формате wa.me/<PL_phone>
-  hours: [
-    { label: 'Mon – Fri', value: '16:00 – 22:00' },
-    { label: 'Sat', value: '10:00 – 18:00' },
-    { label: 'Sun', value: 'Closed' },
-  ],
-  addressLines: ['ul. Podgórna 15, 2nd floor', 'Stare Miasto, 61-828 Poznań, Poland'],
-  mapsQuery: 'ul.+Podgórna+15,+Poznań,+Poland',
-}
+function MapEmbed({ latitude, longitude, title }) {
+  const src = `https://www.google.com/maps?q=${latitude},${longitude}&z=16&output=embed`
 
-function MapEmbed({ query }) {
-  const src = `https://www.google.com/maps?q=${query}&output=embed`
   return (
     <div className="map-embed">
       <iframe
-        title="DANCE POINT on Google Maps"
+        title={title}
         src={src}
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
@@ -44,152 +26,125 @@ function MapEmbed({ query }) {
 }
 
 export default function Contacts() {
-  const onFinish = async (values) => {
-    // временно: Formspree или ваш API
-    await fetch('https://formspree.io/f/xxxxxx', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(values),
-    })
-  }
+  const { t } = useTranslation()
+  const { latitude, longitude } = STUDIO.coordinates
 
   return (
     <div className="contacts-wrap">
       <div className="contacts-container">
-        <Title level={1} className="contacts-title">Contacts</Title>
+        <Title level={1} className="contacts-title">{t('contacts.title')}</Title>
 
         <Row gutter={[16, 16]} align="stretch">
-          {/* LEFT: Info */}
           <Col xs={24} md={10}>
             <Card className="contacts-card info-card" bordered>
-              <Title level={2} style={{ marginTop: 0, fontSize: 20, lineHeight: 1.4 }}>{STUDIO.name}</Title>
+              <Title level={2} style={{ marginTop: 0, fontSize: 20, lineHeight: 1.4 }}>
+                {STUDIO.name}
+              </Title>
 
               <Space direction="vertical" size={12} style={{ width: '100%' }}>
                 <div className="info-row">
                   <PhoneOutlined />
                   <div>
-                    {STUDIO.phones.map(p => (
-                      <div key={p}><a href={`tel:${p.replace(/\s+/g, '')}`}>{p}</a></div>
-                    ))}
+                    <Text strong>{t('contacts.phone')}</Text>
+                    <div><a href={STUDIO.phone.href}>{STUDIO.phone.display}</a></div>
                   </div>
-                </div>
-
-                <div className="info-row">
-                  <MailOutlined />
-                  <a href={`mailto:${STUDIO.email}`}>{STUDIO.email}</a>
                 </div>
 
                 <div className="info-row">
                   <EnvironmentOutlined />
                   <div>
-                    {STUDIO.addressLines.map((l, i) => <div key={i}>{l}</div>)}
+                    <Text strong>{t('contacts.address')}</Text>
+                    <address className="studio-address">
+                      <a href={STUDIO.googleMapsUrl} target="_blank" rel="noreferrer noopener">
+                        {STUDIO.address.street}<br />
+                        {STUDIO.address.postalCode} {STUDIO.address.city}<br />
+                        {t('contacts.country')}
+                      </a>
+                    </address>
                   </div>
                 </div>
 
                 <div className="info-row">
                   <ClockCircleOutlined />
                   <div className="hours">
-                    {STUDIO.hours.map(h => (
-                      <div key={h.label}><Text strong>{h.label}:</Text> {h.value}</div>
+                    <Text strong>{t('contacts.openingHours')}</Text>
+                    {STUDIO.openingHours.map((hours) => (
+                      <div key={hours.dayKey}>
+                        {t(`common.days.${hours.dayKey}`)}: {hours.opens}–{hours.closes}
+                      </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="socials">
-                  <a aria-label="Instagram" href={STUDIO.instagram} target="_blank" rel="noreferrer noopener" className="social-btn">
-                    <InstagramOutlined />
-                  </a>
-                  <a aria-label="WhatsApp" href={STUDIO.whatsapp} target="_blank" rel="noreferrer noopener" className="social-btn">
-                    <WhatsAppOutlined />
-                  </a>
-                  <a aria-label="Facebook" href={STUDIO.facebook} target="_blank" rel="noreferrer noopener" className="social-btn">
-                    <FacebookFilled />
-                  </a>
-                </div>
+                {STUDIO.socialLinks.length > 0 && (
+                  <div className="socials">
+                    {STUDIO.socialLinks.map((social) => (
+                      <a
+                        key={social.label}
+                        href={social.url}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        className="social-btn"
+                      >
+                        {social.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
               </Space>
             </Card>
           </Col>
 
-          {/* RIGHT: Form */}
           <Col xs={24} md={14}>
             <Card className="contacts-card form-card" bordered>
-              <Title level={2} style={{ marginTop: 0, fontSize: 20, lineHeight: 1.4 }}>Write to us</Title>
-              <Paragraph type="secondary" style={{ marginTop: -6 }}>
-                Have a question about classes, rental or events? Send us a message — we’ll get back ASAP.
-              </Paragraph>
-
-              <Form layout="vertical" onFinish={onFinish} requiredMark={false}>
-                <Row gutter={12}>
-                  <Col xs={24} sm={12}>
-                    <Form.Item label="Name" name="name" rules={[{ required: true, message: 'Please enter your name' }]}>
-                      <Input placeholder="Your name" />
-                    </Form.Item>
-                  </Col>
-                  <Col xs={24} sm={12}>
-                    <Form.Item label="Email" name="email" rules={[{ type: 'email', required: true }]}>
-                      <Input placeholder="you@example.com" />
-                    </Form.Item>
-                  </Col>
-                </Row>
-
-                <Row gutter={12}>
-                  <Col xs={24} sm={12}>
-                    <Form.Item label="Phone (optional)" name="phone">
-                      <Input placeholder="+48 ..." />
-                    </Form.Item>
-                  </Col>
-                  <Col xs={24} sm={12}>
-                    <Form.Item label="Topic" name="topic">
-                      <Input placeholder="Classes / Rental / Other" />
-                    </Form.Item>
-                  </Col>
-                </Row>
-
-                <Form.Item label="Message" name="message" rules={[{ required: true, message: 'Please enter your message' }]}>
-                  <Input.TextArea placeholder="How can we help?" rows={6} />
-                </Form.Item>
-
-                <Space size={12} style={{ width: '100%', justifyContent: 'flex-end' }}>
-                  <Button htmlType="reset">Clear</Button>
-                  <Button type="primary" htmlType="submit">Send</Button>
-                </Space>
-              </Form>
+              <Title level={2} style={{ marginTop: 0, fontSize: 20, lineHeight: 1.4 }}>
+                {t('contacts.writeToUs')}
+              </Title>
+              <Paragraph type="secondary">{t('contacts.contactPrompt')}</Paragraph>
+              <Button type="primary" size="large" href={STUDIO.phone.href}>
+                {t('contacts.callUs')}
+              </Button>
             </Card>
           </Col>
         </Row>
 
-        {/* MAP */}
         <Row gutter={[16, 16]} style={{ marginTop: 16 }}>
           <Col xs={24} md={10}>
             <Card className="contacts-card" bordered>
-              <Title level={2} style={{ marginTop: 0, fontSize: 20, lineHeight: 1.4 }}>How to find us</Title>
-              <Paragraph>
-                We’re located in the very center of Poznań, Old Town area. Use the entrance at <Text strong>ul. Podgórna 15</Text> and go to the 2nd floor.
-              </Paragraph>
-              <Space wrap>
-                <Tag color="default">Tram: Pl. Wolności</Tag>
-                <Tag color="default">Parking: street & lots nearby</Tag>
-              </Space>
+              <Title level={2} style={{ marginTop: 0, fontSize: 20, lineHeight: 1.4 }}>
+                {t('contacts.howToFindUs')}
+              </Title>
+              <Paragraph>{t('contacts.locationDescription')}</Paragraph>
+              <Button
+                href={STUDIO.googleMapsUrl}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                {t('contacts.openInMaps')}
+              </Button>
             </Card>
           </Col>
           <Col xs={24} md={14}>
             <Card className="contacts-card map-card" bordered>
-              <MapEmbed query={STUDIO.mapsQuery} />
+              <MapEmbed
+                latitude={latitude}
+                longitude={longitude}
+                title={t('contacts.mapTitle')}
+              />
             </Card>
           </Col>
         </Row>
 
-        {/* BIG CTA */}
         <div className="contacts-cta-wrap">
           <Button
             type="primary"
             size="large"
             className="contacts-cta-big"
-            href="/contacts?intent=booking"
+            href={STUDIO.phone.href}
           >
-            Book a trial class
+            {t('contacts.bookTrial')}
           </Button>
-          <Text className="contacts-cta-note">Prefer WhatsApp? <AntLink href={STUDIO.whatsapp} target="_blank" rel="noreferrer noopener">Message us</AntLink>.</Text>
+          <Text className="contacts-cta-note">{t('contacts.bookingNote')}</Text>
         </div>
       </div>
     </div>

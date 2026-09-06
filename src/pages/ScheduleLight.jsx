@@ -17,11 +17,11 @@ export default function ScheduleLight() {
       <div className="schedule-container">
                 <Typography.Title level={1} className="page-title">{t('schedule.title')}</Typography.Title>
         <section className="schedule-section schedule-gallery-card schedule-card">
-                  <GallerySwiper images={HERO_IMAGES} altPrefix="Grafik zajęć DANCE POINT" />
+                  <GallerySwiper images={HERO_IMAGES} altPrefix={t('schedule.imageAlt')} />
         </section>
         <div className="schedule-cta-wrap">
           <Button type="primary" size="large" className="schedule-cta-big" href="/contacts?intent=booking">
-            {t('signup')}
+            {t('common.signUp')}
           </Button>
           <Typography.Text className="schedule-cta-note">{t('schedule.note')}</Typography.Text>
         </div>

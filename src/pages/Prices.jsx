@@ -1,62 +1,71 @@
-import { useMemo, useState } from 'react'
-import { Typography, Segmented, Row, Col, Card, Tag, Button, List, Collapse, Divider } from 'antd'
 import { CheckOutlined, StarFilled } from '@ant-design/icons'
+import { Button, Card, Col, Collapse, Divider, List, Row, Segmented, Tag, Typography } from 'antd'
+import { useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import './prices.css'
 
 const { Title, Paragraph, Text } = Typography
 const { Panel } = Collapse
 
-// ---- Mock pricing (KZT). Adjust as needed.
 const PRICING = {
   adult: {
     monthly: [
-      { id: 'unlimited', name: 'Unlimited (30 days)', price: 39000, best: true, perks: ['All open classes', 'Free open practice', 'Priority events presale'] },
-      { id: '12x', name: '12 classes / 30 days', price: 32000, perks: ['Any groups', 'Freeze 1 time (3 days)'] },
-      { id: '8x', name: '8 classes / 30 days', price: 26000, perks: ['Any groups'] },
-      { id: '4x', name: '4 classes / 30 days', price: 16000, perks: ['Any groups'] },
+      { id: 'unlimited', nameKey: 'unlimited', price: 39000, best: true, perks: ['allOpen', 'openPractice', 'eventsPresale'] },
+      { id: '12x', nameKey: 'twelve', price: 32000, perks: ['anyGroups', 'freeze'] },
+      { id: '8x', nameKey: 'eight', price: 26000, perks: ['anyGroups'] },
+      { id: '4x', nameKey: 'four', price: 16000, perks: ['anyGroups'] },
     ],
     dropin: [
-      { id: 'dropin', name: 'Single class (drop-in)', price: 4000, perks: ['Valid for 1 class'] },
-      { id: 'trial', name: 'Trial class', price: 2000, accent: 'New to the studio' },
+      { id: 'dropin', nameKey: 'single', price: 4000, perks: ['oneClass'] },
+      { id: 'trial', nameKey: 'trial', price: 2000, accentKey: 'newToStudio', perks: [] },
     ],
   },
   kids: {
     monthly: [
-      { id: 'kids-8x', name: 'Kids 8 classes / 30 days', price: 22000, perks: ['Kids groups only'] },
-      { id: 'kids-4x', name: 'Kids 4 classes / 30 days', price: 13000, perks: ['Kids groups only'] },
+      { id: 'kids-8x', nameKey: 'kidsEight', price: 22000, perks: ['kidsOnly'] },
+      { id: 'kids-4x', nameKey: 'kidsFour', price: 13000, perks: ['kidsOnly'] },
     ],
-    dropin: [{ id: 'kids-dropin', name: 'Kids single class', price: 3000, perks: [] }],
+    dropin: [
+      { id: 'kids-dropin', nameKey: 'kidsSingle', price: 3000, perks: [] },
+    ],
   },
 }
 
 const DISCOUNTS = [
-  { id: 'student', label: 'Student discount', value: '-10%', note: 'Show valid student ID at the front desk.' },
-  { id: 'family', label: 'Family / Siblings', value: '-10%', note: 'When purchasing 2+ passes together.' },
+  { id: 'student', value: '-10%' },
+  { id: 'family', value: '-10%' },
 ]
 
-const formatKZT = (n) =>
-  new Intl.NumberFormat('pl-PL', { style: 'currency', currency: 'PLN', maximumFractionDigits: 0 }).format(n)
+const FAQ = ['validity', 'classes', 'transfer']
 
-function PriceCard({ plan, onBuy }) {
+function PriceCard({ plan, language, onBuy, t }) {
+  const formattedPrice = new Intl.NumberFormat(language === 'pl' ? 'pl-PL' : 'en-GB', {
+    style: 'currency',
+    currency: 'PLN',
+    maximumFractionDigits: 0,
+  }).format(plan.price)
+
   return (
     <Card
       className={`price-card ${plan.best ? 'is-best' : ''}`}
       bordered
-      title={
+      title={(
         <div className="price-head">
-          {plan.best && <Tag color="gold" icon={<StarFilled />}>Popular</Tag>}
-          <span>{plan.name}</span>
+          {plan.best && <Tag color="gold" icon={<StarFilled />}>{t('prices.popular')}</Tag>}
+          <span>{t(`prices.plans.${plan.nameKey}`)}</span>
         </div>
-      }
+      )}
       actions={[
-        <Button key="buy" type="primary" size="large" onClick={() => onBuy(plan)}>Buy pass</Button>,
+        <Button key="buy" type="primary" size="large" onClick={() => onBuy(plan)}>
+          {t('prices.buyPass')}
+        </Button>,
       ]}
     >
-      <div className="price-value">{formatKZT(plan.price)}</div>
-      {plan.accent && <div className="price-accent">{plan.accent}</div>}
+      <div className="price-value">{formattedPrice}</div>
+      {plan.accentKey && <div className="price-accent">{t(`prices.${plan.accentKey}`)}</div>}
       <ul className="price-perks">
-        {(plan.perks || []).map((p) => (
-          <li key={p}><CheckOutlined /> {p}</li>
+        {plan.perks.map((perk) => (
+          <li key={perk}><CheckOutlined /> {t(`prices.perks.${perk}`)}</li>
         ))}
       </ul>
     </Card>
@@ -64,16 +73,11 @@ function PriceCard({ plan, onBuy }) {
 }
 
 export default function Prices() {
-  const [segment, setSegment] = useState('Adult')
-  const [type, setType] = useState('Monthly')
-
-  const data = useMemo(() => {
-    const key = segment === 'Adult' ? 'adult' : 'kids'
-    return {
-      monthly: PRICING[key].monthly,
-      dropin: PRICING[key].dropin,
-    }
-  }, [segment])
+  const [segment, setSegment] = useState('adult')
+  const [type, setType] = useState('monthly')
+  const { t, i18n } = useTranslation()
+  const language = i18n.resolvedLanguage?.startsWith('en') ? 'en' : 'pl'
+  const plans = useMemo(() => PRICING[segment][type], [segment, type])
 
   const handleBuy = (plan) => {
     const params = new URLSearchParams({ plan: plan.id })
@@ -83,88 +87,75 @@ export default function Prices() {
   return (
     <div className="prices-wrap">
       <div className="prices-container">
-        <Title level={1} className="prices-title">Prices & Passes</Title>
+        <Title level={1} className="prices-title">{t('prices.title')}</Title>
 
         <div className="switchers">
           <Segmented
             size="large"
             value={segment}
             onChange={setSegment}
-            options={['Adult', 'Kids']}
+            options={[
+              { value: 'adult', label: t('prices.adult') },
+              { value: 'kids', label: t('prices.kids') },
+            ]}
           />
           <Segmented
             size="large"
             value={type}
             onChange={setType}
-            options={['Monthly', 'Drop-in']}
+            options={[
+              { value: 'monthly', label: t('prices.monthly') },
+              { value: 'dropin', label: t('prices.dropIn') },
+            ]}
           />
         </div>
 
-        {/* Monthly or Drop-in grid */}
-        {type === 'Monthly' ? (
-          <>
-            <Row gutter={[16, 16]}>
-              {data.monthly.map((p) => (
-                <Col xs={24} sm={12} lg={6} key={p.id}>
-                  <PriceCard plan={p} onBuy={handleBuy} />
-                </Col>
-              ))}
-            </Row>
-          </>
-        ) : (
-          <Row gutter={[16, 16]}>
-            {data.dropin.map((p) => (
-              <Col xs={24} sm={12} lg={6} key={p.id}>
-                <PriceCard plan={p} onBuy={handleBuy} />
-              </Col>
-            ))}
-          </Row>
-        )}
+        <Row gutter={[16, 16]}>
+          {plans.map((plan) => (
+            <Col xs={24} sm={12} lg={6} key={plan.id}>
+              <PriceCard plan={plan} language={language} onBuy={handleBuy} t={t} />
+            </Col>
+          ))}
+        </Row>
 
         <Divider />
 
-        {/* Discounts */}
         <section className="discounts prices-card">
-          <Title level={2} style={{ marginBottom: 8, fontSize: 20, lineHeight: 1.4 }}>Discounts</Title>
+          <Title level={2} style={{ marginBottom: 8, fontSize: 20, lineHeight: 1.4 }}>
+            {t('prices.discountsTitle')}
+          </Title>
           <List
             dataSource={DISCOUNTS}
-            renderItem={(d) => (
+            renderItem={(discount) => (
               <List.Item>
                 <List.Item.Meta
-                  title={<strong>{d.label}</strong>}
-                  description={d.note}
+                  title={<strong>{t(`prices.discounts.${discount.id}`)}</strong>}
+                  description={t(`prices.discounts.${discount.id}Note`)}
                 />
-                <Tag color="green">{d.value}</Tag>
+                <Tag color="green">{discount.value}</Tag>
               </List.Item>
             )}
           />
         </section>
 
-        {/* Terms / FAQ */}
         <section className="faq prices-card">
-          <Title level={2} style={{ marginBottom: 8, fontSize: 20, lineHeight: 1.4 }}>Terms & FAQ</Title>
+          <Title level={2} style={{ marginBottom: 8, fontSize: 20, lineHeight: 1.4 }}>
+            {t('prices.faqTitle')}
+          </Title>
           <Collapse accordion>
-            <Panel header="How long is a monthly pass valid?" key="1">
-              <Paragraph>30 calendar days from the first visit. You can freeze your pass once for up to 3 days (Unlimited / 12x).</Paragraph>
-            </Panel>
-            <Panel header="Do passes work across all classes?" key="2">
-              <Paragraph>Yes, unless marked as special workshops. Kids passes are valid for kids groups only.</Paragraph>
-            </Panel>
-            <Panel header="Can I transfer a pass?" key="3">
-              <Paragraph>Passes are personal and non-transferable.</Paragraph>
-            </Panel>
-            <Panel header="Payment methods" key="4">
-              <Paragraph>Cash, card, Kaspi QR. Corporate invoices on request.</Paragraph>
-            </Panel>
+            {FAQ.map((item) => (
+              <Panel header={t(`prices.faq.${item}Question`)} key={item}>
+                <Paragraph>{t(`prices.faq.${item}Answer`)}</Paragraph>
+              </Panel>
+            ))}
           </Collapse>
         </section>
 
-        {/* Big CTA */}
         <div className="prices-cta-wrap">
           <Button type="primary" size="large" className="prices-cta-big" href="/contacts?intent=booking">
-            Book a class now
+            {t('prices.cta')}
           </Button>
-          <Text className="prices-cta-note">Not sure which pass to choose? Book a trial and we’ll help you pick.</Text>
+          <Text className="prices-cta-note">{t('prices.ctaNote')}</Text>
         </div>
       </div>
     </div>

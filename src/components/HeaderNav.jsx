@@ -6,7 +6,7 @@ import { MenuOutlined } from "@ant-design/icons";
 import logoUrl from "/assets/logo2.jpg";
 import { useTranslation } from "react-i18next";
 
-export function HeaderNav({ onLocaleChange }) {
+export function HeaderNav({ language, onLocaleChange }) {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
@@ -46,7 +46,7 @@ export function HeaderNav({ onLocaleChange }) {
           aria-label="DANCE POINT"
           style={{ height: "inherit" }}
         >
-          <img src={logoUrl} alt="DANCE POINT – szkoła tańca w Luboniu" />
+          <img src={logoUrl} alt={t('common.logoAlt')} />
         </Link>
 
         {/* Меню десктоп */}
@@ -61,10 +61,11 @@ export function HeaderNav({ onLocaleChange }) {
 
         <Switch
           className="only-desktop"
-          onChange={onLocaleChange}
+          onChange={(checked) => onLocaleChange(checked ? 'pl' : 'en')}
+          checked={language === 'pl'}
           checkedChildren="PL"
-          unCheckedChildren="En"
-          defaultChecked
+          unCheckedChildren="EN"
+          aria-label={t('common.languageSwitcher')}
           style={{ marginRight: "12px" }}
         />
 
@@ -80,7 +81,7 @@ export function HeaderNav({ onLocaleChange }) {
           type="text"
           icon={<MenuOutlined />}
           onClick={() => setOpen(true)}
-          aria-label="Open"
+          aria-label={t('common.openMenu')}
         />
       </div>
 
@@ -92,10 +93,11 @@ export function HeaderNav({ onLocaleChange }) {
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             {t('menu')}
             <Switch
-              onChange={onLocaleChange}
+              onChange={(checked) => onLocaleChange(checked ? 'pl' : 'en')}
+              checked={language === 'pl'}
               checkedChildren="PL"
-              unCheckedChildren="En"
-              defaultChecked
+              unCheckedChildren="EN"
+              aria-label={t('common.languageSwitcher')}
               style={{ marginRight: "12px" }}
             />
           </div>

@@ -60,12 +60,15 @@ The admin HTML also retains its `noindex` directive. `netlify.toml` contains the
 
 `index.html` contains one Schema.org `DanceSchool` entity with:
 
-- the name `DANCE POINT`;
+- the name `DANCE POINT LUBOŃ`;
 - the canonical production URL and stable `@id`;
 - existing logo/image URLs;
-- a partial `PostalAddress` limited to the confirmed city (`Luboń`) and country (`PL`), plus the same service area.
+- the confirmed telephone number `+48 796 148 125`;
+- the confirmed street address at Sobieskiego 55A, 62-030 Luboń, Poland;
+- confirmed geographic coordinates and a Google Maps URL;
+- Monday–Friday opening hours from 16:00 to 22:00.
 
-Telephone, email, street address and `sameAs` are deliberately not published in structured data yet. The current Contacts implementation and `docs/PROJECT_AUDIT.md` identify its street address/email as needing business confirmation and Instagram/Facebook as placeholder `yourstudio` links. Add these properties only after the business owner confirms the exact public data and replaces the placeholders.
+Email and `sameAs` are deliberately not published because no confirmed business email or DANCE POINT social profile URLs were supplied.
 
 ## Semantic and accessibility checks
 
@@ -83,7 +86,7 @@ Telephone, email, street address and `sameAs` are deliberately not published in 
 4. Use URL Inspection for `/`, `/directions`, `/schedule`, `/prices` and `/contacts`; run the live test and request indexing after the production deployment is stable.
 5. Create or claim the DANCE POINT Google Business Profile. Use the owner-confirmed studio name, category, Luboń address, phone, opening hours and website URL, and keep them consistent with the Contacts page and JSON-LD.
 6. Replace and verify the favicon on common devices. Create a dedicated 1200 × 630 px Open Graph image when approved; test the deployed image URL and social previews instead of relying permanently on the square logo fallback.
-7. Replace placeholder Instagram/Facebook links and confirm the WhatsApp link. Then add only the verified profile URLs to JSON-LD `sameAs`.
-8. Confirm the actual address, email and phone numbers. Correct the Contacts page first, then add the matching fields to the `DanceSchool` JSON-LD.
+7. Add Instagram, Facebook or WhatsApp buttons only after the business owner supplies confirmed DANCE POINT URLs. Then add the verified profile URLs to JSON-LD `sameAs`.
+8. Add an email address only after the business owner confirms the public mailbox.
 9. Run Lighthouse against the production URLs in mobile mode and review the SEO and accessibility reports. Also test rendered metadata with a social sharing debugger.
 10. Because this is a client-rendered SPA, inspect Google’s rendered HTML in URL Inspection. If non-Google crawlers or reliable route-specific social previews are important, add build-time prerendering or server-side rendering in a separate, tested deployment change.

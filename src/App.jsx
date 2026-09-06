@@ -18,7 +18,7 @@ import { BrowserRouter } from "react-router-dom";
 import { ConfigProvider, App as AntApp } from "antd";
 
 import "dayjs/locale/pl";
-import { useState } from "react";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import ScheduleLight from "./pages/ScheduleLight.jsx";
 import SiteSeo from "./seo/SiteSeo.jsx";
@@ -28,21 +28,17 @@ dayjs.locale("pl");
 const { Header, Content, Footer } = Layout;
 
 export default function App() {
-  const [locale, setLocal] = useState(plPL);
-    const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const language = i18n.resolvedLanguage?.startsWith('en') ? 'en' : 'pl';
+  const locale = language === 'pl' ? plPL : enUS;
 
+  useEffect(() => {
+    dayjs.locale(language);
+  }, [language]);
 
-  const changeLocale = (e) => {
-    const isPlLocale = e;
-    if (isPlLocale) {
-      setLocal(plPL);
-      i18n.changeLanguage('pl')
-      dayjs.locale("pl");
-    } else {
-      setLocal(enUS);
-      i18n.changeLanguage('en')
-      dayjs.locale("en");
-    }
+  const changeLocale = (nextLanguage) => {
+    window.localStorage.setItem('dancepoint-language', nextLanguage);
+    i18n.changeLanguage(nextLanguage);
   };
   return (
     <ConfigProvider theme={themeTokens} locale={locale}>
@@ -51,7 +47,7 @@ export default function App() {
           <SiteSeo />
           <Layout style={{ minHeight: "100dvh" }}>
             <Header style={{ background: "transparent", padding: 0 }}>
-              <HeaderNav onLocaleChange={changeLocale} />
+              <HeaderNav language={language} onLocaleChange={changeLocale} />
             </Header>
             <Content
               style={{
@@ -72,7 +68,7 @@ export default function App() {
               </Routes>
             </Content>
             <Footer style={{ textAlign: "center" }}>
-              © {new Date().getFullYear()} Dance Point — Luboń
+              {t('footer', { year: new Date().getFullYear() })}
             </Footer>
           </Layout>
         </BrowserRouter>

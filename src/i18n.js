@@ -1,16 +1,19 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
 import Backend from 'i18next-http-backend';
+
+const storedLanguage = window.localStorage.getItem('dancepoint-language');
+const initialLanguage = ['pl', 'en'].includes(storedLanguage) ? storedLanguage : 'pl';
 
 i18n
   .use(Backend) // Загрузка файлов из /public/locales
-  .use(LanguageDetector) // Автоопределение языка браузера
   .use(initReactI18next) // Интеграция с React
   .init({
-    lng: 'pl',
-    fallbackLng: 'pl', // Язык по умолчанию
-    debug: true,
+    lng: initialLanguage,
+    fallbackLng: 'en',
+    supportedLngs: ['pl', 'en'],
+    load: 'languageOnly',
+    debug: false,
     interpolation: {
       escapeValue: false, // React сам защищает от XSS
     }

@@ -2,14 +2,16 @@
 import { Carousel } from 'antd'
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 import { useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import './gallerySwiper.css'
 
 export default function GallerySwiper({ images = [], height, autoplay = false, altPrefix = 'DANCE POINT' }) {
   const ref = useRef(null)
+  const { t } = useTranslation()
 
   return (
     <div className="gallery-swiper" style={ height ? { '--h': `${height}px` } : {}}>
-      <button className="nav prev" aria-label="Previous" onClick={() => ref.current?.prev()}>
+      <button className="nav prev" aria-label={t('common.previous')} onClick={() => ref.current?.prev()}>
         <LeftOutlined />
       </button>
       <Carousel ref={ref} dots autoplay={autoplay} draggable swipeToSlide>
@@ -19,7 +21,7 @@ export default function GallerySwiper({ images = [], height, autoplay = false, a
           </div>
         ))}
       </Carousel>
-      <button className="nav next" aria-label="Next" onClick={() => ref.current?.next()}>
+      <button className="nav next" aria-label={t('common.next')} onClick={() => ref.current?.next()}>
         <RightOutlined />
       </button>
     </div>

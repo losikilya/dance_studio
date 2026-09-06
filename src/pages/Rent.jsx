@@ -1,145 +1,143 @@
-// src/pages/Rent.jsx
-import { Typography, Row, Col, Card, Space, Button, Tag, Divider } from 'antd'
 import {
-  EnvironmentOutlined, WifiOutlined, CoffeeOutlined, SoundOutlined,
-  LockOutlined, CarOutlined, DatabaseOutlined, ThunderboltOutlined
+  CarOutlined,
+  CoffeeOutlined,
+  DatabaseOutlined,
+  EnvironmentOutlined,
+  LockOutlined,
+  SoundOutlined,
+  ThunderboltOutlined,
+  WifiOutlined,
 } from '@ant-design/icons'
+import { Button, Card, Col, Divider, Row, Space, Tag, Typography } from 'antd'
+import { useTranslation } from 'react-i18next'
 import GallerySwiper from '../components/GallerySwiper'
 import './rent.css'
 
-const { Title, Paragraph, Text } = Typography
+const { Title, Paragraph } = Typography
 
-// --- mock images (replace with your assets)
-const HERO_IMAGES = [
-  '/assets/hall1.jpg',
-  '/assets/hall2.jpg',
-  '/assets/hall3.jpg',
-]
+const HERO_IMAGES = ['/assets/hall1.jpg', '/assets/hall2.jpg', '/assets/hall3.jpg']
 
-// amenities block
 const AMENITIES = [
-  { icon: <EnvironmentOutlined />, label: 'City center' },
-  { icon: <DatabaseOutlined />, label: '3 stylish studios' },
-  { icon: <ThunderboltOutlined />, label: 'Air conditioning' },
-  { icon: <SoundOutlined />, label: 'Pro sound system' },
-  { icon: <LockOutlined />, label: 'Personal lockers' },
-  { icon: <WifiOutlined />, label: 'Wi-Fi' },
-  { icon: <CoffeeOutlined />, label: 'Bar & snacks' },
-  { icon: <CarOutlined />, label: 'Parking nearby' },
+  { icon: <EnvironmentOutlined />, key: 'cityCenter' },
+  { icon: <DatabaseOutlined />, key: 'studios' },
+  { icon: <ThunderboltOutlined />, key: 'airConditioning' },
+  { icon: <SoundOutlined />, key: 'soundSystem' },
+  { icon: <LockOutlined />, key: 'lockers' },
+  { icon: <WifiOutlined />, key: 'wifi' },
+  { icon: <CoffeeOutlined />, key: 'bar' },
+  { icon: <CarOutlined />, key: 'parking' },
 ]
 
-// halls
 const HALLS = [
   {
     id: 'small',
-    name: 'Small Hall',
     area: 78,
     capacity: 15,
-    price: 120, // PLN/hour
-    images: [
-      '/assets/hall1.jpg',
-    ],
-    features: ['Mirrors wall', 'Wood floor', 'Bluetooth audio', 'AC'],
+    price: 120,
+    images: ['/assets/hall1.jpg'],
+    features: ['mirrors', 'woodFloor', 'bluetooth', 'ac'],
   },
   {
     id: 'medium',
-    name: 'Medium Hall',
     area: 133,
     capacity: 25,
     price: 160,
-    images: [
-      '/assets/hall2.jpg',
-    ],
-    features: ['Mirrors wall', 'Wood floor', 'Bluetooth audio', 'AC'],
+    images: ['/assets/hall2.jpg'],
+    features: ['mirrors', 'woodFloor', 'bluetooth', 'ac'],
   },
   {
     id: 'large',
-    name: 'Large Hall',
     area: 157,
     capacity: 35,
     price: 190,
-    images: [
-      '/assets/hall3.jpg',
-    ],
-    features: ['Mirrors wall', 'Sprung floor', 'Stage lights', 'AC'],
+    images: ['/assets/hall3.jpg'],
+    features: ['mirrors', 'sprungFloor', 'stageLights', 'ac'],
   },
 ]
 
-const fmtPLN = (n) =>
-  new Intl.NumberFormat('pl-PL', { style: 'currency', currency: 'PLN', maximumFractionDigits: 0 }).format(n)
-
 export default function Rent() {
+  const { t, i18n } = useTranslation()
+  const language = i18n.resolvedLanguage?.startsWith('en') ? 'en' : 'pl'
+
   const bookStudio = (hallId) => {
-    const q = new URLSearchParams({ intent: 'rent', hall: hallId })
-    window.location.href = `/contacts?${q.toString()}`
+    const query = new URLSearchParams({ intent: 'rent', hall: hallId })
+    window.location.href = `/contacts?${query.toString()}`
   }
+
+  const formatPrice = (price) => new Intl.NumberFormat(language === 'pl' ? 'pl-PL' : 'en-GB', {
+    style: 'currency',
+    currency: 'PLN',
+    maximumFractionDigits: 0,
+  }).format(price)
 
   return (
     <div className="rent-wrap">
       <div className="rental-container">
-        <Title level={1} className="rent-title">Studio Rental</Title>
+        <Title level={1} className="rent-title">{t('rent.title')}</Title>
 
-        {/* 1) Gallery */}
         <section className="rental-section rental-gallery-card rental-card">
-          <GallerySwiper images={HERO_IMAGES} height={520} autoplay altPrefix="Sale taneczne DANCE POINT" />
+          <GallerySwiper images={HERO_IMAGES} height={520} autoplay altPrefix={t('rent.galleryAlt')} />
         </section>
 
-        {/* 2) Amenities */}
         <section className="rental-section">
-          <Title level={2} style={{ textAlign: 'center', marginBottom: 16, fontSize: 24, lineHeight: 1.3333 }}>Why rent at DANCE POINT</Title>
+          <Title level={2} style={{ textAlign: 'center', marginBottom: 16, fontSize: 24, lineHeight: 1.3333 }}>
+            {t('rent.whyTitle')}
+          </Title>
           <Row className="amenities">
-            {AMENITIES.map((a) => (
-              <Col xs={12} sm={8} md={6} key={a.label}>
+            {AMENITIES.map((amenity) => (
+              <Col xs={12} sm={8} md={6} key={amenity.key}>
                 <Card className="amenity-card" bordered>
-                  <div className="amenity-icon">{a.icon}</div>
-                  <div className="amenity-label">{a.label}</div>
+                  <div className="amenity-icon">{amenity.icon}</div>
+                  <div className="amenity-label">{t(`rent.amenities.${amenity.key}`)}</div>
                 </Card>
               </Col>
             ))}
           </Row>
         </section>
 
-        {/* 3) Halls & prices */}
         <section className="rental-section">
-          <Title level={2} style={{ textAlign: 'center', marginBottom: 8, fontSize: 24, lineHeight: 1.3333 }}>Our Halls</Title>
+          <Title level={2} style={{ textAlign: 'center', marginBottom: 8, fontSize: 24, lineHeight: 1.3333 }}>
+            {t('rent.hallsTitle')}
+          </Title>
           <Row gutter={[16, 16]}>
-            {HALLS.map((h) => (
-              <Col xs={24} md={8} key={h.id}>
-                <Card className="hall-card" bordered>
-                  <div className="hall-media">
-                    <GallerySwiper images={h.images} height={260} altPrefix={`${h.name} w DANCE POINT`} />
-                  </div>
-                  <Space direction="vertical" size={6} style={{ width: '100%', marginTop: 12 }}>
-                    <Title level={3} style={{ margin: 0, fontSize: 20, lineHeight: 1.4 }}>{h.name}</Title>
-                    <div className="hall-meta">
-                      <span><strong>Area:</strong> {h.area} m²</span>
-                      <span><strong>Capacity:</strong> up to {h.capacity} people</span>
+            {HALLS.map((hall) => {
+              const hallName = t(`rent.halls.${hall.id}`)
+              return (
+                <Col xs={24} md={8} key={hall.id}>
+                  <Card className="hall-card" bordered>
+                    <div className="hall-media">
+                      <GallerySwiper images={hall.images} height={260} altPrefix={`${hallName} — DANCE POINT`} />
                     </div>
-                    <div className="hall-price">{fmtPLN(h.price)} / hour</div>
-                    <div className="hall-features">
-                      {h.features.map((f) => <Tag key={f}>{f}</Tag>)}
-                    </div>
-                    <Button type="primary" size="large" block onClick={() => bookStudio(h.id)}>
-                      Book this hall
-                    </Button>
-                  </Space>
-                </Card>
-              </Col>
-            ))}
+                    <Space direction="vertical" size={6} style={{ width: '100%', marginTop: 12 }}>
+                      <Title level={3} style={{ margin: 0, fontSize: 20, lineHeight: 1.4 }}>{hallName}</Title>
+                      <div className="hall-meta">
+                        <span><strong>{t('rent.area')}:</strong> {hall.area} m²</span>
+                        <span><strong>{t('rent.capacity')}:</strong> {t('rent.upToPeople', { count: hall.capacity })}</span>
+                      </div>
+                      <div className="hall-price">{formatPrice(hall.price)} / {t('rent.perHour')}</div>
+                      <div className="hall-features">
+                        {hall.features.map((feature) => <Tag key={feature}>{t(`rent.features.${feature}`)}</Tag>)}
+                      </div>
+                      <Button type="primary" size="large" block onClick={() => bookStudio(hall.id)}>
+                        {t('rent.bookHall')}
+                      </Button>
+                    </Space>
+                  </Card>
+                </Col>
+              )
+            })}
           </Row>
 
           <Divider />
 
           <Paragraph type="secondary" style={{ textAlign: 'center' }}>
-            For private lessons, rehearsals or events. Night hours and special events may have different rates.
-            Please contact the front desk for custom quotes.
+            {t('rent.description')}
           </Paragraph>
         </section>
 
-        {/* Big CTA */}
         <div className="rental-cta-wrap">
           <Button type="primary" size="large" className="rental-cta-big" href="/contacts?intent=rent">
-            Book a studio now
+            {t('rent.cta')}
           </Button>
         </div>
       </div>

@@ -3,31 +3,171 @@
   "schedule_btn": "Schedule",
   "menu": "Menu",
   "signup": "Sign up",
-  "video": "Watch Video",
+  "video": "Watch video",
+  "footer": "© {{year}} DANCE POINT — Luboń",
   "nav": {
     "home": "Home",
     "classes": "Styles",
     "schedule": "Schedule",
     "teachers": "Teachers",
     "prices": "Prices",
-    "rent": "Rent",
+    "rent": "Rental",
     "documents": "Documents",
     "contacts": "Contacts"
   },
+  "common": {
+    "languageSwitcher": "Change language",
+    "openMenu": "Open menu",
+    "previous": "Previous",
+    "next": "Next",
+    "logoAlt": "DANCE POINT — dance school in Luboń",
+    "signUp": "Sign up",
+    "beginner": "beginner",
+    "view": "View",
+    "download": "Download",
+    "updated": "Updated",
+    "days": {
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday"
+    }
+  },
   "home": {
     "title": "Dance Point Luboń",
-    "text_1": "A dance school where children, teenagers, and adults can develop their dance skills and actively spend their free time.",
-    "text_2": "Dance Point Luboń is not just a dance school - it's a community, energy, and a space for growth. <strong>Join us</strong> and feel how dance can change your life."
+    "text_1": "A dance school where children, teenagers and adults can develop their dance skills and spend their free time actively and creatively.",
+    "text_2": "Dance Point Luboń is more than a dance school — it is a community, energy and a place to grow. <strong>Join us</strong> and discover how dance can change your life."
   },
-  "classes": {
-    "title": "Styles"
+  "teachers": {
+    "title": "Teachers",
+    "watchVideo": "Watch video",
+    "instagram": "Instagram",
+    "photoAlt": "{{name}} — DANCE POINT teacher",
+    "videoDialogTitle": "DANCE POINT teacher video"
+  },
+  "directions": {
+    "title": "Dance styles",
+    "level": "Level",
+    "playlistLabel": "Dance styles and videos",
+    "videoUnavailable": "A video for this style is not available yet."
   },
   "schedule": {
     "title": "Schedule",
-    "note": "The schedule may differ from the current one. Please check with the administrator."
+    "note": "The schedule may change. Please contact us if you have any questions.",
+    "imageAlt": "DANCE POINT class schedule"
   },
-  "teachers": {
-    "title": "TEACHERS",
-    "subtitle": "SCHEDULE"
+  "prices": {
+    "title": "Prices and passes",
+    "adult": "Adults",
+    "kids": "Kids",
+    "monthly": "Passes",
+    "dropIn": "Drop-in",
+    "popular": "Popular",
+    "buyPass": "Choose pass",
+    "plans": {
+      "unlimited": "Unlimited (30 days)",
+      "twelve": "12 classes / 30 days",
+      "eight": "8 classes / 30 days",
+      "four": "4 classes / 30 days",
+      "single": "Single class",
+      "trial": "Trial class",
+      "kidsEight": "Kids: 8 classes / 30 days",
+      "kidsFour": "Kids: 4 classes / 30 days",
+      "kidsSingle": "Kids single class"
+    },
+    "perks": {
+      "allOpen": "All open classes",
+      "openPractice": "Free open practice",
+      "eventsPresale": "Priority event registration",
+      "anyGroups": "Any groups",
+      "freeze": "One three-day freeze",
+      "oneClass": "Valid for one class",
+      "kidsOnly": "Kids groups only"
+    },
+    "newToStudio": "New to the studio",
+    "discountsTitle": "Discounts",
+    "discounts": {
+      "student": "Student discount",
+      "studentNote": "Show a valid student ID when purchasing.",
+      "family": "Family / siblings",
+      "familyNote": "When purchasing at least two passes together."
+    },
+    "faqTitle": "Terms and frequently asked questions",
+    "faq": {
+      "validityQuestion": "How long is a monthly pass valid?",
+      "validityAnswer": "30 calendar days from the first visit. Unlimited and 12-class passes can be frozen once for up to three days.",
+      "classesQuestion": "Do passes work across all classes?",
+      "classesAnswer": "Yes, unless a class is marked as a special workshop. Kids passes are valid for kids groups only.",
+      "transferQuestion": "Can I transfer a pass?",
+      "transferAnswer": "Passes are personal and non-transferable."
+    },
+    "cta": "Book a class",
+    "ctaNote": "Not sure which pass to choose? Book a trial lesson and we will help you decide."
+  },
+  "rent": {
+    "title": "Studio rental",
+    "whyTitle": "Why rent at DANCE POINT",
+    "hallsTitle": "Our halls",
+    "galleryAlt": "DANCE POINT dance halls",
+    "amenities": {
+      "cityCenter": "Convenient location",
+      "studios": "3 stylish studios",
+      "airConditioning": "Air conditioning",
+      "soundSystem": "Professional sound system",
+      "lockers": "Personal lockers",
+      "wifi": "Wi-Fi",
+      "bar": "Bar and snacks",
+      "parking": "Parking nearby"
+    },
+    "halls": {
+      "small": "Small hall",
+      "medium": "Medium hall",
+      "large": "Large hall"
+    },
+    "features": {
+      "mirrors": "Mirror wall",
+      "woodFloor": "Wood floor",
+      "bluetooth": "Bluetooth audio",
+      "ac": "Air conditioning",
+      "sprungFloor": "Sprung floor",
+      "stageLights": "Stage lights"
+    },
+    "area": "Area",
+    "capacity": "Capacity",
+    "upToPeople": "up to {{count}} people",
+    "perHour": "hour",
+    "bookHall": "Book this hall",
+    "description": "The halls are available for private lessons, training, rehearsals and events. Night hours and special events may have different rates. Contact us for a custom quote.",
+    "cta": "Rent a studio"
+  },
+  "contacts": {
+    "title": "Contacts",
+    "phone": "Phone",
+    "address": "Address",
+    "country": "Poland",
+    "openingHours": "Opening hours",
+    "writeToUs": "Contact us",
+    "contactPrompt": "Have a question about classes, a trial lesson or studio rental? Call us and we will be happy to help.",
+    "callUs": "Call +48 796 148 125",
+    "howToFindUs": "How to find us",
+    "locationDescription": "DANCE POINT LUBOŃ is located at Sobieskiego 55A, 62-030 Luboń.",
+    "openInMaps": "Open in Google Maps",
+    "mapTitle": "DANCE POINT LUBOŃ on Google Maps",
+    "bookTrial": "Call to book a trial lesson",
+    "bookingNote": "We accept bookings and enquiries by phone during opening hours."
+  },
+  "documents": {
+    "title": "Documents",
+    "rulesTitle": "Studio rules and safety",
+    "rulesDescription": "General studio rules, safety and conduct policy.",
+    "pricesTitle": "Prices and passes (2025)",
+    "pricesDescription": "Price list for passes and drop-in classes.",
+    "rentalTitle": "Hall rental terms",
+    "rentalDescription": "Terms for private rental and events.",
+    "policyTag": "Policy",
+    "pricingTag": "Pricing",
+    "rentalTag": "Rental",
+    "viewerTitle": "PDF document"
   }
 }

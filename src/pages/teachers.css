@@ -69,40 +69,28 @@
   width: 100%;
 }
 
-/* расписание */
-.schedule-title{
+.teacher-name{
   font-weight: 800 !important;
   margin: 0 0 12px 0 !important;
   color: #333;
   font-size: 24px !important;
   line-height: 1.3333 !important;
 }
-.schedule-list{ color: var(--txt); }
-.schedule-item{ text-align: left; }
-.schedule-class{
-  font-weight: 800;
-  text-decoration: underline;
-  color: #333;
+.teacher-description{
+  min-width: 0;
+  text-align: left;
 }
-.schedule-level{
-  margin-top: 4px;
-  font-weight: 600;
-  color: var(--txt);
+.teacher-bio{
+  margin-bottom: 0 !important;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
 }
-.schedule-time{
-  margin-top: 2px;
-  color: var(--txt-2);                /* #8A8A8A */
-}
-
-.shedule-description-start{ text-align: start;}
-.shedule-description-end{ text-align: end;}
 
 /* адаптив */
 @media (max-width: 768px){
   .teacher-cover { border: unset; border-radius: unset; }
-  .schedule-item, .schedule-title{ text-align: center; }
-  .shedule-description-start{ text-align: center;}
-  .shedule-description-end{ text-align: center;}
+  .teacher-description{ padding: 0 16px; }
+  .teacher-name{ text-align: center; }
 }
 
 /* кнопки — используем тему AntD (primary=#964B4B), без чёрного */

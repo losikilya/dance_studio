@@ -1,101 +1,79 @@
+import { DownloadOutlined, EyeOutlined, FilePdfOutlined } from '@ant-design/icons'
+import { Button, Card, List, Space, Tag, Typography } from 'antd'
 import { useState } from 'react'
-import { Typography, Card, List, Button, Tag, Space } from 'antd'
-import { FilePdfOutlined, EyeOutlined, DownloadOutlined } from '@ant-design/icons'
+import { useTranslation } from 'react-i18next'
 import PdfViewerModal from '../components/PdfViewerModal'
 import './documents.css'
 
-// Примеры: положи свои PDF в src/assets/docs и импортируй
-// Vite даст URL строку:
-import rulesPdf from '/assets/docs/doc1.pdf'
 import pricesPdf from '/assets/docs/doc2.pdf'
 import rentalPdf from '/assets/docs/doc3.pdf'
+import rulesPdf from '/assets/docs/doc1.pdf'
 
 const { Title, Text } = Typography
 
-const DOCS = [
-  {
-    id: 'rules',
-    title: 'Studio Rules & Safety',
-    file: rulesPdf,
-    tags: ['EN', 'Policy'],
-    description: 'General studio rules, safety and conduct policy.',
-    updatedAt: '2025-09-01',
-  },
-  {
-    id: 'prices',
-    title: 'Prices & Passes (2025)',
-    file: pricesPdf,
-    tags: ['EN', 'Pricing'],
-    description: 'Up-to-date price list for passes and drop-ins.',
-    updatedAt: '2025-10-01',
-  },
-  {
-    id: 'rental',
-    title: 'Hall Rental Terms',
-    file: rentalPdf,
-    tags: ['EN', 'Rental'],
-    description: 'Terms & conditions for private rental and events.',
-    updatedAt: '2025-08-20',
-  },
+const DOCUMENTS = [
+  { id: 'rules', file: rulesPdf, language: 'EN', titleKey: 'rulesTitle', descriptionKey: 'rulesDescription', tagKey: 'policyTag', updatedAt: '2025-09-01' },
+  { id: 'prices', file: pricesPdf, language: 'EN', titleKey: 'pricesTitle', descriptionKey: 'pricesDescription', tagKey: 'pricingTag', updatedAt: '2025-10-01' },
+  { id: 'rental', file: rentalPdf, language: 'EN', titleKey: 'rentalTitle', descriptionKey: 'rentalDescription', tagKey: 'rentalTag', updatedAt: '2025-08-20' },
 ]
 
 export default function Documents() {
   const [viewer, setViewer] = useState({ open: false, src: null, title: '' })
+  const { t } = useTranslation()
 
-  const openViewer = (doc) => setViewer({ open: true, src: doc.file, title: doc.title })
+  const openViewer = (document) => setViewer({
+    open: true,
+    src: document.file,
+    title: t(`documents.${document.titleKey}`),
+  })
   const closeViewer = () => setViewer({ open: false, src: null, title: '' })
 
   const download = (file, name) => {
-    const a = document.createElement('a')
-    a.href = file
-    a.download = name || 'document.pdf'
-    document.body.appendChild(a)
-    a.click()
-    a.remove()
+    const anchor = window.document.createElement('a')
+    anchor.href = file
+    anchor.download = name || 'document.pdf'
+    window.document.body.appendChild(anchor)
+    anchor.click()
+    anchor.remove()
   }
 
   return (
     <div className="docs-wrap">
       <div className="documents-container">
-        <Title level={1} className="docs-title">Documents</Title>
+        <Title level={1} className="docs-title">{t('documents.title')}</Title>
 
         <Card className="documents-card">
           <List
             itemLayout="horizontal"
-            dataSource={DOCS}
-            renderItem={(doc) => (
+            dataSource={DOCUMENTS}
+            renderItem={(document) => (
               <List.Item
                 actions={[
-                  <Button key="view" icon={<EyeOutlined />} onClick={() => openViewer(doc)}>
-                    View
+                  <Button key="view" icon={<EyeOutlined />} onClick={() => openViewer(document)}>
+                    {t('common.view')}
                   </Button>,
-                  <Button key="download" icon={<DownloadOutlined />} onClick={() => download(doc.file, `${doc.id}.pdf`)}>
-                    Download
+                  <Button key="download" icon={<DownloadOutlined />} onClick={() => download(document.file, `${document.id}.pdf`)}>
+                    {t('common.download')}
                   </Button>,
                 ]}
               >
                 <List.Item.Meta
-                  avatar={
-                    <div className="pdf-avatar">
-                      <FilePdfOutlined />
-                    </div>
-                  }
-                  title={
+                  avatar={<div className="pdf-avatar"><FilePdfOutlined /></div>}
+                  title={(
                     <Space direction="horizontal" wrap size={8}>
-                      <span className="doc-title">{doc.title}</span>
+                      <span className="doc-title">{t(`documents.${document.titleKey}`)}</span>
                       <Space size={6} wrap>
-                        {doc.tags.map((t) => (
-                          <Tag key={t}>{t}</Tag>
-                        ))}
+                        <Tag>{document.language}</Tag>
+                        <Tag>{t(`documents.${document.tagKey}`)}</Tag>
                       </Space>
                     </Space>
-                  }
-                  description={
+                  )}
+                  description={(
                     <div className="doc-desc">
-                      <Text type="secondary">{doc.description}</Text>
-                      <div className="doc-updated">Updated: {doc.updatedAt}</div>
+                      <Text type="secondary">{t(`documents.${document.descriptionKey}`)}</Text>
+                      <div className="doc-updated">{t('common.updated')}: {document.updatedAt}</div>
                     </div>
-                  }
+                  )}
                 />
               </List.Item>
             )}
@@ -103,7 +81,6 @@ export default function Documents() {
         </Card>
       </div>
 
-      {/* Modal viewer */}
       <PdfViewerModal open={viewer.open} onClose={closeViewer} src={viewer.src} title={viewer.title} />
     </div>
   )

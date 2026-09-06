@@ -108,12 +108,10 @@
 
 ## Critical
 
-### C1. Контактная форма не имеет рабочего backend
+### C1. Контактная форма не имеет рабочего backend — устранено из публичного UI
 
-- **Файл:** `src/pages/Contacts.jsx`
-- **Находка:** `onFinish` отправляет персональные данные на `https://formspree.io/f/xxxxxx`. Это placeholder endpoint. Код не проверяет `response.ok`, не показывает отправку, успех или ошибку и не обрабатывает исключения. Пользователь может нажать Send и решить, что сообщение принято, хотя доставка не подтверждена.
-- **Связанные placeholders:** `instagram.com/yourstudio`, `facebook.com/yourstudio`; адрес и email также требуют бизнес-подтверждения.
-- **Действие:** до публикации подключить реальный Formspree/Netlify Function/CRM endpoint, добавить loading, success/error feedback, anti-spam и проверку ответа. Подтвердить реквизиты и privacy notice.
+- **Статус:** placeholder-форма, email и ссылки `yourstudio` удалены из публичного UI. Contacts использует подтверждённые телефон, адрес и карту DANCE POINT LUBOŃ.
+- **Остаётся:** если письменная форма понадобится снова, сначала подключить реальный backend, обработку состояний и privacy notice.
 
 ### C2. Decap CMS не связан с приложением
 

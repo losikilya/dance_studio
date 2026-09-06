@@ -20,6 +20,10 @@
 }
 .info-card .info-row a{ color: #333; }
 .info-card .hours div + div{ margin-top: 4px; }
+.studio-address{
+  margin: 0;
+  font-style: normal;
+}
 
 /* socials */
 .socials{
