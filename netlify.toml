@@ -21,3 +21,14 @@
 
 [functions]
   directory = "netlify/functions"
+
+# Generated image URLs contain a content hash and change with the source.
+[[headers]]
+  for = "/media/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

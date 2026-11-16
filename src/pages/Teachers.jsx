@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import VideoModal from '../components/VideoModal'
 import { DANCE_CLASSES, TEACHERS } from '../content/teachers'
+import teacherImages from 'virtual:teacher-images'
 import './teachers.css'
 
 export default function Teachers() {
@@ -33,9 +34,12 @@ export default function Teachers() {
               <Col xs={24} md={12} className="teacher-media">
                 <div className="teacher-cover">
                   <img
-                    src={teacher.image}
+                    {...teacherImages[teacher.image]}
+                    sizes="(max-width: 767px) 100vw, (max-width: 1200px) 50vw, 580px"
                     alt={t('teachers.photoAlt', { name: teacher.name })}
-                    loading="lazy"
+                    loading={index === 0 ? 'eager' : 'lazy'}
+                    fetchPriority={index === 0 ? 'high' : 'auto'}
+                    decoding="async"
                   />
                   <div className="brand-overlay" aria-hidden="true">
                     <span>{teacher.name.split(' ')[0].toUpperCase()}</span>

@@ -1,4 +1,4 @@
-import { readFile } from 'node:fs/promises'
+import { access, readFile } from 'node:fs/promises'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { PUBLIC_ROUTE_CONFIG } from '../src/routeConfig.js'
@@ -64,6 +64,20 @@ export async function verifyPrerender() {
     assert(html.includes(`name="twitter:description" content="${escapedDescription}"`), `${pathname}: incorrect Twitter description`)
     assert(!html.includes('.netlify.app'), `${pathname}: contains a Netlify preview URL`)
     assert(html.includes(`data-prerendered-path="${pathname}"`), `${pathname}: missing hydration route marker`)
+    assert(html.includes('data-css-hash='), `${pathname}: missing server-rendered Ant Design styles`)
+    assert(!html.includes('class="page-loading"'), `${pathname}: contains a lazy-route fallback instead of page content`)
+    assert(!html.includes('Switched to client rendering'), `${pathname}: static rendering failed`)
+
+    // Missing lazy CSS or generated images can pass the SEO checks but break
+    // the first paint. Verify every local stylesheet and responsive image.
+    const localAssets = new Set([
+      ...[...html.matchAll(/<link\b[^>]*href="(\/(?:static|media)\/[^\"]+)"/g)].map(match => match[1]),
+      ...[...html.matchAll(/(?:src|srcSet)="(\/media\/[^\"]+)"/g)]
+        .flatMap(match => match[1].split(', ').map(candidate => candidate.split(' ')[0])),
+    ])
+    for (const asset of localAssets) {
+      await access(path.join(distDirectory, asset))
+    }
 
     const h1 = html.match(/<h1\b[^>]*>[\s\S]*?<\/h1>/i)
     assert(h1 && h1[0].replace(/<[^>]+>/g, '').trim(), `${pathname}: missing a non-empty H1`)

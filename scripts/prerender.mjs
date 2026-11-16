@@ -57,7 +57,30 @@ function seoHead(pathname) {
     <!-- route-seo:end -->`
 }
 
-function renderDocument(template, pathname, appHtml) {
+function pageAssets(manifest, pathname) {
+  const route = PUBLIC_ROUTE_CONFIG.find(route => route.path === pathname)
+  if (!route?.module) return ''
+  if (!manifest[route.module]) throw new Error(`Missing build manifest entry for ${route.module}`)
+  const visited = new Set()
+  const css = new Set()
+  const scripts = new Set()
+  function visit(key) {
+    if (visited.has(key)) return
+    visited.add(key)
+    const entry = manifest[key]
+    if (!entry) throw new Error(`Missing build manifest dependency: ${key}`)
+    scripts.add(entry.file)
+    entry.css?.forEach(file => css.add(file))
+    entry.imports?.forEach(visit)
+  }
+  visit(route.module)
+  return [
+    ...[...css].map(file => `<link rel="stylesheet" href="/${escapeHtml(file)}" />`),
+    ...[...scripts].map(file => `<link rel="modulepreload" crossorigin href="/${escapeHtml(file)}" />`),
+  ].join('\n    ')
+}
+
+function renderDocument(template, pathname, appHtml, styles, assets) {
   const withLanguage = template.replace(/<html\s+lang="[^"]*"/, '<html lang="pl"')
   const withSeo = withLanguage.replace(
     /<!-- route-seo:start -->[\s\S]*?<!-- route-seo:end -->/,
@@ -66,12 +89,14 @@ function renderDocument(template, pathname, appHtml) {
 
   if (withSeo === withLanguage) throw new Error('SEO markers are missing from the Vite HTML template')
 
-  const rendered = withSeo.replace(
+  const withAssets = withSeo.replace('<head>', `<head>\n    ${styles}`)
+    .replace('</head>', `    ${assets}\n  </head>`)
+  const rendered = withAssets.replace(
     '<div id="root"></div>',
     `<div id="root" data-prerendered-path="${escapeHtml(pathname)}">${appHtml}</div>`,
   )
 
-  if (rendered === withSeo) throw new Error('The root mount point is missing from the Vite HTML template')
+  if (rendered === withAssets) throw new Error('The root mount point is missing from the Vite HTML template')
   return rendered
 }
 
@@ -82,18 +107,19 @@ function sitemap(paths) {
 
 try {
   const template = await readFile(path.join(distDirectory, 'index.html'), 'utf8')
+  const manifest = JSON.parse(await readFile(path.join(distDirectory, '.vite/manifest.json'), 'utf8'))
   const { render } = await import(`${pathToFileURL(serverEntry).href}?build=${Date.now()}`)
   const paths = PUBLIC_ROUTE_CONFIG.map(({ path: pathname }) => pathname)
 
   for (const pathname of paths) {
-    const appHtml = await render(pathname)
+    const { html: appHtml, styles } = await render(pathname)
     if (!appHtml.trim()) throw new Error(`Static rendering returned no content for ${pathname}`)
 
     const outputDirectory = pathname === '/'
       ? distDirectory
       : path.join(distDirectory, pathname.slice(1))
     await mkdir(outputDirectory, { recursive: true })
-    await writeFile(path.join(outputDirectory, 'index.html'), renderDocument(template, pathname, appHtml), 'utf8')
+    await writeFile(path.join(outputDirectory, 'index.html'), renderDocument(template, pathname, appHtml, styles, pageAssets(manifest, pathname)), 'utf8')
   }
 
   await writeFile(path.join(distDirectory, 'sitemap.xml'), sitemap(paths), 'utf8')

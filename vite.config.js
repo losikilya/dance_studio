@@ -1,65 +1,36 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { readdirSync } from 'node:fs'
+import { defineConfig, normalizePath } from 'vite'
+import { readFile } from 'node:fs/promises'
 import path from 'node:path'
-import { fileURLToPath } from 'node:url'
+import react from '@vitejs/plugin-react'
+import { imageAssetsPlugin } from './scripts/image-assets.mjs'
 
-const supportedImageExtension = /\.(avif|gif|jpe?g|png|webp)$/i
-const imageCollections = [
-  { moduleId: 'virtual:schedule-images', prefix: 'grafik' },
-  { moduleId: 'virtual:rental-images', prefix: 'zala' },
-].map((collection) => ({
-  ...collection,
-  resolvedModuleId: `\0${collection.moduleId}`,
-}))
-
-function contentImagesPlugin() {
-  const projectDirectory = path.dirname(fileURLToPath(import.meta.url))
-  const assetsDirectory = path.resolve(projectDirectory, 'public/assets')
-  const isCollectionImage = (filePath, prefix) => {
-    const fileName = path.basename(filePath)
-
-    return path.dirname(path.resolve(filePath)) === assetsDirectory
-      && fileName.toLowerCase().startsWith(prefix)
-      && supportedImageExtension.test(fileName)
-  }
-
-  const loadImages = (prefix) => readdirSync(assetsDirectory, { withFileTypes: true })
-    .filter((entry) => entry.isFile() && isCollectionImage(path.join(assetsDirectory, entry.name), prefix))
-    .map((entry) => entry.name)
-    .sort((left, right) => left.localeCompare(right, undefined, { numeric: true, sensitivity: 'base' }))
-    .map((fileName) => `/assets/${encodeURIComponent(fileName)}`)
-
+function translationResourcesPlugin() {
+  const id = 'virtual:translations'
+  const resolvedId = `\0${id}`
+  let root
   return {
-    name: 'dance-point-content-images',
-    resolveId(id) {
-      return imageCollections.find((collection) => collection.moduleId === id)?.resolvedModuleId ?? null
-    },
-    load(id) {
-      const collection = imageCollections.find(({ resolvedModuleId }) => resolvedModuleId === id)
-      if (!collection) return null
-
-      return `export default ${JSON.stringify(loadImages(collection.prefix))}`
-    },
-    configureServer(server) {
-      server.watcher.add(assetsDirectory)
-
-      const reloadContentImages = (filePath) => {
-        const collection = imageCollections.find(({ prefix }) => isCollectionImage(filePath, prefix))
-        if (!collection) return
-
-        const module = server.moduleGraph.getModuleById(collection.resolvedModuleId)
-        if (module) server.moduleGraph.invalidateModule(module)
-        server.ws.send({ type: 'full-reload' })
+    name: 'dance-point-bundled-translations',
+    configResolved(config) { root = config.root },
+    resolveId(source) { return source === id ? resolvedId : null },
+    async load(source) {
+      if (source !== resolvedId) return null
+      const resources = {}
+      for (const language of ['pl', 'en']) {
+        const file = path.join(root, 'public/locales', language, 'translation.json')
+        resources[language] = { translation: JSON.parse(await readFile(file, 'utf8')) }
       }
-
-      server.watcher.on('add', reloadContentImages)
-      server.watcher.on('unlink', reloadContentImages)
+      return `export default ${JSON.stringify(resources)}`
+    },
+    handleHotUpdate(context) {
+      if (!normalizePath(context.file).startsWith(`${normalizePath(path.join(root, 'public/locales'))}/`)) return
+      const module = context.server.moduleGraph.getModuleById(resolvedId)
+      if (module) context.server.moduleGraph.invalidateModule(module)
+      context.server.ws.send({ type: 'full-reload' })
     },
   }
 }
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), contentImagesPlugin()],
+  plugins: [react(), imageAssetsPlugin(), translationResourcesPlugin()],
+  build: { manifest: true, assetsDir: 'static' },
 })

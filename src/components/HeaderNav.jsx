@@ -51,7 +51,7 @@ export function HeaderNav({ language, onLocaleChange }) {
           aria-label="DANCE POINT"
           style={{ height: "inherit" }}
         >
-          <img src={logoUrl} alt={t('common.logoAlt')} />
+          <img src={logoUrl} alt={t('common.logoAlt')} width={60} height={60} />
         </Link>
 
         {/* Меню десктоп */}

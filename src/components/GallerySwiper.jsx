@@ -19,7 +19,7 @@ export default function GallerySwiper({
   const isAdaptive = mode === 'adaptive'
   const fixedHeight = typeof height === 'number' ? `${height}px` : height
   const activeImage = images[activeIndex] ?? images[0]
-  const activeRatio = imageRatios[activeImage] ?? 16 / 9
+  const activeRatio = imageRatios[activeImage?.src] ?? (activeImage ? activeImage.width / activeImage.height : 16 / 9)
 
   const rememberImageRatio = (src, image) => {
     if (!isAdaptive || !image.naturalWidth || !image.naturalHeight) return
@@ -46,15 +46,19 @@ export default function GallerySwiper({
         autoplay={autoplay}
         draggable
         swipeToSlide
+        lazyLoad="ondemand"
         afterChange={isAdaptive ? setActiveIndex : undefined}
       >
-        {images.map((src, i) => (
-          <div className="slide" key={src}>
+        {images.map((image, i) => (
+          <div className="slide" key={image.src}>
             <img
-              src={src}
+              {...image}
+              sizes="(max-width: 1200px) 100vw, 1160px"
               alt={`${altPrefix} – zdjęcie ${i + 1}`}
-              loading="lazy"
-              onLoad={(event) => rememberImageRatio(src, event.currentTarget)}
+              loading={i === 0 ? 'eager' : 'lazy'}
+              fetchPriority={i === 0 ? 'high' : 'auto'}
+              decoding="async"
+              onLoad={(event) => rememberImageRatio(image.src, event.currentTarget)}
             />
           </div>
         ))}

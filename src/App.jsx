@@ -1,9 +1,9 @@
-import { Layout, ConfigProvider, App as AntApp } from 'antd'
+import { Layout, ConfigProvider } from 'antd'
 import plPL from 'antd/locale/pl_PL'
 import enUS from 'antd/locale/en_US'
 import dayjs from 'dayjs'
 import 'dayjs/locale/pl'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { BrowserRouter } from 'react-router-dom'
 import { HeaderNav } from './components/HeaderNav.jsx'
@@ -15,20 +15,23 @@ dayjs.locale('pl')
 
 const { Header, Content, Footer } = Layout
 
-export function AppContent({ languageAfterHydration = null }) {
+export function AppContent({ languageAfterHydration = null, pageOverrides }) {
   const { t, i18n } = useTranslation()
   const language = i18n.resolvedLanguage?.startsWith('en') ? 'en' : 'pl'
   const locale = language === 'pl' ? plPL : enUS
+  const hydrationLanguageApplied = useRef(false)
 
   useEffect(() => {
     dayjs.locale(language)
   }, [language])
 
   useEffect(() => {
-    if (languageAfterHydration && languageAfterHydration !== language) {
+    if (hydrationLanguageApplied.current) return
+    hydrationLanguageApplied.current = true
+    if (languageAfterHydration && languageAfterHydration !== i18n.resolvedLanguage) {
       i18n.changeLanguage(languageAfterHydration)
     }
-  }, [i18n, language, languageAfterHydration])
+  }, [i18n, languageAfterHydration])
 
   const changeLocale = (nextLanguage) => {
     window.localStorage.setItem('dancepoint-language', nextLanguage)
@@ -37,20 +40,20 @@ export function AppContent({ languageAfterHydration = null }) {
 
   return (
     <ConfigProvider theme={themeTokens} locale={locale}>
-      <AntApp>
+      <div className="app-shell">
         <SiteSeo />
         <Layout style={{ minHeight: '100dvh' }}>
           <Header style={{ background: 'transparent', padding: 0 }}>
             <HeaderNav language={language} onLocaleChange={changeLocale} />
           </Header>
           <Content style={{ margin: '0 auto', width: '100%' }}>
-            <AppRoutes />
+            <AppRoutes pageOverrides={pageOverrides} />
           </Content>
           <Footer style={{ textAlign: 'center' }}>
             {t('footer', { year: new Date().getFullYear() })}
           </Footer>
         </Layout>
-      </AntApp>
+      </div>
     </ConfigProvider>
   )
 }

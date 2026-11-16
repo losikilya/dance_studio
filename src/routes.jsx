@@ -1,28 +1,20 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { APP_ROUTE_CONFIG } from './routeConfig'
-import Classes from './pages/Classes.jsx'
-import Contacts from './pages/Contacts.jsx'
-import Documents from './pages/Documents.jsx'
+import { lazy, Suspense } from 'react'
+import { APP_ROUTE_CONFIG, PUBLIC_ROUTE_CONFIG } from './routeConfig'
 import Home from './pages/Home.jsx'
-import Prices from './pages/Prices.jsx'
-import Rent from './pages/Rent.jsx'
-import ScheduleLight from './pages/ScheduleLight.jsx'
-import Teachers from './pages/Teachers.jsx'
 
+const pageLoaders = import.meta.glob(['./pages/*.jsx', '!./pages/Home.jsx'])
 const PAGE_COMPONENTS = {
   home: Home,
-  teachers: Teachers,
-  directions: Classes,
-  schedule: ScheduleLight,
-  prices: Prices,
-  rent: Rent,
-  contacts: Contacts,
-  documents: Documents,
+  ...Object.fromEntries(PUBLIC_ROUTE_CONFIG.filter(route => route.module).map(route => [
+    route.id, lazy(pageLoaders[route.module.replace(/^src\//, './')]),
+  ])),
 }
 
-export default function AppRoutes() {
+export default function AppRoutes({ pageOverrides = {} }) {
   return (
-    <Routes>
+    <Suspense fallback={<div className="page-loading" role="status" aria-label="Loading" />}>
+      <Routes>
       {APP_ROUTE_CONFIG.map((route) => {
         if (route.redirectTo) {
           return (
@@ -34,11 +26,12 @@ export default function AppRoutes() {
           )
         }
 
-        const Page = PAGE_COMPONENTS[route.id]
+        const Page = pageOverrides[route.id] ?? PAGE_COMPONENTS[route.id]
         if (!Page) throw new Error(`No page component configured for route "${route.id}"`)
 
         return <Route key={route.id} path={route.path} element={<Page />} />
       })}
-    </Routes>
+      </Routes>
+    </Suspense>
   )
 }

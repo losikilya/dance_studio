@@ -1,13 +1,39 @@
 // src/pages/Home.jsx
 import { Button, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
-import backgroundVideo from "/assets/home.webm";
+import { useEffect, useState } from 'react';
+import backgroundVideo from "/assets/home-loop.webm";
+import videoPoster from "/assets/home-poster.webp";
 import { Trans, useTranslation } from "react-i18next";
 import "./home.css";
 
 export default function Home() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const [loadVideo, setLoadVideo] = useState(false);
+
+  useEffect(() => {
+    const connection = navigator.connection;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      || connection?.saveData || /(^|-)2g|3g/.test(connection?.effectiveType ?? '')) return;
+
+    let idleId;
+    let timerId;
+    const start = () => {
+      if ('requestIdleCallback' in window) {
+        idleId = window.requestIdleCallback(() => setLoadVideo(true), { timeout: 2500 });
+      } else {
+        timerId = window.setTimeout(() => setLoadVideo(true), 250);
+      }
+    };
+    if (document.readyState === 'complete') start();
+    else window.addEventListener('load', start, { once: true });
+    return () => {
+      window.removeEventListener('load', start);
+      if (idleId !== undefined) window.cancelIdleCallback(idleId);
+      window.clearTimeout(timerId);
+    };
+  }, []);
 
   return (
     <>
@@ -29,8 +55,8 @@ export default function Home() {
             padding: 0,
           }}
         >
-          <video autoPlay loop muted playsInline id="background-video">
-            <source src={backgroundVideo} type="video/mp4" />
+          <video autoPlay={loadVideo} loop muted playsInline preload="none" poster={videoPoster} id="background-video" aria-hidden="true">
+            {loadVideo && <source src={backgroundVideo} type="video/webm" />}
           </video>
           <div className="content">
             <Typography.Title level={1} style={{ marginTop: 0, color: "#fff" }}>

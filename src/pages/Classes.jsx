@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { DANCE_CLASSES, TEACHERS, TEACHING_DIRECTIONS } from '../content/teachers'
 import { getYouTubeVideoId } from '../utils/youtube'
+import teacherImages from 'virtual:teacher-images'
 import './classes.css'
 
 const { Title, Paragraph } = Typography
@@ -10,6 +11,7 @@ const { Panel } = Collapse
 
 export default function Classes() {
   const [selection, setSelection] = useState(null)
+  const [playingId, setPlayingId] = useState(null)
   const [isMobile, setIsMobile] = useState(false)
   const { t, i18n } = useTranslation()
   const language = i18n.resolvedLanguage?.startsWith('en') ? 'en' : 'pl'
@@ -25,6 +27,7 @@ export default function Classes() {
           .map((classKey) => DANCE_CLASSES[classKey][language])
           .join(' • '),
         teacher: teacher.name,
+        image: teacherImages[teacher.image],
         videoUrl: teacher.videoUrl,
         description: teacher.bio[language],
         isVertical: teacher.videoUrl?.includes('/shorts/') ?? false,
@@ -47,6 +50,7 @@ export default function Classes() {
 
   const onPick = (category, video) => {
     setSelection({ categoryKey: category.key, videoId: video.id })
+    setPlayingId(video.id)
     if (isMobile) {
       document.getElementById('playerTop')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
@@ -76,13 +80,18 @@ export default function Classes() {
         <div className="directions-grid">
           <section id="playerTop" className="classes-player-card classes-card">
             <div className={`classes-video-aspect ytWrap ${selected.isVertical ? 'vertical' : 'horizontal'}`}>
-              {playerSrc ? (
+              {playerSrc && playingId === selected.id ? (
                 <iframe
                   title={selected.title}
                   src={playerSrc}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 />
+              ) : playerSrc ? (
+                <button className="video-preview" onClick={() => setPlayingId(selected.id)}>
+                  <img {...selected.image} sizes="(max-width: 768px) 100vw, 800px" alt="" decoding="async" />
+                  <span className="video-preview-label">▶ {t('teachers.watchVideo')}</span>
+                </button>
               ) : (
                 <div className="video-unavailable">{t('directions.videoUnavailable')}</div>
               )}

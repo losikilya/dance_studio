@@ -78,7 +78,7 @@ She continually works on bringing her artistic ideas to life, including her orig
   {
     id: 'aleksandra-kaszubowska',
     name: 'Aleksandra Kaszubowska',
-    image: '/assets/ola.webp',
+    image: '/assets/ola.jpg',
     videoUrl: 'https://youtube.com/shorts/CG0aJup7Ubk?si=sLbiXZKi5MT_dIAT',
     socialUrl: 'https://www.instagram.com/kaszub_owska/',
     teaching: { directionKey: 'high-heels', classKeys: ['high-heels'] },
@@ -102,7 +102,7 @@ She continually works on bringing her artistic ideas to life, including her orig
   {
     id: 'nikola-perczak',
     name: 'Nikola Perczak',
-    image: '/assets/nikola_p.webp',
+    image: '/assets/nikola_p.jpg',
     videoUrl: 'https://youtube.com/shorts/4Wywqv5V2bg?feature=share',
     socialUrl: 'https://www.instagram.com/perczak_/',
     teaching: { directionKey: 'k-pop', classKeys: ['k-pop', 'k-point'] },
@@ -166,7 +166,7 @@ In 2024, she was a lecturer at the Beijing Contemporary Music Academy in China.`
   {
     id: 'jedrek',
     name: 'Jędrek',
-    image: '/assets/jedrek.webp',
+    image: '/assets/jedrek.jpeg',
     videoUrl: 'https://www.youtube.com/watch?v=ng2t8IE4nrE',
     socialUrl: 'https://www.instagram.com/jedras_in/',
     teaching: { directionKey: 'hip-hop', classKeys: ['supa-fly', 'hip-hop'] },
@@ -178,7 +178,7 @@ In 2024, she was a lecturer at the Beijing Contemporary Music Academy in China.`
   {
     id: 'wiktoria',
     name: 'Wiktoria',
-    image: '/assets/wiktoria.webp',
+    image: '/assets/wiktoria.jpg',
     videoUrl: 'https://youtube.com/shorts/ih2gfDNrpxU?feature=share',
     socialUrl: 'https://www.instagram.com/w_tomaszewskaa/',
     teaching: { directionKey: 'acrobatics', classKeys: ['acrobatics'] },
@@ -198,7 +198,7 @@ In her classes, she will teach you many acrobatic elements that can be used in d
   {
     id: 'victoria',
     name: 'Victoria',
-    image: '/assets/victoria.webp',
+    image: '/assets/victoria.jpeg',
     socialUrl: 'https://www.instagram.com/vickysilvero1/',
     teaching: { directionKey: 'ballet', classKeys: ['ballet'] },
     bio: {
@@ -217,7 +217,7 @@ In her ballet teaching, she draws inspiration from the classical repertoire and 
   {
     id: 'maja-ozminska',
     name: 'Maja Oźmińska',
-    image: '/assets/maja.webp',
+    image: '/assets/maja.jpeg',
     videoUrl: 'https://youtube.com/shorts/8FxBsPFGLf4?feature=share',
     teaching: { directionKey: 'street-dance', classKeys: ['street-dance'] },
     bio: {
