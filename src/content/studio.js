@@ -1,10 +1,17 @@
 export const STUDIO = {
   name: 'DANCE POINT LUBOŃ',
-  phone: {
-    display: '+48 796 148 125',
-    href: 'tel:+48796148125',
-    whatsappHref: 'https://wa.me/48796148125',
-  },
+  phones: [
+    {
+      display: '+48 796 148 125',
+      href: 'tel:+48796148125',
+      whatsappHref: 'https://wa.me/48796148125',
+    },
+    {
+      display: '+48 508 389 277',
+      href: 'tel:+48508389277',
+    },
+  ],
+  email: 'dancepointlubon@gmail.com',
   address: {
     street: 'Sobieskiego 55A',
     postalCode: '62-030',

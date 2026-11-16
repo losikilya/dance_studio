@@ -57,7 +57,7 @@ export default function Rent() {
           <Row className="amenities">
             {AMENITIES.map((amenity) => (
               <Col xs={12} sm={8} md={6} key={amenity.key}>
-                <Card className="amenity-card" bordered>
+                <Card className="amenity-card" variant="outlined">
                   <div className="amenity-icon">{amenity.icon}</div>
                   <div className="amenity-label">{t(`rent.amenities.${amenity.key}`)}</div>
                 </Card>
@@ -71,7 +71,7 @@ export default function Rent() {
             {t('rent.pricingTitle')}
           </Title>
 
-          <Card className="rental-price-card" bordered>
+          <Card className="rental-price-card" variant="outlined">
             <div className="rental-price-table-wrap">
               <table className="rental-price-table">
                 <thead>
@@ -94,7 +94,7 @@ export default function Rent() {
             </div>
           </Card>
 
-          <Card className="recording-price-card" bordered>
+          <Card className="recording-price-card" variant="outlined">
             <Title level={3}>{t('rent.services.recordingRental')}</Title>
             <div className="recording-price">{formatPrice(130)}</div>
           </Card>

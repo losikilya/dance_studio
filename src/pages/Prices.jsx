@@ -45,7 +45,7 @@ function PriceCard({ plan, formatPrice, t }) {
   return (
     <Card
       className={`price-card ${plan.best ? 'is-best' : ''}`}
-      bordered
+      variant="outlined"
       title={(
         <div className="price-card-title">
           {plan.best && (

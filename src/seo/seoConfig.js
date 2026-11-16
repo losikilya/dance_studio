@@ -1,5 +1,7 @@
 export const SITE_URL = 'https://www.dancepointlubon.pl'
-export const DEFAULT_OG_IMAGE = `${SITE_URL}/assets/logo.jpg`
+export const DEFAULT_OG_IMAGE = `${SITE_URL}/assets/logo2.webp`
+export const DEFAULT_LANGUAGE = 'pl'
+export const DEFAULT_ROBOTS = 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
 
 export const SEO_CONTENT = {
   '/': {
@@ -82,4 +84,12 @@ export const SEO_CONTENT = {
       description: 'DANCE POINT documents, including studio rules, safety information, pricing documents and dance hall rental terms.',
     },
   },
+}
+
+export function getCanonicalUrl(pathname) {
+  return `${SITE_URL}${pathname === '/' ? '' : pathname}`
+}
+
+export function getSeoContent(pathname, language = DEFAULT_LANGUAGE) {
+  return SEO_CONTENT[pathname]?.[language]
 }

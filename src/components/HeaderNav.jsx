@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button, Drawer, Menu, Switch } from "antd";
 import { useState } from "react";
 import { MenuOutlined } from "@ant-design/icons";
-import logoUrl from "/assets/logo2.jpg";
+import logoUrl from "/assets/logo2.webp";
 import { useTranslation } from "react-i18next";
 
 export function HeaderNav({ language, onLocaleChange }) {

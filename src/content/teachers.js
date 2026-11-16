@@ -34,7 +34,7 @@ export const TEACHERS = [
   {
     id: 'zosia-ostoja-zagorska',
     name: 'Zosia Ostoja-Zagórska',
-    image: '/assets/zosia.jpg',
+    image: '/assets/zosia.webp',
     videoUrl: 'https://youtube.com/shorts/VsPyLYny654?si=Yy-e7kJoq3tqQZbF',
     socialUrl: 'https://www.instagram.com/zosia_oz/',
     teaching: { directionKey: 'choreography', classKeys: ['supa-fly', 'choreography'] },
@@ -54,19 +54,19 @@ In 2024, Zosia spent a month in Los Angeles, training every day with leading fig
   {
     id: 'nikola-makowska-kuciak',
     name: 'Nikola Makowska-Kuciak',
-    image: '/assets/nikola.jpg',
+    image: '/assets/nikola.webp',
     videoUrl: 'https://youtu.be/ejusLcbAVnI',
     socialUrl: 'https://www.instagram.com/_n.makowska_kuciak/',
     teaching: { directionKey: 'jazz', classKeys: ['jazz', 'jazzowki', 'jazz-minis'] },
     bio: {
-      pl: `Razem z Dominiką Lubawy założycielka studia tańca „Dance Point” w Luboniu.
+      pl: `Razem z Dominiką Jałoszyńską założycielka studia tańca „Dance Point” w Luboniu.
 
 Tańczy od 8 roku życia. Trenowała wiele technik tańca: waacking, taniec współczesny, high heels oraz jazz. Dziś jej specjalizacją jest właśnie taniec jazzowy, w którym wciąż poszukuje nowych rozwiązań oraz połączeń z innymi technikami. Aktualnie mieszka w Poznaniu. Jest instruktorką w szkole Point Dance Studio i Dance Point.
 
 Szkoliła się również w Nowym Jorku, w renomowanych szkołach Broadway Dance Center oraz Steps on Broadway, co znacząco wpłynęło na rozwój jej tanecznego języka i podejścia do techniki.
 
 Cały czas prężnie pracuje nad swoimi wizjami, czego efektem jest jej autorski projekt „JazzJam”. Na swoich zajęciach najbardziej skupia się na feelingu, czuciu jazzu, zabawie rytmicznej, podstawach oraz eksploracji!`,
-      en: `Together with Dominika Lubawy, she founded the Dance Point dance studio in Luboń.
+      en: `Together with Dominika Jałoszyńska, she founded the Dance Point dance studio in Luboń.
 
 She has been dancing since the age of eight. She has trained in many dance techniques, including waacking, contemporary dance, high heels and jazz. Today, jazz is her main specialisation, and she continues to look for new ideas and connections with other techniques. She currently lives in Poznań and teaches at Point Dance Studio and Dance Point.
 
@@ -78,7 +78,7 @@ She continually works on bringing her artistic ideas to life, including her orig
   {
     id: 'aleksandra-kaszubowska',
     name: 'Aleksandra Kaszubowska',
-    image: '/assets/ola.jpg',
+    image: '/assets/ola.webp',
     videoUrl: 'https://youtube.com/shorts/CG0aJup7Ubk?si=sLbiXZKi5MT_dIAT',
     socialUrl: 'https://www.instagram.com/kaszub_owska/',
     teaching: { directionKey: 'high-heels', classKeys: ['high-heels'] },
@@ -90,7 +90,7 @@ She continually works on bringing her artistic ideas to life, including her orig
   {
     id: 'zuzanna-kuzmicka',
     name: 'Zuzanna Kuźmicka',
-    image: '/assets/zuza.jpg',
+    image: '/assets/zuza.webp',
     videoUrl: 'https://youtube.com/shorts/0CoK85rbbIk?feature=share',
     socialUrl: 'https://www.instagram.com/poprostu.waack.zuza/',
     teaching: { directionKey: 'kids', classKeys: ['mini-kids', 'kidsy'] },
@@ -102,7 +102,7 @@ She continually works on bringing her artistic ideas to life, including her orig
   {
     id: 'nikola-perczak',
     name: 'Nikola Perczak',
-    image: '/assets/nikola_p.jpg',
+    image: '/assets/nikola_p.webp',
     videoUrl: 'https://youtube.com/shorts/4Wywqv5V2bg?feature=share',
     socialUrl: 'https://www.instagram.com/perczak_/',
     teaching: { directionKey: 'k-pop', classKeys: ['k-pop', 'k-point'] },
@@ -129,8 +129,8 @@ In her classes, she takes care to create a positive atmosphere and energy. She c
   },
   {
     id: 'dominika-doma-lubawy',
-    name: 'Dominika “Doma” Lubawy',
-    image: '/assets/Doma.jpg',
+    name: 'Dominika “Doma” Jałoszyńska',
+    image: '/assets/Doma.webp',
     videoUrl: 'https://www.youtube.com/watch?v=i6W1-KUK8rU',
     socialUrl: 'https://www.instagram.com/waack.doma/',
     teaching: { directionKey: 'waacking', classKeys: ['waacking', 'waack-on-point'] },
@@ -166,7 +166,7 @@ In 2024, she was a lecturer at the Beijing Contemporary Music Academy in China.`
   {
     id: 'jedrek',
     name: 'Jędrek',
-    image: '/assets/jedrek.jpeg',
+    image: '/assets/jedrek.webp',
     videoUrl: 'https://www.youtube.com/watch?v=ng2t8IE4nrE',
     socialUrl: 'https://www.instagram.com/jedras_in/',
     teaching: { directionKey: 'hip-hop', classKeys: ['supa-fly', 'hip-hop'] },
@@ -178,7 +178,7 @@ In 2024, she was a lecturer at the Beijing Contemporary Music Academy in China.`
   {
     id: 'wiktoria',
     name: 'Wiktoria',
-    image: '/assets/wiktoria.jpg',
+    image: '/assets/wiktoria.webp',
     videoUrl: 'https://youtube.com/shorts/ih2gfDNrpxU?feature=share',
     socialUrl: 'https://www.instagram.com/w_tomaszewskaa/',
     teaching: { directionKey: 'acrobatics', classKeys: ['acrobatics'] },
@@ -198,7 +198,7 @@ In her classes, she will teach you many acrobatic elements that can be used in d
   {
     id: 'victoria',
     name: 'Victoria',
-    image: '/assets/victoria.jpeg',
+    image: '/assets/victoria.webp',
     socialUrl: 'https://www.instagram.com/vickysilvero1/',
     teaching: { directionKey: 'ballet', classKeys: ['ballet'] },
     bio: {
@@ -217,7 +217,7 @@ In her ballet teaching, she draws inspiration from the classical repertoire and 
   {
     id: 'maja-ozminska',
     name: 'Maja Oźmińska',
-    image: '/assets/maja.jpeg',
+    image: '/assets/maja.webp',
     videoUrl: 'https://youtube.com/shorts/8FxBsPFGLf4?feature=share',
     teaching: { directionKey: 'street-dance', classKeys: ['street-dance'] },
     bio: {

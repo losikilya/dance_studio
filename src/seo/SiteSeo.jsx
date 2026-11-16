@@ -1,9 +1,13 @@
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
-import { DEFAULT_OG_IMAGE, SEO_CONTENT, SITE_URL } from './seoConfig'
-
-const DEFAULT_ROBOTS = 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
+import {
+  DEFAULT_OG_IMAGE,
+  DEFAULT_ROBOTS,
+  SEO_CONTENT,
+  getCanonicalUrl,
+  getSeoContent,
+} from './seoConfig'
 
 function upsertMeta(attribute, value, content) {
   let element = document.head.querySelector(`meta[${attribute}="${value}"]`)
@@ -35,10 +39,11 @@ export default function SiteSeo() {
   const language = i18n.resolvedLanguage?.startsWith('en') ? 'en' : 'pl'
 
   useEffect(() => {
-    const canonicalPath = pathname === '/classes' ? '/directions' : pathname
+    const normalizedPath = pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname
+    const canonicalPath = normalizedPath === '/classes' ? '/directions' : normalizedPath
     const routeContent = SEO_CONTENT[canonicalPath]
-    const content = routeContent?.[language] ?? SEO_CONTENT['/'][language]
-    const canonicalUrl = `${SITE_URL}${canonicalPath === '/' ? '' : canonicalPath}`
+    const content = getSeoContent(canonicalPath, language) ?? getSeoContent('/', language)
+    const canonicalUrl = getCanonicalUrl(canonicalPath)
     const isIndexable = Boolean(routeContent)
 
     document.documentElement.lang = language

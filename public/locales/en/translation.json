@@ -127,6 +127,7 @@
   "contacts": {
     "title": "Contacts",
     "phone": "Phone",
+    "email": "Email",
     "address": "Address",
     "country": "Poland",
     "openingHours": "Opening hours",

@@ -19,8 +19,8 @@ export default function VideoModal({ open, videoUrl, onClose }) {
       footer={null}
       width={920}
       centered
-      destroyOnClose
-      bodyStyle={{ padding: 0 }}
+      destroyOnHidden
+      styles={{ body: { padding: 0 } }}
     >
       <div className="video-modal-aspect">
         {src && (

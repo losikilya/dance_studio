@@ -2,6 +2,7 @@ import {
   ClockCircleOutlined,
   EnvironmentOutlined,
   InstagramOutlined,
+  MailOutlined,
   PhoneOutlined,
   WhatsAppOutlined,
 } from '@ant-design/icons'
@@ -38,7 +39,7 @@ export default function Contacts() {
 
         <Row gutter={[16, 16]} align="stretch">
           <Col xs={24} md={10}>
-            <Card className="contacts-card info-card" bordered>
+            <Card className="contacts-card info-card" variant="outlined">
               <Title level={2} style={{ marginTop: 0, fontSize: 20, lineHeight: 1.4 }}>
                 {STUDIO.name}
               </Title>
@@ -48,7 +49,17 @@ export default function Contacts() {
                   <PhoneOutlined />
                   <div>
                     <Text strong>{t('contacts.phone')}</Text>
-                    <div><a href={STUDIO.phone.href}>{STUDIO.phone.display}</a></div>
+                    {STUDIO.phones.map((phone) => (
+                      <div key={phone.href}><a href={phone.href}>{phone.display}</a></div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="info-row">
+                  <MailOutlined />
+                  <div>
+                    <Text strong>{t('contacts.email')}</Text>
+                    <div><a href={`mailto:${STUDIO.email}`}>{STUDIO.email}</a></div>
                   </div>
                 </div>
 
@@ -99,13 +110,13 @@ export default function Contacts() {
           </Col>
 
           <Col xs={24} md={14}>
-            <Card className="contacts-card form-card" bordered>
+            <Card className="contacts-card form-card" variant="outlined">
               <Title level={2} style={{ marginTop: 0, fontSize: 20, lineHeight: 1.4 }}>
                 {t('contacts.writeToUs')}
               </Title>
               <Paragraph type="secondary">{t('contacts.contactPrompt')}</Paragraph>
               <Space wrap className="contact-actions">
-                <Button type="primary" size="large" icon={<PhoneOutlined />} href={STUDIO.phone.href}>
+                <Button type="primary" size="large" icon={<PhoneOutlined />} href={STUDIO.phones[0].href}>
                   {t('contacts.callUs')}
                 </Button>
               </Space>
@@ -115,7 +126,7 @@ export default function Contacts() {
 
         <Row gutter={[16, 16]} style={{ marginTop: 16 }}>
           <Col xs={24} md={10}>
-            <Card className="contacts-card" bordered>
+            <Card className="contacts-card" variant="outlined">
               <Title level={2} style={{ marginTop: 0, fontSize: 20, lineHeight: 1.4 }}>
                 {t('contacts.howToFindUs')}
               </Title>
@@ -130,7 +141,7 @@ export default function Contacts() {
             </Card>
           </Col>
           <Col xs={24} md={14}>
-            <Card className="contacts-card map-card" bordered>
+            <Card className="contacts-card map-card" variant="outlined">
               <MapEmbed
                 latitude={latitude}
                 longitude={longitude}
@@ -146,7 +157,7 @@ export default function Contacts() {
             size="large"
             className="contacts-cta-big"
             icon={<WhatsAppOutlined />}
-            href={STUDIO.phone.whatsappHref}
+            href={STUDIO.phones[0].whatsappHref}
             target="_blank"
             rel="noreferrer noopener"
           >

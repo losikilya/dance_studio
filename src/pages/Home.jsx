@@ -1,7 +1,7 @@
 // src/pages/Home.jsx
 import { Button, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
-import backgroundVideo from "/assets/home.mp4";
+import backgroundVideo from "/assets/home.webm";
 import { Trans, useTranslation } from "react-i18next";
 import "./home.css";
 

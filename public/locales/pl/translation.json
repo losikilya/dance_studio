@@ -127,6 +127,7 @@
   "contacts": {
     "title": "Kontakt",
     "phone": "Telefon",
+    "email": "E-mail",
     "address": "Adres",
     "country": "Polska",
     "openingHours": "Godziny otwarcia",

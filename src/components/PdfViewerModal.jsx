@@ -13,8 +13,8 @@ export default function PdfViewerModal({ open, onClose, src, title }) {
       title={title || fallbackTitle}
       width={980}
       centered
-      bodyStyle={{ padding: 0, height: '75vh' }}
-      destroyOnClose
+      styles={{ body: { padding: 0, height: '75vh' } }}
+      destroyOnHidden
     >
       {src ? (
         <iframe
